@@ -32,7 +32,7 @@ The current main branch can be directly installed using ``pip`` as well,
 
     pip install git+https://github.com/sandialabs/ufjc.git
 
-or after cloning the main branch, using ``python setup.py install``.
+or after cloning the `main <https://github.com/sandialabs/ufjc>`_ branch, using ``python setup.py install``.
 
 ***********
 Information
