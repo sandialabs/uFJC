@@ -24,3 +24,16 @@ jobs:
         run: python setup.py install
       - name: Test with pytest
         run: python -m pytest --cov=./ufjc --cov-report xml
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the tarball
+        run: python setup.py sdist
+      - name: Build the wheel
+        run: python setup.py bdist_wheel
+      - name: Artifact dist/
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifacts
+          path: dist/
