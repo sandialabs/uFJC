@@ -6,17 +6,21 @@ on:
     branches: [ main ]
   workflow_dispatch:
 jobs:
-  setup:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 6
+      matrix:
+        python-version: ['3.5', '3.6', '3.7', '3.8', '3.9', '3.10']
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Install the package
         run: python setup.py install
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - name: Test with pytest
         run: pytest -m "not unwritten" --cov=. --verbose --junitxml=report.xml
