@@ -1,0 +1,11 @@
+anybadge
+colorama
+matplotlib
+numpy
+pycodestyle
+pytest
+pytest-cov
+scipy
+sphinx
+sphinx-rtd-theme
+sphinxcontrib-bibtex
