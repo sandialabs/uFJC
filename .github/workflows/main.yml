@@ -22,24 +22,26 @@ jobs:
       - name: Install package and testing extras
         run: pip install .[testing]
       - name: Test via pytest
-        run: python -m pytest --cov=./ufjc/ --cov-report xml
-      - name: Create/activate conda env
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          python-version: ${{ matrix.python-version }}
-          activate-environment: ufjc
-      - name: Install dependencies
-        shell: bash -l {0}
-        run: conda install --file requirements.txt
+        run: python -m pytest --cov=./${{ github.event.repository.name }}/ --cov-report xml
   package:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Make tarball
         run: python setup.py sdist
       - name: Make wheel
         run: python setup.py bdist_wheel
+      - name: Create/activate conda env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          activate-environment: ${{ github.event.repository.name }}
+      - name: Install dependencies
+        shell: bash -l {0}
+        run: conda install --channel conda-forge --file requirements.txt
+      - name: Export environment
+        shell: bash -l {0}
+        run: conda env export --name ${{ github.event.repository.name }} > dist/${{ github.event.repository.name }}.yml
       - name: Artifact dist/
         uses: actions/upload-artifact@v2
         with:
