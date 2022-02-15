@@ -14,23 +14,23 @@ The is the Python package ``uFJC`` developed for the uFJC single-chain model, a 
 Installation
 ************
 
-The package can be installed using ``pip`` via the Python Package Index (`PyPI.org <https://pypi.org/project/ufjc/>`_),
+The package can be installed using ``pip`` via the `Python Package Index (PyPI) <https://pypi.org/project/ufjc/>`_, which is recommended,
 
 ::
 
     pip install ufjc
 
-or using ``conda`` via the ``mrbuche`` channel on `Anaconda.org <https://anaconda.org/mrbuche/fjc>`_,
+or using ``conda`` via the ``mrbuche`` channel on `Anaconda <https://anaconda.org/mrbuche/fjc>`_,
 
 ::
 
     conda install -c mrbuche ufjc
     
-The current main branch can be directly installed using ``pip`` as well,
+Alternatively, a branch can be directly installed using ``pip``,
 
 ::
 
-    pip install git+https://github.com/sandialabs/ufjc.git
+    pip install git+https://github.com/sandialabs/ufjc.git@<branch-name>
 
 or after cloning a branch and executing ``python setup.py install``.
 
