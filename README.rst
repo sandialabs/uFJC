@@ -47,7 +47,7 @@ Information
 Citation
 ********
 
-(placeholder)
+(Placeholder)
 
 ..
     Badges ========================================================================
