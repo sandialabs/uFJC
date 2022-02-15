@@ -29,12 +29,9 @@ jobs:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
           activate-environment: ufjc
-          environment-file: requirements.txt
-      - name: Conda list
+      - name: Install dependencies
         shell: bash -l {0}
-        run: |
-          conda list
-          conda env list
+        run: conda install --file requirements.txt
   package:
     runs-on: ubuntu-latest
     steps:
