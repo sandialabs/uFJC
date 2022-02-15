@@ -24,7 +24,7 @@ or using ``conda`` via the ``mrbuche`` channel on `Anaconda <https://anaconda.or
 
 ::
 
-    conda install -c mrbuche ufjc
+    conda install --channel mrbuche ufjc
     
 Alternatively, a branch can be directly installed using ``pip``,
 
