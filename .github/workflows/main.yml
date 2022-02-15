@@ -23,6 +23,18 @@ jobs:
         run: pip install .[testing]
       - name: Test via pytest
         run: python -m pytest --cov=./ufjc/ --cov-report xml
+      - name: Create/activate conda env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: ${{ matrix.python-version }}
+          activate-environment: ufjc
+          environment-file: requirements.txt
+      - name: Conda list
+        shell: bash -l {0}
+        run: |
+          conda list
+          conda env list
   package:
     runs-on: ubuntu-latest
     steps:
