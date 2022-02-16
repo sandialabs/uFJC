@@ -6,7 +6,7 @@ release = '1.0.0'
 project = 'uFJC'
 author = 'Michael R. Buche, Scott J. Grutzik'
 copyright = '2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS). \
-    Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.'
+    Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software'
 
 templates_path = ['_templates']
 html_static_path = ['_static']
