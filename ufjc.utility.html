@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ufjc.utility module &mdash; uFJC 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="examples.isotensional_approaches module" href="examples.isotensional_approaches.html" />
+    <link rel="prev" title="ufjc.potential module" href="ufjc.potential.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> uFJC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_approaches.html">examples.isotensional_approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_asymptotics.html">examples.isotensional_asymptotics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_doc.html">tests.test_doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_style.html">tests.test_style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ufjc.utility</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ufjc.utility.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ufjc.utility">
+<span id="ufjc-utility-module"></span><h1>ufjc.utility<a class="headerlink" href="#module-ufjc.utility" title="Permalink to this headline"></a></h1>
+<p>A module for basic single-chain model utilities.</p>
+<p>This module consist of the class <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> which contains
+attributes and methods that are meant to be inherited and utilized as
+basic utilities by an arbitrary single-chain model class.</p>
+<p class="rubric">Example</p>
+<p>Create a freely-jointed chain single-chain model class <code class="docutils literal notranslate"><span class="pre">FJC</span></code> that
+inherits the <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> class in order to utilize the
+Langevin function for the nondimensional isotensional mechanical response:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">FJC</span><span class="p">(</span><span class="n">BasicUtility</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>       <span class="n">BasicUtility</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">gamma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">FJC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mf">1e88</span><span class="p">])</span>
+<span class="go">array([0.        , 0.07639764, 1.        ])</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BasicUtility</span></span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The single-chain model basic utilities class.</p>
+<p>This class contains
+attributes and methods that are meant to be inherited and utilized as
+basic utilities by an arbitrary single-chain model class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">minimum</span> <span class="pre">float</span></span></dt>
+<dd><p>Helps avoid overflow when dividing by small numbers.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.maximum_float">
+<span class="sig-name descname"><span class="pre">maximum_float</span></span><a class="headerlink" href="#ufjc.utility.BasicUtility.maximum_float" title="Permalink to this definition"></a></dt>
+<dd><p>Helps avoid overflow in function evaluations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.maximum_exponent">
+<span class="sig-name descname"><span class="pre">maximum_exponent</span></span><a class="headerlink" href="#ufjc.utility.BasicUtility.maximum_exponent" title="Permalink to this definition"></a></dt>
+<dd><p>Helps avoid overflow in exponential functions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.__init__" title="Permalink to this definition"></a></dt>
+<dd><p>Initializes the <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> class.</p>
+<p>Inherits overflow-related parameters from <code class="docutils literal notranslate"><span class="pre">sys.float_info</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.coth">
+<span class="sig-name descname"><span class="pre">coth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.coth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.coth" title="Permalink to this definition"></a></dt>
+<dd><p>The hyperbolic cotangent function.</p>
+<p>This function essentially serves as a wrapper for the algebraic inverse
+of <code class="docutils literal notranslate"><span class="pre">numpy.tanh</span></code> that avoids the singularity from evaluating at zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the
+hyperbolic cotangent function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The hyperbolic cotangent(s).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Compute the hyperbolic cotangent for several argument values:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">coth</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+<span class="go">array([4.49423284e+307, 4.42422373e+000, 1.00000000e+000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.inv_fun_1D">
+<span class="sig-name descname"><span class="pre">inv_fun_1D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.inv_fun_1D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.inv_fun_1D" title="Permalink to this definition"></a></dt>
+<dd><p>Function to invert a mathematical function.</p>
+<p>This function returns the argument x given a function f(x)
+and y, the query value of the function, i.e. y = f(x).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is only meant for bijective f(x).</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y</strong> (<em>array_like</em>) – The value(s) of the function y.</p></li>
+<li><p><strong>f</strong> (<em>function</em>) – The function f(x).</p></li>
+<li><p><strong>guess</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of two initial guesses.</p></li>
+<li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.
+Passed to <code class="docutils literal notranslate"><span class="pre">root_scalar</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The corresponding argument(s) x.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Invert a polynomial function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">([</span><span class="mi">55</span><span class="p">,</span> <span class="mi">88</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
+<span class="go">array([1.13037023, 1.25370131])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.inv_langevin">
+<span class="sig-name descname"><span class="pre">inv_langevin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.inv_langevin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.inv_langevin" title="Permalink to this definition"></a></dt>
+<dd><p>The inverse Langevin function.</p>
+<p>This function computes the inverse of the Langevin function
+given its query value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>gamma</strong> (<em>array_like</em>) – The value(s) of the Langevin function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The argument(s) of the Langevin function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Check that <span class="math notranslate nohighlight">\(\mathcal{L}^{-1}[\mathcal{L}(\eta)] = \eta\,\)</span>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">check_langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">langevin</span> <span class="o">=</span> <span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">langevin</span>
+<span class="gp">... </span>    <span class="n">inv_langevin</span> <span class="o">=</span> <span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">inv_langevin</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">inv_langevin</span><span class="p">(</span><span class="n">langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">))[</span><span class="mi">0</span><span class="p">],</span> <span class="n">eta</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">check_langevin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">())</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.langevin">
+<span class="sig-name descname"><span class="pre">langevin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.langevin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.langevin" title="Permalink to this definition"></a></dt>
+<dd><p>The Langevin function.</p>
+<p>This function computes and returns the Langevin function
+of the argument eta, which is</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\eta) = \coth(\eta) - 1/\eta.\]</div>
+<p>It also avoids dividing by zero at zero argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the Langevin function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The evaluated Langevin function(s).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Compute the Langevin function for several argument values:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">langevin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+<span class="go">array([0.        , 0.31303529, 0.87500023, 1.        ])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.log_over_sinh">
+<span class="sig-name descname"><span class="pre">log_over_sinh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.log_over_sinh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.log_over_sinh" title="Permalink to this definition"></a></dt>
+<dd><p>The natural logarithm of the argument over the hyperbolic sine.</p>
+<p>This function avoids overflow when calculating the natural logarithm
+of the ratio of the argument to the hyperbolic sine of the argument,</p>
+<div class="math notranslate nohighlight">
+\[f(\eta) = \ln\left[\frac{\eta}{\sinh(\eta)}\right].\]</div>
+<p>It also returns zero for zero argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the function.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The value(s) of the function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Compute the function for several argument values:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">log_over_sinh</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mi">888</span><span class="p">])</span>
+<span class="go">array([ 0.00000000e+00, -8.80117196e-03, -8.80517881e+02])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.utility.BasicUtility.np_array">
+<span class="sig-name descname"><span class="pre">np_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/utility.html#BasicUtility.np_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.utility.BasicUtility.np_array" title="Permalink to this definition"></a></dt>
+<dd><p>Function to return input as a numpy array.</p>
+<p>This function essentially serves as a wrapper for <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>
+that returns non-array type inputs as shape (1,) numpy arrays
+rather than shape () numpy arrays, which is useful for indexing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input</strong> (<em>array_like</em>) – Anything passable to <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The input as an index-able numpy array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Compare attempts to index the numpy array of an integer:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">8</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error indexing 0-dimensional array.&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">finally</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span><span class="mi">8</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">Error indexing 0-dimensional array.</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ufjc.potential.html" class="btn btn-neutral float-left" title="ufjc.potential module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.isotensional_approaches.html" class="btn btn-neutral float-right" title="examples.isotensional_approaches module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS).     Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

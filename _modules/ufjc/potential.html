@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ufjc.potential &mdash; uFJC 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> uFJC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.core.html">ufjc.core module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.isometric.html">ufjc.isometric module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.isotensional.html">ufjc.isotensional module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.monte_carlo.html">ufjc.monte_carlo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.potential.html">ufjc.potential module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.utility.html">ufjc.utility module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.isotensional_approaches.html">examples.isotensional_approaches module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.isotensional_asymptotics.html">examples.isotensional_asymptotics module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests.test_doc.html">tests.test_doc module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests.test_style.html">tests.test_style module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>ufjc.potential</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ufjc.potential</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;A module for handling potentials.</span>
+
+<span class="sd">This module contains several different classes representing potentials,</span>
+<span class="sd">each having methods to compute relevant nondimensional quantities as</span>
+<span class="sd">functions of nondimensional force or stretch.</span>
+<span class="sd">This module also contains the parent class ``Potential`` that is used to</span>
+<span class="sd">assign a potential to a given model using keyword arguments.</span>
+
+<span class="sd">Examples:</span>
+<span class="sd">    Create a Lenard-Jones potential model with</span>
+<span class="sd">    a nondimensional potential energy scale of 8 and evaluate</span>
+<span class="sd">    the nondimensional potential energy at a stretch of 1.23:</span>
+
+<span class="sd">        &gt;&gt;&gt; from ufjc.potential import LenardJonesPotential</span>
+<span class="sd">        &gt;&gt;&gt; model = LenardJonesPotential(varepsilon=8)</span>
+<span class="sd">        &gt;&gt;&gt; model.beta_u(1.23)</span>
+<span class="sd">        -3.953345685631384</span>
+
+<span class="sd">    Create a single-link model in one dimension, instantiate it with</span>
+<span class="sd">    the Morse potential, and compute the incremental link stretch under</span>
+<span class="sd">    a nondimensional force of 8:</span>
+
+<span class="sd">        &gt;&gt;&gt; from ufjc.potential import Potential</span>
+<span class="sd">        &gt;&gt;&gt; class Link1D(Potential):</span>
+<span class="sd">        ...     def __init__(self, **kwargs):</span>
+<span class="sd">        ...         Potential.__init__(self, **kwargs)</span>
+<span class="sd">        &gt;&gt;&gt; Link1D(potential=&#39;morse&#39;).delta_lambda(8)</span>
+<span class="sd">        0.04890980361596759</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import external modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="k">import</span> <span class="n">lambertw</span>
+
+
+<div class="viewcode-block" id="HarmonicPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential">[docs]</a><span class="k">class</span> <span class="nc">HarmonicPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The harmonic potential.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness :math:`\kappa=\varepsilon`.</span>
+<span class="sd">        c (float): The correction parameter :math:`c=1`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="HarmonicPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``HarmonicPotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="HarmonicPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) = \frac{1}{2}(\lambda-1)^2</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span></div>
+
+<div class="viewcode-block" id="HarmonicPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HarmonicPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = \varepsilon(\lambda - 1)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HarmonicPotential.delta_lambda"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.delta_lambda">[docs]</a>    <span class="k">def</span> <span class="nf">delta_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The incremental stretch as a function of nondimensional force,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \Delta\lambda(\eta) = \frac{\eta}{\varepsilon}</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The incremental stretch(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span></div></div>
+
+
+<div class="viewcode-block" id="LogSquaredPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential">[docs]</a><span class="k">class</span> <span class="nc">LogSquaredPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The log-squared potential :cite:`potential-mao2017rupture`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness :math:`\kappa=\varepsilon`.</span>
+<span class="sd">        c (float): The correction parameter :math:`c=2/5`.</span>
+<span class="sd">        eta_max (float): The maximum nondimensional force</span>
+<span class="sd">            :math:`\eta_\mathrm{max} = e^{-1}\varepsilon`.</span>
+<span class="sd">        lambda_max (float): The stretch at the maximum nondimensional force,</span>
+<span class="sd">            :math:`\lambda_\mathrm{max} = e^{1}`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LogSquaredPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``LogSquaredPotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LogSquaredPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) = \frac{1}{2}\big[\ln(\lambda)\big]^2</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span></div>
+
+<div class="viewcode-block" id="LogSquaredPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LogSquaredPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = \varepsilon\,\frac{\ln(\lambda)}{\lambda}</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span><span class="o">/</span><span class="n">lambda_</span></div>
+
+<div class="viewcode-block" id="LogSquaredPotential.delta_lambda"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.delta_lambda">[docs]</a>    <span class="k">def</span> <span class="nf">delta_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The incremental stretch as a function of nondimensional force,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \Delta\lambda(\eta) = e^{-\mathcal{W}(-\eta/\varepsilon)}</span>
+<span class="sd">                ,\qquad \eta\in[0,\eta_\mathrm{max}]</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The incremental stretch(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lambertw</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">real</span></div></div>
+
+
+<div class="viewcode-block" id="MorsePotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential">[docs]</a><span class="k">class</span> <span class="nc">MorsePotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Morse potential :cite:`potential-morse1929diatomic`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        alpha (float): The Morse parameter.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness</span>
+<span class="sd">            :math:`\kappa=2\varepsilon\alpha^2`.</span>
+<span class="sd">        c (float): The correction parameter</span>
+<span class="sd">            :math:`c=1/(1+3\alpha/2)`.</span>
+<span class="sd">        eta_max (float): The maximum nondimensional force</span>
+<span class="sd">            :math:`\eta_\mathrm{max} = \sqrt{\kappa\varepsilon/8}`.</span>
+<span class="sd">        lambda_max (float): The stretch at the maximum nondimensional force,</span>
+<span class="sd">            :math:`\lambda_\mathrm{max} = 1+\ln(2)/\alpha`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MorsePotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``MorsePotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88)</span>
+<span class="sd">                and ``alpha`` (default 1).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span></div>
+
+<div class="viewcode-block" id="MorsePotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) = \left[1</span>
+<span class="sd">                    - e^{-\alpha(\lambda - 1)}\right]^2</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span></div>
+
+<div class="viewcode-block" id="MorsePotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MorsePotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = 2\alpha\varepsilon e^{-\alpha(\lambda - 1)}</span>
+<span class="sd">                    \left[1 - e^{-\alpha(\lambda - 1)}\right]^2</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">*</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> \
+            <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="MorsePotential.delta_lambda"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.delta_lambda">[docs]</a>    <span class="k">def</span> <span class="nf">delta_lambda</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The incremental stretch as a function of nondimensional force,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \Delta\lambda(\eta) =</span>
+<span class="sd">                    \ln\left(\frac{2}{1 + \sqrt{1 -</span>
+<span class="sd">                        \eta/\eta_\mathrm{max}}}\right)^{1/\alpha}</span>
+<span class="sd">                ,\qquad \eta\in[0,\eta_\mathrm{max}]</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The incremental stretch(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span><span class="p">)))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span></div></div>
+
+
+<div class="viewcode-block" id="LenardJonesPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential">[docs]</a><span class="k">class</span> <span class="nc">LenardJonesPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Lenard-Jones potential :cite:`potential-jones1924determinationii`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness</span>
+<span class="sd">            :math:`\kappa=72\varepsilon`.</span>
+<span class="sd">        c (float): The correction parameter</span>
+<span class="sd">            :math:`c=2/23`.</span>
+<span class="sd">        eta_max (float): The maximum nondimensional force</span>
+<span class="sd">            :math:`\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})`.</span>
+<span class="sd">        lambda_max (float): The stretch at the maximum nondimensional force,</span>
+<span class="sd">            :math:`\lambda_\mathrm{max} = (13/7)^{1/6}`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LenardJonesPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``LenardJonesPotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="mi">72</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">23</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LenardJonesPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) =</span>
+<span class="sd">                    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6}</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">6</span></div>
+
+<div class="viewcode-block" id="LenardJonesPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LenardJonesPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = 12\varepsilon\left(</span>
+<span class="sd">                    \frac{1}{\lambda^7} - \frac{1}{\lambda^{13}}\right)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="p">(</span><span class="mi">12</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">7</span> <span class="o">-</span> <span class="mi">12</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">13</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="MiePotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential">[docs]</a><span class="k">class</span> <span class="nc">MiePotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Mie potential :cite:`potential-mie1903kinetischen`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        n (float): The repulsive exponent.</span>
+<span class="sd">        m (float): The attractive exponent.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness</span>
+<span class="sd">            :math:`\kappa=nm\varepsilon`.</span>
+<span class="sd">        c (float): The correction parameter</span>
+<span class="sd">            :math:`c=\frac{4m(m+1)-2n(n+1)}{2m(m^2+5m+4)-n(n^2+5n+4)}`.</span>
+<span class="sd">        eta_max (float): The maximum nondimensional force</span>
+<span class="sd">            :math:`\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})`.</span>
+<span class="sd">        lambda_max (float): The stretch at the maximum nondimensional force,</span>
+<span class="sd">            :math:`\lambda_\mathrm{max}=\left[\frac{n+1}{m+1}\right]^{1/(n-m)}`</span>
+<span class="sd">            .</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MiePotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``MiePotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88)</span>
+<span class="sd">                ``n`` (default 12) and ``m`` (default 6).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="p">(</span>
+            <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MiePotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) = \frac{1}{(n-m)}</span>
+<span class="sd">                    \left(\frac{m}{\lambda^n} - \frac{n}{\lambda^m}\right)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MiePotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MiePotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = \varepsilon\, \frac{nm}{(n-m)}</span>
+<span class="sd">                    \left(\frac{1}{\lambda^{m+1}}</span>
+<span class="sd">                        - \frac{1}{\lambda^{n+1}}\right)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="p">(</span>
+            <span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="PolynomialPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential">[docs]</a><span class="k">class</span> <span class="nc">PolynomialPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A polynomial potential.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        coefficients (array_like): The coefficients :math:`a_k`.</span>
+<span class="sd">        kappa (float): The nondimensional stiffness</span>
+<span class="sd">            :math:`\kappa=a_1\varepsilon`.</span>
+<span class="sd">        c (float): The correction parameter</span>
+<span class="sd">            :math:`c=(1 - \frac{a_2}{2a_1})^{-1}`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="PolynomialPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``PolynomialPotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Can be used to specify ``varepsilon`` (default 88)</span>
+<span class="sd">                and ``coefficients`` (default 1).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coefficients&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]),</span> <span class="n">coef</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_c</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PolynomialPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \phi(\lambda) = \sum_{k=2} \frac{a_{k-1}}{k}\, \lambda^k</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">)(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PolynomialPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PolynomialPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \eta(\lambda) = \varepsilon\sum_{k=1} a_k\, \lambda^k</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">*</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_c</span><span class="p">)(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CustomPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.CustomPotential">[docs]</a><span class="k">class</span> <span class="nc">CustomPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A custom user-defined potential.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        potential (str): The potential name.</span>
+<span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
+<span class="sd">        phi (function): The scaled nondimensional energy function.</span>
+<span class="sd">        eta_link (function): The nondimensional force as a function of stretch.</span>
+<span class="sd">        delta_lambda (function): The incremental stretch as a function of the</span>
+<span class="sd">            nondimensional force (optional).</span>
+<span class="sd">        kappa (float): The nondimensional stiffness.</span>
+<span class="sd">        c (float): The correction parameter.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="CustomPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.CustomPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``CustomPotential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;custom&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;phi&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eta_link&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kappa&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+        <span class="c1"># No defaults</span>
+        <span class="k">if</span> <span class="s1">&#39;delta_lambda&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delta_lambda</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;delta_lambda&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;lambda_max&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lambda_max&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;eta_max&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eta_max&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CustomPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.CustomPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
+
+<span class="sd">            .. math::</span>
+<span class="sd">                \beta u(\lambda) = \varepsilon\phi(\lambda)</span>
+<span class="sd">                .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lambda_ (array_like): The stretch(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional potential energy(s).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Potential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.Potential">[docs]</a><span class="k">class</span> <span class="nc">Potential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A class to assign a potential to a given model through inheritance.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        potential (str): The potential type.</span>
+<span class="sd">        pot (object): The potential model instance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Potential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.Potential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``Potential`` class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Used to specify the potential and then passed to</span>
+<span class="sd">                an instantiation of that potential.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">HarmonicPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;log-squared&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">LogSquaredPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;morse&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">MorsePotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;lenard-jones&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">LenardJonesPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;mie&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">MiePotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">PolynomialPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;custom&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">CustomPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">HarmonicPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Inherit attributes and methods from the chosen potential.</span>
+
+<span class="sd">            Note:</span>
+<span class="sd">                When accessing an attribute of the model to which the potential</span>
+<span class="sd">                is assigned, but no attribute is found, and ``AttributeError``</span>
+<span class="sd">                will be raised with respect to the ``pot`` instance, not the</span>
+<span class="sd">                overall model instance. This is sub-optimal but typically</span>
+<span class="sd">                acceptable, but still should be repaired in the future.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pot</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS).     Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

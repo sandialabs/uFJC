@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ufjc.isotensional &mdash; uFJC 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> uFJC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.core.html">ufjc.core module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.isometric.html">ufjc.isometric module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.isotensional.html">ufjc.isotensional module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.monte_carlo.html">ufjc.monte_carlo module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.potential.html">ufjc.potential module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.utility.html">ufjc.utility module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.isotensional_approaches.html">examples.isotensional_approaches module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.isotensional_asymptotics.html">examples.isotensional_asymptotics module</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests.test_doc.html">tests.test_doc module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tests.test_style.html">tests.test_style module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>ufjc.isotensional</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ufjc.isotensional</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;A module for the uFJC single-chain model in the isotensional ensemble.</span>
+
+<span class="sd">This module consist of the class ``uFJCIsotensional`` which contains</span>
+<span class="sd">methods for computing single-chain quantities</span>
+<span class="sd">in the isotensional (constant end-to-end force) thermodynamic ensemble.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    Import and instantiate the class:</span>
+
+<span class="sd">        &gt;&gt;&gt; from ufjc.isotensional import uFJCIsotensional</span>
+<span class="sd">        &gt;&gt;&gt; class_instance = uFJCIsotensional()</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Import internal modules</span>
+<span class="kn">from</span> <span class="nn">.monte_carlo</span> <span class="k">import</span> <span class="n">MHMCMC</span>
+<span class="kn">from</span> <span class="nn">.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+
+<span class="c1"># Import external modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="k">import</span> <span class="n">erf</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">quad_vec</span>
+
+
+<div class="viewcode-block" id="uFJCIsotensional"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional">[docs]</a><span class="k">class</span> <span class="nc">uFJCIsotensional</span><span class="p">(</span><span class="n">BasicUtility</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The uFJC single-chain model class for the isotensional ensemble.</span>
+
+<span class="sd">    This class contains methods for computing single-chain quantities</span>
+<span class="sd">    in the isotensional (constant end-to-end force) thermodynamic ensemble.</span>
+<span class="sd">    It inherits all attributes and methods from the ``BasicUtility`` class.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="uFJCIsotensional.__init__"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``uFJCIsotensional`` class.</span>
+
+<span class="sd">        Initialize and inherit all attributes and methods</span>
+<span class="sd">        from a ``BasicUtility`` class instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">BasicUtility</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Main function for the isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        This is the main function utilized to compute the isotensional</span>
+<span class="sd">        nondimensional single-chain mechanical response.</span>
+<span class="sd">        Keyword arguments specify and are passed onto the approach.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Passed to ``gamma_isotensional_MHMCMC`` when the</span>
+<span class="sd">                Monte Carlo approach is chosen.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional end-to-end length of the EFJC</span>
+<span class="sd">            in the isotensional ensemble under a nondimensional force of 23</span>
+<span class="sd">            using numerical quadrature:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;harmonic&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; model.gamma_isotensional(23, approach=&#39;quadrature&#39;)</span>
+<span class="sd">                array([1.22689438])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">approach</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;approach&#39;</span><span class="p">,</span> <span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;asymptotic&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;simplest&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;exact&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_exact</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;quadrature&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_quadrature</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;monte carlo&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The asymptotic approach for the</span>
+<span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        This function provides the asymptotic approach for</span>
+<span class="sd">        obtaining :math:`\gamma(\eta)` in the isotensional ensemble</span>
+<span class="sd">        :cite:`isotensional-buche2022on`,</span>
+<span class="sd">        a composite approximation for all :math:`\eta`</span>
+<span class="sd">        that is valid for :math:`\varepsilon\gg 1`,</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \gamma(\eta) \sim \mathcal{L}(\eta) +</span>
+<span class="sd">                \frac{\eta}{\kappa}\left[</span>
+<span class="sd">                \frac{1 - \mathcal{L}(\eta)\coth(\eta)}</span>
+<span class="sd">                {c + (\eta/\kappa)\coth(\eta)}\right]</span>
+<span class="sd">                + \Delta\lambda(\eta)</span>
+<span class="sd">            .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the asymptotically-correct nondimensional end-to-end length</span>
+<span class="sd">            of the Mie-FJC in the isotensional ensemble</span>
+<span class="sd">            under a nondimensional force of 23:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;mie&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; model.gamma(23, approach=&#39;asymptotic&#39;)</span>
+<span class="sd">                array([0.96204056])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Ln</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">coth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coth</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Ln</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">+</span> \
+            <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Ln</span><span class="o">*</span><span class="n">coth</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">+</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="n">coth</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic_simplest"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_simplest">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The simplest asymptotic approach for the</span>
+<span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        This function provides the simplest asymptotic approach for</span>
+<span class="sd">        obtaining :math:`\gamma(\eta)` in the isotensional ensemble,</span>
+<span class="sd">        a composite approximation for all :math:`\eta`</span>
+<span class="sd">        that is valid for :math:`\varepsilon\gg 1`,</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \gamma(\eta) \sim \mathcal{L}(\eta) + \Delta\lambda(\eta).</span>
+
+<span class="sd">        The simplification involves neglecting terms that contribute negligibly</span>
+<span class="sd">        apart when :math:`\eta=\mathrm{ord}(\varepsilon)`, a region that tends</span>
+<span class="sd">        to vanish for :math:`\varepsilon\gg 1`.</span>
+<span class="sd">        This simplification is then asymptotically valid in the same limit that</span>
+<span class="sd">        made the original asymptotic approximation possible.</span>
+<span class="sd">        Further, this asymptotic approximation is equivalent to asymptotically</span>
+<span class="sd">        matching the low-force entropic mechanical response</span>
+<span class="sd">        :math:`\mathcal{L}(\eta)` to the high-force enthalpic</span>
+<span class="sd">        mechanical response :math:`\lambda(\eta)` :cite:`isotensional-buche2021chain`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Verify that either asymptotic approximation obtains close-to-exact</span>
+<span class="sd">            end-to-end lengths over many nondimensional forces</span>
+<span class="sd">            when the nondimensional energy scale is high:</span>
+
+<span class="sd">                &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;morse&#39;, varepsilon=888)</span>
+<span class="sd">                &gt;&gt;&gt; eta_trial = np.logspace(-2, 1, 88)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_quad = model.gamma(eta_trial, approach=&#39;quadrature&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_asymp = model.gamma(eta_trial, approach=&#39;asymptotic&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; (np.abs(gamma_quad-gamma_asymp)/gamma_quad &lt; 1e-2).all()</span>
+<span class="sd">                True</span>
+<span class="sd">                &gt;&gt;&gt; gamma_simpl = model.gamma(eta_trial, approach=&#39;asymptotic&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; (np.abs(gamma_quad-gamma_simpl)/gamma_quad &lt; 1e-2).all()</span>
+<span class="sd">                True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_exact"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_exact">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Exact approach for the</span>
+<span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        This function provides the exact, analytical approach for obtaining</span>
+<span class="sd">        :math:`\gamma(\eta)` in the isotensional ensemble.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            This is currently only available for harmonic link potentials,</span>
+<span class="sd">            and will therefore return nan for non-harmonic potentials:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; uFJC().gamma([88e-2, 8], approach=&#39;exact&#39;)</span>
+<span class="sd">                array([0.29518908, 0.97632595])</span>
+<span class="sd">                &gt;&gt;&gt; uFJC(potential=&#39;morse&#39;).gamma([88e-2, 8], approach=&#39;exact&#39;)</span>
+<span class="sd">                array([nan, nan])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">efjc_gamma_isotensional_exact</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">eta</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.efjc_gamma_isotensional_exact"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.efjc_gamma_isotensional_exact">[docs]</a>    <span class="k">def</span> <span class="nf">efjc_gamma_isotensional_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Exact approach for the EFJC</span>
+<span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        This function provides the exact, analytical approach for obtaining</span>
+<span class="sd">        :math:`\gamma(\eta)` in the isotensional ensemble</span>
+<span class="sd">        for harmonic link potentials, i.e. for the EFJC model,</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \gamma(\eta) =</span>
+<span class="sd">            \mathcal{L}(\eta) +</span>
+<span class="sd">            \frac{\eta}{\kappa}\left[1 +</span>
+<span class="sd">            \frac{1 - \mathcal{L}(\eta)\coth(\eta)}</span>
+<span class="sd">            {1 + (\eta/\kappa)\coth(\eta)}\right]</span>
+<span class="sd">            + \frac{\partial}{\partial\eta}\,\ln\left[1+g(\eta)\right]</span>
+<span class="sd">            ,</span>
+
+<span class="sd">        where the function :math:`g(\eta)` is given by :cite:`isotensional-buche2022on`</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            g(\eta) =</span>
+<span class="sd">            \frac{</span>
+<span class="sd">            e^{\eta}\left(\frac{\eta}{\kappa} + 1\right)</span>
+<span class="sd">                \,\mathrm{erf}\left(\frac{\eta+\kappa}{\sqrt{2\kappa}}\right)</span>
+<span class="sd">            - e^{-\eta}\left(\frac{\eta}{\kappa} - 1\right)</span>
+<span class="sd">                \,\mathrm{erf}\left(\frac{\eta-\kappa}{\sqrt{2\kappa}}\right)}</span>
+<span class="sd">            {4\sinh(\eta)\left[1 + (\eta/\kappa)\coth(\eta)\right]}</span>
+<span class="sd">            - \frac{1}{2}</span>
+<span class="sd">            .</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the exact nondimensional end-to-end length of the EFJC</span>
+<span class="sd">            in the isotensional ensemble under a nondimensional force of 23:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;harmonic&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; model.gamma(23, approach=&#39;exact&#39;)</span>
+<span class="sd">                array([1.22689438])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Avoid overflow</span>
+        <span class="n">eta</span><span class="p">[</span><span class="n">eta</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span>
+        <span class="n">eta</span><span class="p">[</span><span class="n">eta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-88</span>
+        <span class="n">eta</span><span class="p">[</span><span class="n">eta</span> <span class="o">&lt;</span> <span class="mf">1e-88</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-88</span>
+
+        <span class="c1"># Pre-compute some common terms</span>
+        <span class="n">ep</span> <span class="o">=</span> <span class="n">erf</span><span class="p">((</span><span class="n">eta</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">))</span>
+        <span class="n">en</span> <span class="o">=</span> <span class="n">erf</span><span class="p">((</span><span class="n">eta</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">))</span>
+        <span class="n">tp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ep</span>
+        <span class="n">tn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">en</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">-</span> <span class="n">tn</span>
+        <span class="n">coth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coth</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="n">csch</span> <span class="o">=</span> <span class="n">coth</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+
+        <span class="c1"># Compute the numerator and denominator of the complicated term</span>
+        <span class="n">denominator</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="n">coth</span> <span class="o">+</span> <span class="n">tc</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">coth</span> <span class="o">-</span> <span class="n">eta</span><span class="o">*</span><span class="n">csch</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span>
+        <span class="n">numerator</span> <span class="o">+=</span> <span class="o">-</span><span class="n">coth</span><span class="o">*</span><span class="n">csch</span><span class="o">*</span><span class="n">tc</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">numerator</span> <span class="o">+=</span> <span class="n">csch</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span><span class="o">*</span><span class="n">ep</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">numerator</span> <span class="o">+=</span> <span class="n">csch</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">eta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span><span class="o">*</span><span class="n">en</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">numerator</span> <span class="o">+=</span> <span class="n">csch</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span>
+
+        <span class="c1"># Return the exact result, making use of existing relations</span>
+        <span class="n">gamma_simplest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gamma_simplest</span> <span class="o">+</span> <span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_quadrature"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_quadrature">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_quadrature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Numerical quadrature approach for the</span>
+<span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional end-to-end length of the EFJC model</span>
+<span class="sd">            at many nondimensional forces using the numerical quadrature</span>
+<span class="sd">            approach, ensuring the exact result is always obtained:</span>
+
+<span class="sd">                &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC()</span>
+<span class="sd">                &gt;&gt;&gt; eta_trial = np.logspace(-2, 2, 88)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_quad = model.gamma(eta_trial, approach=&#39;quadrature&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_exact = model.gamma(eta_trial, approach=&#39;exact&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; np.isclose(gamma_quad, gamma_exact).all()</span>
+<span class="sd">                True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Restrict the upper limit of integration if the link can break</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;lambda_max&#39;</span><span class="p">):</span>
+            <span class="n">upper_lim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">upper_lim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+        <span class="c1"># Compute the rescaled partition function for a single link</span>
+        <span class="k">def</span> <span class="nf">z_fun</span><span class="p">(</span><span class="n">lambda_</span><span class="p">):</span>
+            <span class="n">expo_1</span> <span class="o">=</span> <span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> \
+                <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+            <span class="n">expo_2</span> <span class="o">=</span> <span class="n">expo_1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">expo_1</span><span class="p">,</span> <span class="n">expo_2</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_2</span><span class="p">)</span>
+        <span class="n">z_rescaled</span> <span class="o">=</span> <span class="n">quad_vec</span><span class="p">(</span><span class="n">z_fun</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># Compute and return the nondimensional end-to-end length gamma</span>
+        <span class="k">def</span> <span class="nf">gamma_fun</span><span class="p">(</span><span class="n">lambda_</span><span class="p">):</span>
+            <span class="n">expo_1</span> <span class="o">=</span> <span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> \
+                <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+            <span class="n">expo_2</span> <span class="o">=</span> <span class="n">expo_1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span>
+            <span class="n">expo_3</span> <span class="o">=</span> <span class="n">expo_1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+            <span class="n">expo_4</span> <span class="o">=</span> <span class="n">expo_3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span>
+            <span class="n">expos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">expo_1</span><span class="p">,</span> <span class="n">expo_2</span><span class="p">,</span> <span class="n">expo_3</span><span class="p">,</span> <span class="n">expo_4</span><span class="p">])</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">expos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">term_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_2</span><span class="p">)</span>
+                <span class="n">term_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_4</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">term_1</span> <span class="o">-</span> <span class="n">term_2</span><span class="p">)</span><span class="o">/</span><span class="n">z_rescaled</span>
+        <span class="k">return</span> <span class="n">quad_vec</span><span class="p">(</span><span class="n">gamma_fun</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_MHMCMC"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_MHMCMC">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Monte Carlo approach for the isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            eta (array_like): The nondimensional force(s).</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Passed to ``MHMCMC.gamma_isotensional_MHMCMC``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional end-to-end length(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional end-to-end length of the log-squared-FJC</span>
+<span class="sd">            in the isotensional ensemble under a nondimensional force of 5</span>
+<span class="sd">            using the Monte Carlo approach and ensure that it is within</span>
+<span class="sd">            ten percent of the numerical quadrature result:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;log-squared&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_MHMCMC = model.gamma(5, approach=&#39;monte carlo&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; gamma_quad = model.gamma(5, approach=&#39;quadrature&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; np.abs(gamma_quad - gamma_MHMCMC)/gamma_quad &lt; 1e-1</span>
+<span class="sd">                array([ True])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">MHMCMC</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.eta_isotensional"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.eta_isotensional">[docs]</a>    <span class="k">def</span> <span class="nf">eta_isotensional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Invert the isotensional :math:`\gamma(\eta)`</span>
+<span class="sd">        for the isotensional :math:`\eta(\gamma)`.</span>
+
+<span class="sd">        This function obtains the isotensional nondimensional</span>
+<span class="sd">        single-chain mechanical response :math:`\eta(\gamma)`</span>
+<span class="sd">        by inverting the isotensional :math:`\gamma(\eta)`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            gamma (array_like): The nondimensional end-to-end length(s).</span>
+<span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
+<span class="sd">                Passed to ``gamma_isotensional``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Check that :math:`\eta[\gamma(\eta)] = \eta\,`:</span>
+
+<span class="sd">                &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;morse&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; def check_gamma(eta):</span>
+<span class="sd">                ...     gamma_fun = lambda eta: model.gamma_isotensional(eta)</span>
+<span class="sd">                ...     eta_fun = lambda gamma: model.eta_isotensional(gamma)</span>
+<span class="sd">                ...     return np.isclose(eta_fun(gamma_fun(eta))[0], eta)</span>
+<span class="sd">                &gt;&gt;&gt; check_gamma(np.random.rand())</span>
+<span class="sd">                True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">gamma_fun</span><span class="p">(</span><span class="n">eta</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">gamma_fun</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="uFJCIsotensional.beta_Pi_config"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.beta_Pi_config">[docs]</a>    <span class="k">def</span> <span class="nf">beta_Pi_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">eta_vector</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional total potential energy of a configuration.</span>
+
+<span class="sd">        This function provides the nondimensional total potential energy</span>
+<span class="sd">        :math:`\beta \Pi = \beta U - N_b\eta\gamma`</span>
+<span class="sd">        given the configuration of the chain, i.e. the</span>
+<span class="sd">        vector position of each atom/hinge relative to the first one.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config (numpy.ndarray): The configuration of the chain,</span>
+<span class="sd">                a :math:`(N_b+1)`-by-3 numpy array.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: The nondimensional total potential energy :math:`\beta\Pi`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beta_U</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="p">)):</span>
+            <span class="n">lambda_</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">config</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+            <span class="n">beta_U</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">beta_U</span> <span class="o">-</span> <span class="n">eta_vector</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">config</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS).     Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

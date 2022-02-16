@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; uFJC 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ufjc.core module" href="ufjc.core.html" />
+    <link rel="prev" title="uFJC Python Package" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> uFJC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_approaches.html">examples.isotensional_approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_asymptotics.html">examples.isotensional_asymptotics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_doc.html">tests.test_doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_style.html">tests.test_style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h1>
+<p>This is a tutorial demonstrating the basics of the Python package <code class="docutils literal notranslate"><span class="pre">ufjc</span></code>.</p>
+<section id="model-creation">
+<h2>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this headline"></a></h2>
+<p>The uFJC single-chain model is imported from the package as the <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> class,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
+</pre></div>
+</div>
+<p>Instantiating the class creates a particular model instance,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Keyword arguments allow model features to be selected during instantiation, such as choosing 8 links and a nondimensional link energy scale of 88:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">88</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments also provide a way to change the link potential energy function and associated parameters, i.e.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">88</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-functions">
+<h2>Model Functions<a class="headerlink" href="#model-functions" title="Permalink to this headline"></a></h2>
+<p>The model instance has many single-chain functions attributed, such as <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, the nondimensional single-chain mechanical response function,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span>
+<span class="go">&lt;bound method uFJC.gamma of &lt;ufjc.core.uFJC object at 0x7f2ca1b53160&gt;&gt;</span>
+</pre></div>
+</div>
+<p>This function takes the nondimensional force <code class="docutils literal notranslate"><span class="pre">eta</span></code> as an argument, as well as keyword arguments. For example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mf">0.55</span><span class="p">)</span>
+<span class="go">array([0.18780929])</span>
+</pre></div>
+</div>
+<p>An array of nondimensional forces can be input, and these results can be easily plotted:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lenard-jones&#39;</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">eta_max</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span> <span class="n">eta</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/Tutorial-1.png" class="plot-directive" src="_images/Tutorial-1.png" />
+</figure>
+<section id="thermodynamic-ensembles">
+<h3>Thermodynamic Ensembles<a class="headerlink" href="#thermodynamic-ensembles" title="Permalink to this headline"></a></h3>
+<p>Generally, the results differ whether a constant force or a constant end-to-end length is applied to the chain. These are the isotensional and isometric ensembles, respectively, also sometimes called the Gibbs and Helmholtz ensembles. Here, the <code class="docutils literal notranslate"><span class="pre">method</span></code> refers to the method of calculating results in the isometric ensemble. For example, we can use the <code class="docutils literal notranslate"><span class="pre">legendre</span></code> approximation <code class="docutils literal notranslate"><span class="pre">method</span></code> to compute <code class="docutils literal notranslate"><span class="pre">eta</span></code> in the <code class="docutils literal notranslate"><span class="pre">isometric</span></code> ensemble at a nondimensional end-to-end length of 0.23,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="mf">0.23</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="s1">&#39;isometric&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">)</span>
+<span class="go">array([0.70164801])</span>
+</pre></div>
+</div>
+</section>
+<section id="calculation-approaches">
+<h3>Calculation Approaches<a class="headerlink" href="#calculation-approaches" title="Permalink to this headline"></a></h3>
+<p>For the isotensional ensemble, there are several calculation approaches available: exact closed-form (FJC, EFJC), numerical quadrature, Monte Carlo, and asymptotically-correct approximations. Here, the <code class="docutils literal notranslate"><span class="pre">approach</span></code> refers to the calculation approach for results in the isotensional ensemble. For example, we can use the <code class="docutils literal notranslate"><span class="pre">simplest</span></code> asymptotic approach to compute <code class="docutils literal notranslate"><span class="pre">gamma</span></code> in the <code class="docutils literal notranslate"><span class="pre">isotensional</span></code> ensemble (default) under a nondimensional force of 55,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="go">array([1.0441542])</span>
+</pre></div>
+</div>
+</section>
+<section id="combinations">
+<h3>Combinations<a class="headerlink" href="#combinations" title="Permalink to this headline"></a></h3>
+<p>Since neither ensemble is typically exactly analytically tractable, we often need to combine approximations methods and approaches when working with the isometric ensemble. The above example for the isometric ensemble actually used the <code class="docutils literal notranslate"><span class="pre">asymptotic</span></code> approach, since it is the default,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="mf">0.23</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="s1">&#39;isometric&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
+<span class="go">array([0.70164801])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="outside-applications">
+<h2>Outside Applications<a class="headerlink" href="#outside-applications" title="Permalink to this headline"></a></h2>
+<p>Model is readily applicable outside the scope of this package, such as to network constitutive models.
+Here, we apply a few different uFJC models to the eight-chain model configuration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">beta_sigma_11</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">I_1</span> <span class="o">=</span> <span class="n">F_11</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">/</span><span class="n">F_11</span>
+<span class="gp">... </span>    <span class="n">lambda_chain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">I_1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">gamma</span> <span class="o">=</span> <span class="n">lambda_chain</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N_b</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">eta</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">N_b</span><span class="o">*</span><span class="n">eta</span><span class="o">/</span><span class="n">lambda_chain</span><span class="o">*</span><span class="p">(</span><span class="n">F_11</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">I_1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F_11</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta_sigma_11_harmonic</span> <span class="o">=</span> <span class="n">beta_sigma_11</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta_sigma_11_morse</span> <span class="o">=</span> <span class="n">beta_sigma_11</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">beta_sigma_11_mie</span> <span class="o">=</span> <span class="n">beta_sigma_11</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;mie&#39;</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">beta_sigma_11_harmonic</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">beta_sigma_11_morse</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">F_11</span><span class="p">,</span> <span class="n">beta_sigma_11_mie</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;harmonic&#39;</span><span class="p">,</span> <span class="s1">&#39;Morse&#39;</span><span class="p">,</span> <span class="s1">&#39;Mie&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$F_</span><span class="si">{11}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\beta\sigma_</span><span class="si">{11}</span><span class="s1">/n$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">650</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/Tutorial-2.png" class="plot-directive" src="_images/Tutorial-2.png" />
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="uFJC Python Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ufjc.core.html" class="btn btn-neutral float-right" title="ufjc.core module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS).     Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

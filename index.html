@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uFJC Python Package &mdash; uFJC 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial" href="Tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> uFJC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_approaches.html">examples.isotensional_approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.isotensional_asymptotics.html">examples.isotensional_asymptotics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_doc.html">tests.test_doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.test_style.html">tests.test_style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>uFJC Python Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ufjc-python-package">
+<h1>uFJC Python Package<a class="headerlink" href="#ufjc-python-package" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://ufjc.readthedocs.io/en/latest/?badge=latest"><img alt="docs" src="https://readthedocs.org/projects/ufjc/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/sandialabs/ufjc/actions?query=workflow%3Amain"><img alt="build" src="https://github.com/sandialabs/ufjc/workflows/main/badge.svg" /></a> <a class="reference external" href="https://coveralls.io/github/sandialabs/ufjc?branch=main"><img alt="coverage" src="https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main" /></a> <a class="reference external" href="https://pypi.org/project/ufjc/"><img alt="pyversions" src="https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&amp;logoColor=FBE072" /></a> <a class="reference external" href="https://pypi.org/project/ufjc/"><img alt="pypi" src="https://img.shields.io/pypi/v/ufjc?logo=pypi&amp;logoColor=FBE072" /></a> <a class="reference external" href="https://anaconda.org/mrbuche/ufjc/"><img alt="conda" src="https://img.shields.io/conda/v/mrbuche/ufjc.svg?logo=anaconda" /></a> <a class="reference external" href="https://github.com/sandialabs/ufjc/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/sandialabs/ufjc" /></a></p>
+<p>The is the Python package <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>The package can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> via the <a class="reference external" href="https://pypi.org/project/ufjc/">Python Package Index (PyPI)</a>, which is recommended,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ufjc</span>
+</pre></div>
+</div>
+<p>or using <code class="docutils literal notranslate"><span class="pre">conda</span></code> via the <code class="docutils literal notranslate"><span class="pre">mrbuche</span></code> channel on <a class="reference external" href="https://anaconda.org/mrbuche/fjc">Anaconda</a>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">channel</span> <span class="n">mrbuche</span> <span class="n">ufjc</span>
+</pre></div>
+</div>
+<p>Alternatively, a branch can be directly installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sandialabs</span><span class="o">/</span><span class="n">ufjc</span><span class="o">.</span><span class="n">git</span><span class="o">@&lt;</span><span class="n">branch</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>or after cloning a branch and executing <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>.</p>
+</section>
+<section id="information">
+<h2>Information<a class="headerlink" href="#information" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ufjc.readthedocs.io/">Documentation</a></p></li>
+<li><p><a class="reference external" href="https://ufjc.readthedocs.io/examples">Examples</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sandialabs/ufjc/releases">Release History</a></p></li>
+<li><p><a class="reference external" href="https://ufjc.readthedocs.io/Tutorial.html">Tutorial</a></p></li>
+</ul>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this headline"></a></h2>
+<p>(Placeholder)</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS).     Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
