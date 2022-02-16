@@ -47,16 +47,16 @@ Information
 Citation
 ********
 
-(Placeholder)
+(placeholder)
 
 ..
     Badges ========================================================================
 
+.. |docs| image:: https://github.com/sandialabs/ufjc/actions/workflows/docs.yml/badge.svg
+    :target: https://sandialabs.github.io/ufjc
+
 .. |build| image:: https://github.com/sandialabs/ufjc/workflows/main/badge.svg
     :target: https://github.com/sandialabs/ufjc/actions?query=workflow%3Amain
-
-.. |docs| image:: https://readthedocs.org/projects/ufjc/badge/?version=latest
-    :target: https://ufjc.readthedocs.io/en/latest/?badge=latest
 
 .. |coverage| image:: https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main

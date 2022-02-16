@@ -25,8 +25,8 @@ jobs:
           sphinx-build -b html source/ build/html/
           sed -i -e "s/ module</</g" build/html/*.html
           mv build/html/ ../public/
-      - name: Deploy docs to GitHub pages
+      - name: Deploy docs to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: public/
