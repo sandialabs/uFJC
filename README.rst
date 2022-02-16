@@ -58,8 +58,8 @@ Citation
 .. |docs| image:: https://readthedocs.org/projects/ufjc/badge/?version=latest
     :target: https://ufjc.readthedocs.io/en/latest/?badge=latest
 
-.. |coverage| image:: https://coveralls.io/repos/github/mrbuche/ufjc/badge.svg
-    :target: https://coveralls.io/github/mrbuche/ufjc
+.. |coverage| image:: https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main
+    :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072
     :target: https://pypi.org/project/ufjc/
