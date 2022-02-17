@@ -11,7 +11,7 @@ title: "ufjc: the Python package for the uFJC single-chain model"
 doi: 10.5281/zenodo.6114263
 url: "https://github.com/sandialabs/ufjc"
 preferred-citation:
-  type: generic
+  type: article
   authors:
   - family-names: "Buche"
     given-names: "Michael R."
@@ -20,6 +20,6 @@ preferred-citation:
     given-names: "Scott J."
     orcid: "https://orcid.org/0000-0002-6490-3941"
   doi: 10.5281/zenodo.6114263
-  howpublished: "Zenodo"
+  journal: "Zenodo"
   title: "ufjc: the Python package for the uFJC single-chain model"
   year: 2022
