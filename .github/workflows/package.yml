@@ -24,16 +24,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Prepare conda
         run: |
-          rm -rf ufjc/
+          rm -rf ${REPO_NAME}
           conda update conda
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
         run: conda skeleton pypi --noarch-python ${REPO_NAME}
       - name: Build conda packages
-        run: |
-          conda build --python 3.6 ${REPO_NAME}
-          conda build --python 3.7 ${REPO_NAME}
-          conda build --python 3.8 ${REPO_NAME}
+        run: conda build --python 3.8 ${REPO_NAME}
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
