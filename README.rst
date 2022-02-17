@@ -2,13 +2,9 @@
 uFJC Python Package
 ###################
 
-|docs| |build| |coverage| |pyversions| |pypi| |anaconda| |license|
+|docs| |build| |coverage| |pyversions| |pypi| |anaconda| |license| |zenodo|
 
-.. comment:
-
-  |zenodo| |joss|
-
-The is the Python package ``uFJC`` developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.
+The is the Python package ``ufjc`` developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.
 
 ************
 Installation
@@ -47,7 +43,7 @@ Information
 Citation
 ********
 
-(placeholder)
+M. R. Buche and S. J. Grutzik, ``ufjc``: the Python package for the uFJC single-chain model, `Zenodo (2022) <https://doi.org/10.5281/zenodo.6114263>`_.
 
 ..
     Badges ========================================================================
@@ -74,8 +70,5 @@ Citation
 .. |license| image:: https://img.shields.io/github/license/sandialabs/ufjc
     :target: https://github.com/sandialabs/ufjc/blob/main/LICENSE
 
-.. |zenodo| image:: https://zenodo.org/badge/xxxxxxxxx.svg
-    :target: https://zenodo.org/badge/latestdoi/xxxxxxxxx
-
-.. |joss| image:: http://joss.theoj.org/papers/xxxxxxxxx/joss.xxxxx/status.svg
-    :target: https://doi.org/xxxxxxxxx/joss.xxxxx
+.. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6114263.svg
+    :target: https://doi.org/10.5281/zenodo.6114263
