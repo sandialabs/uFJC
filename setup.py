@@ -16,6 +16,8 @@ setup(
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
     author_email='mrbuche@sandia.gov, sjgrutz@sandia.gov',
+    homepage='https://sandialabs.github.io/ufjc',
+    license='BSD-3-Clause',
     keywords=['ufjc', 'polymer', 'single', 'chain', 'freely', 'jointed',
               'model', 'statistical', 'mechanics', 'thermodynamics'],
     install_requires=['numpy', 'scipy'],
