@@ -17,7 +17,7 @@ jobs:
       - name: Make wheel
         run: python setup.py bdist_wheel
       - name: Upload to PyPI.org
-        run: twine upload -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }} dist/*
+        run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
   anaconda:
     runs-on: ubuntu-latest
     steps:
