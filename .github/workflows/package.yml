@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
       - name: Make tarball
         run: python setup.py sdist
       - name: Make wheel
@@ -20,6 +24,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Prepare conda
         run: |
+          rm -rf ufjc/
           conda update conda
           conda install conda-build
           conda install anaconda-client
