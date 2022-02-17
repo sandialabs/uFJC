@@ -26,12 +26,10 @@ jobs:
         run: |
           rm -rf ufjc/
           conda update conda
-          conda install conda-build
-          conda install anaconda-client
+          conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
         run: conda skeleton pypi ${REPO_NAME}
       - name: Build conda packages
-        shell: bash -l {0}
         run: |
           conda-build --python 3.6 ${REPO_NAME}
           conda-build --python 3.7 ${REPO_NAME}
