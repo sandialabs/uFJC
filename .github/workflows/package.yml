@@ -31,11 +31,11 @@ jobs:
         run: conda skeleton pypi ${REPO_NAME}
       - name: Build conda packages
         run: |
-          conda-build --python 3.6 ${REPO_NAME}
-          conda-build --python 3.7 ${REPO_NAME}
-          conda-build --python 3.8 ${REPO_NAME}
-          conda-build --python 3.9 ${REPO_NAME}
-          conda-build --python 3.10 ${REPO_NAME}
+          conda build --python 3.6 ${REPO_NAME}
+          conda build --python 3.7 ${REPO_NAME}
+          conda build --python 3.8 ${REPO_NAME}
+          conda build --python 3.9 ${REPO_NAME}
+          conda build --python 3.10 ${REPO_NAME}
       - name: Convert to other platforms
         run: conda convert --platform win-64 $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
       - name: Move files
@@ -43,7 +43,8 @@ jobs:
           mkdir tarballs/
           cp -r $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 tarballs/
           cp -r $HOME/conda-bld/win-64/${REPO_NAME}*.tar.bz2 tarballs/
-      - name: Login to Anaconda.org
-        run: anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
       - name: Upload to Anaconda.org
-        run: anaconda upload tarballs/*
+        run: |
+          anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
+          anaconda upload tarballs/*
+          anaconda logout

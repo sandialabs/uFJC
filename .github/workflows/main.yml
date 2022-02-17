@@ -1,9 +1,9 @@
 name: main
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   workflow_dispatch:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
