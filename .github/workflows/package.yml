@@ -36,7 +36,8 @@ jobs:
           conda build --python 3.8 ${REPO_NAME}
       - name: Upload to Anaconda.org
         run: |
-          source ~/.bashrc
+          ls -ltra /usr/share/miniconda/bin
+          /usr/share/miniconda/bin/anaconda
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
           anaconda upload /usr/share/miniconda/noarch/linux-64/*
           anaconda logout
