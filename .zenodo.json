@@ -2,19 +2,19 @@
     "title": "ufjc: the Python package for the uFJC single-chain model",
     "creators": [
       {
-        "name": "R. Buche, Michael",
+        "name": "Michael R. Buche",
         "affiliation": "Sandia National Laboratories",
         "orcid": "0000-0003-1892-0502"
       },
       {
-        "name": "J. Grutzik, Scott",
+        "name": "Scott J. Grutzik",
         "affiliation": "Sandia National Laboratories",
         "orcid": "0000-0002-6490-3941"
       }
     ],
     "keywords": [
       "python",
-      "statistical-mechanics",
+      "statistical mechanics",
       "thermodynamics",
       "polymers"
     ],
