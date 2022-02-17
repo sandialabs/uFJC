@@ -17,7 +17,7 @@ jobs:
       - name: Make wheel
         run: python setup.py bdist_wheel
       - name: Upload to PyPI.org
-        run: twine upload dist/*
+        run: twine upload -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }} dist/*
   anaconda:
     runs-on: ubuntu-latest
     steps:
@@ -45,6 +45,6 @@ jobs:
           cp -r $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 tarballs/
           cp -r $HOME/conda-bld/win-64/${REPO_NAME}*.tar.bz2 tarballs/
       - name: Login to Anaconda.org
-        run: anaconda login --username mrbuche --password ${{ secrets.ANACONDA_PASSWORD }}
+        run: anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
       - name: Upload to Anaconda.org
         run: anaconda upload tarballs/*
