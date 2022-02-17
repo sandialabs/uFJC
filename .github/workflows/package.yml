@@ -35,12 +35,7 @@ jobs:
           conda build --python 3.7 ${REPO_NAME}
           conda build --python 3.8 ${REPO_NAME}
       - name: Convert to other platforms
-        run: |
-          conda convert --platform win-64 /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
-          conda convert --platform win-32 /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
-          conda convert --platform osx-64 /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
-          conda convert --platform osx-32 /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
-          conda convert --platform linux-32 /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
+        run: conda convert --platform all /usr/share/miniconda/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
       - name: Move files
         run: |
           mkdir tarballs/
