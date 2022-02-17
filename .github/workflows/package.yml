@@ -38,5 +38,5 @@ jobs:
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload /usr/share/miniconda/noarch/linux-64/*
+          anaconda upload /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
