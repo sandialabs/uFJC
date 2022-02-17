@@ -1,0 +1,45 @@
+name: publish
+on:
+  workflow_dispatch:
+env:
+  REPO_NAME: ${{ github.event.repository.name }}
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Make tarball
+        run: python setup.py sdist
+      - name: Make wheel
+        run: python setup.py bdist_wheel
+      - name: Upload to PyPI.org
+        run: twine upload dist/*
+  anaconda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare conda
+        run: |
+          conda update conda
+          conda install conda-build
+          conda install anaconda-client
+      - name: Create conda recipe from PyPI
+        run: conda skeleton pypi ${REPO_NAME}
+      - name: Build conda packages
+        run: |
+          conda-build --python 3.6 ${REPO_NAME}
+          conda-build --python 3.7 ${REPO_NAME}
+          conda-build --python 3.8 ${REPO_NAME}
+          conda-build --python 3.9 ${REPO_NAME}
+          conda-build --python 3.10 ${REPO_NAME}
+      - name: Convert to other platforms
+        run: conda convert --platform win-64 $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
+      - name: Move files
+        run: |
+          mkdir tarballs/
+          cp -r $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 tarballs/
+          cp -r $HOME/conda-bld/win-64/${REPO_NAME}*.tar.bz2 tarballs/
+      - name: Login to Anaconda.org
+        run: anaconda login --username mrbuche --password ${{ secrets.ANACONDA_PASSWORD }}
+      - name: Upload to Anaconda.org
+        run: anaconda upload tarballs/*
