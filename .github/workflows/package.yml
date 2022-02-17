@@ -34,8 +34,6 @@ jobs:
           conda build --python 3.6 ${REPO_NAME}
           conda build --python 3.7 ${REPO_NAME}
           conda build --python 3.8 ${REPO_NAME}
-          conda build --python 3.9 ${REPO_NAME}
-          conda build --python 3.10 ${REPO_NAME}
       - name: Convert to other platforms
         run: conda convert --platform win-64 $HOME/conda-bld/linux-64/${REPO_NAME}*.tar.bz2 -o $HOME/conda-bld/
       - name: Move files
