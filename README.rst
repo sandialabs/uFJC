@@ -45,6 +45,12 @@ Citation
 
 \M. R. Buche and S. J. Grutzik, ``ufjc``: the Python package for the uFJC single-chain model, `Zenodo (2022) <https://doi.org/10.5281/zenodo.6114263>`_.
 
+*********
+Copyright
+*********
+
+Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
+
 ..
     Badges ========================================================================
 

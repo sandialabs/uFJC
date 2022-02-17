@@ -1,14 +1,21 @@
 import setuptools
 from distutils.core import setup
+
+
+def read(fname):
+    with open(fname) as fp:
+        content = fp.read()
+    return content
+
+
 setup(
     name='ufjc',
     packages=['ufjc'],
-    version='1.0.0',
-    description='The uFJC single-chain model Python package.',
+    version='0.2.0',
+    description='The Python package for the uFJC single-chain model.',
+    long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
     author_email='mrbuche@sandia.gov, sjgrutz@sandia.gov',
-    license='BSD',
-    url='https://sandialabs.github.io/ufjc',
     keywords=['ufjc', 'polymer', 'single', 'chain', 'freely', 'jointed',
               'model', 'statistical', 'mechanics', 'thermodynamics'],
     install_requires=['numpy', 'scipy'],
@@ -29,7 +36,7 @@ setup(
     ],
     project_urls={
       'Anaconda': 'https://anaconda.org/mrbuche/ufjc',
-      'Documentation': 'https://ufjc.readthedocs.io/en/latest/?badge=latest',
+      'Documentation': 'https://sandialabs.github.io/ufjc',
       'GitHub': 'https://github.com/sandialabs/ufjc',
       'Issues': 'https://github.com/sandialabs/ufjc/issues',
     },
