@@ -58,7 +58,7 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
     :target: https://sandialabs.github.io/ufjc
 
 .. |build| image:: https://github.com/sandialabs/ufjc/workflows/main/badge.svg
-    :target: https://github.com/sandialabs/ufjc/actions?query=workflow%3Amain
+    :target: https://github.com/sandialabs/ufjc
 
 .. |coverage| image:: https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
