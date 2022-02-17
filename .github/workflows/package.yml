@@ -20,6 +20,7 @@ jobs:
         run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
   anaconda:
     runs-on: ubuntu-20.04
+    needs: pypi
     steps:
       - uses: actions/checkout@v2
       - name: Prepare conda
