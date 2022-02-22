@@ -170,7 +170,7 @@ class uFJC(Potential, uFJCIsometric):
                 array([1.25508427])
                 >>> model.gamma(8, approach='asymptotic')
                 array([1.25508427])
-                >>> model.gamma(8, approach='simplest')
+                >>> model.gamma(8, approach='reduced')
                 array([1.22282631])
                 >>> model.gamma(8, approach='quadrature')
                 array([1.25508427])
@@ -299,7 +299,7 @@ class uFJC(Potential, uFJCIsometric):
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(potential='log-squared')
-                >>> model.vartheta(0.5, method='legendre', approach='simplest')
+                >>> model.vartheta(0.5, method='legendre', approach='reduced')
                 array([0.39097337])
 
         Example:
@@ -309,7 +309,7 @@ class uFJC(Potential, uFJCIsometric):
                 >>> import numpy as np
                 >>> from ufjc import uFJC
                 >>> model = uFJC()
-                >>> vartheta = model.vartheta(1e-2, approach='simplest')
+                >>> vartheta = model.vartheta(1e-2, approach='reduced')
                 >>> vartheta_ideal = model.vartheta(1e-2, ideal=True)
                 >>> np.abs((vartheta - vartheta_ideal)/vartheta) < 1e-1
                 array([ True])
@@ -444,7 +444,7 @@ class uFJC(Potential, uFJCIsometric):
         This function is obtained using the axioms of transition state theory
         :cite:`zwanzig2001nonequilibrium`,
         and is currently implemented to use the Legendre transformation method
-        and the simplest asymptotic approach
+        and the reduced asymptotic approach
         :cite:`buche2021chain`.
 
         Args:

@@ -88,8 +88,8 @@ def main(**kwargs):
         plt.plot(gamma_h, eta, 'k-', label='(EFJC exact)', linewidth=1.5)
     plt.plot(model.gamma(eta, approach='asymptotic'), eta,
              '--', label='asymptotic', linewidth=2.5)
-    plt.plot(model.gamma(eta, approach='simplest'), eta,
-             '--', label='simplest', linewidth=2.5)
+    plt.plot(model.gamma(eta, approach='reduced'), eta,
+             '--', label='reduced', linewidth=2.5)
     plt.plot(model.gamma(eta, approach='quadrature'), eta,
              ':', label='quadrature', linewidth=4)
     plt.plot(model.gamma(eta_mc, approach='monte carlo', **kwargs), eta_mc,

@@ -118,13 +118,13 @@ def main(**kwargs):
             plt.plot(model.gamma(eta, approach='asymptotic'),
                      eta/eta_scale, 'k:')
 
-        # The simplest asymptotic results
+        # The reduced asymptotic results
         if export_csv_not_plot is True:
-            data = np.vstack((model.gamma(eta, approach='simplest'),
+            data = np.vstack((model.gamma(eta, approach='reduced'),
                               eta/eta_scale)).T
-            np.savetxt(filename(model, 'simplest'), data, delimiter=",")
+            np.savetxt(filename(model, 'reduced'), data, delimiter=",")
         else:
-            plt.plot(model.gamma(eta, approach='simplest'),
+            plt.plot(model.gamma(eta, approach='reduced'),
                      eta/eta_scale, 'k--')
 
     # Show the results if plotting
@@ -136,7 +136,7 @@ def main(**kwargs):
         else:
             plt.plot(np.nan, np.nan, 'k', label='quadrature')
         plt.plot(np.nan, np.nan, 'k:', label='asymptotic')
-        plt.plot(np.nan, np.nan, 'k--', label='simplest')
+        plt.plot(np.nan, np.nan, 'k--', label='reduced')
 
         # Plot labels and legend
         plt.legend()

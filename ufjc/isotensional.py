@@ -71,8 +71,8 @@ class uFJCIsotensional(BasicUtility):
         approach = kwargs.get('approach', 'asymptotic')
         if approach == 'asymptotic':
             return self.gamma_isotensional_asymptotic(eta)
-        elif approach == 'simplest':
-            return self.gamma_isotensional_asymptotic_simplest(eta)
+        elif approach == 'reduced':
+            return self.gamma_isotensional_asymptotic_reduced(eta)
         elif approach == 'exact':
             return self.gamma_isotensional_exact(eta)
         elif approach == 'quadrature':
@@ -83,7 +83,7 @@ class uFJCIsotensional(BasicUtility):
             return self.gamma_isotensional_asymptotic(eta)
 
     def gamma_isotensional_asymptotic(self, eta):
-        r"""The asymptotic approach for the
+        r"""The full asymptotic approach for the
         isotensional :math:`\gamma(\eta)`.
 
         This function provides the asymptotic approach for
@@ -122,11 +122,11 @@ class uFJCIsotensional(BasicUtility):
         return Ln + self.delta_lambda(eta) + \
             eta/self.kappa*((1 - Ln*coth)/(self.c + eta/self.kappa*coth))
 
-    def gamma_isotensional_asymptotic_simplest(self, eta):
-        r"""The simplest asymptotic approach for the
+    def gamma_isotensional_asymptotic_reduced(self, eta):
+        r"""The reduced asymptotic approach for the
         isotensional :math:`\gamma(\eta)`.
 
-        This function provides the simplest asymptotic approach for
+        This function provides the reduced asymptotic approach for
         obtaining :math:`\gamma(\eta)` in the isotensional ensemble,
         a composite approximation for all :math:`\eta`
         that is valid for :math:`\varepsilon\gg 1`,
@@ -200,7 +200,7 @@ class uFJCIsotensional(BasicUtility):
             return np.nan*eta
 
     def efjc_gamma_isotensional_exact(self, eta):
-        r"""Exact approach for the EFJC
+        r"""The exact approach for the EFJC
         isotensional :math:`\gamma(\eta)`.
 
         This function provides the exact, analytical approach for obtaining
@@ -269,11 +269,11 @@ class uFJCIsotensional(BasicUtility):
             np.exp(-(eta**2 + self.kappa**2)/2/self.kappa)
 
         # Return the exact result, making use of existing relations
-        gamma_simplest = self.gamma_isotensional_asymptotic_simplest(eta)
-        return gamma_simplest + numerator/denominator
+        gamma_reduced = self.gamma_isotensional_asymptotic_reduced(eta)
+        return gamma_reduced + numerator/denominator
 
     def gamma_isotensional_quadrature(self, eta):
-        r"""Numerical quadrature approach for the
+        r"""The numerical quadrature approach for the
         isotensional :math:`\gamma(\eta)`.
 
         Args:
@@ -331,7 +331,7 @@ class uFJCIsotensional(BasicUtility):
         return quad_vec(gamma_fun, self.minimum_float, upper_lim)[0]
 
     def gamma_isotensional_MHMCMC(self, eta, **kwargs):
-        r"""Monte Carlo approach for the isotensional :math:`\gamma(\eta)`.
+        r"""The Monte Carlo approach for the isotensional :math:`\gamma(\eta)`.
 
         Args:
             eta (array_like): The nondimensional force(s).

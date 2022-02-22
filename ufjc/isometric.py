@@ -59,13 +59,13 @@ class uFJCIsometric(uFJCIsotensional):
             Compute the nondimensional force for an eight-link Morse-FJC at a
             nondimensional end-to-end length of 0.8 in the isometric ensemble,
             using the Legendre transformation method from the isotensional
-            ensemble, and using the simplest asymptotic approach to compute
+            ensemble, and using the reduced asymptotic approach to compute
             quantities in the isotensional ensemble:
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(N_b=8, potential='morse')
                 >>> model.eta_isometric(0.8, \
-                ...     method='legendre', approach='simplest')
+                ...     method='legendre', approach='reduced')
                 array([4.41715473])
 
         """
@@ -163,13 +163,13 @@ class uFJCIsometric(uFJCIsotensional):
             for an eight-link Morse-FJC at a
             nondimensional end-to-end length of 0.8 in the isometric ensemble,
             using the Legendre transformation method from the isotensional
-            ensemble, and using the simplest asymptotic approach to compute
+            ensemble, and using the reduced asymptotic approach to compute
             quantities in the isotensional ensemble:
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(N_b=8, potential='morse')
                 >>> model.vartheta_isometric(0.8, \
-                ...     method='legendre', approach='simplest')
+                ...     method='legendre', approach='reduced')
                 array([1.23847534])
 
         Warning:
@@ -195,7 +195,7 @@ class uFJCIsometric(uFJCIsotensional):
         The result is independent of the number of links :math:`N_b`, and
         this approximation is asymptotically valid for :math:`N_b\gg 1`
         and appreciable loads :cite:`buche2021chain`.
-        For example, using the simplest asymptotic approach, this is
+        For example, using the reduced asymptotic approach, this is
 
         .. math::
             \vartheta(\gamma) \sim
@@ -225,7 +225,7 @@ class uFJCIsometric(uFJCIsotensional):
                 >>> model = uFJC(potential='log-squared', varepsilon=23)
                 >>> model.vartheta_isometric_legendre(1.1)
                 array([1.90431381])
-                >>> model.vartheta_isometric_legendre(1.1, approach='simplest')
+                >>> model.vartheta_isometric_legendre(1.1, approach='reduced')
                 array([2.09238198])
 
         Warning:
@@ -256,7 +256,7 @@ class uFJCIsometric(uFJCIsotensional):
                 eta**2/self.kappa*(
                     (1 - Ln*coth)/(self.c + eta/self.kappa*coth)
                 ) - np.log(1 + eta*coth/self.kappa)
-        elif approach == 'simplest':
+        elif approach == 'reduced':
             return eta*self.langevin(eta) + self.log_over_sinh(eta) + \
                 self.varepsilon*(self.phi(lambda_) - self.phi(1))
         else:
