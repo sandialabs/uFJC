@@ -139,7 +139,7 @@ a <span class="math notranslate nohighlight">\((N_b+1)\)</span>-by-3 numpy array
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.efjc_gamma_isotensional_exact">
 <span class="sig-name descname"><span class="pre">efjc_gamma_isotensional_exact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.efjc_gamma_isotensional_exact"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.efjc_gamma_isotensional_exact" title="Permalink to this definition"></a></dt>
-<dd><p>Exact approach for the EFJC
+<dd><p>The exact approach for the EFJC
 isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
 <p>This function provides the exact, analytical approach for obtaining
 <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span> in the isotensional ensemble
@@ -261,7 +261,7 @@ using numerical quadrature:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.gamma_isotensional_MHMCMC">
 <span class="sig-name descname"><span class="pre">gamma_isotensional_MHMCMC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.gamma_isotensional_MHMCMC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_MHMCMC" title="Permalink to this definition"></a></dt>
-<dd><p>Monte Carlo approach for the isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
+<dd><p>The Monte Carlo approach for the isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -295,7 +295,7 @@ ten percent of the numerical quadrature result:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic">
 <span class="sig-name descname"><span class="pre">gamma_isotensional_asymptotic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.gamma_isotensional_asymptotic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic" title="Permalink to this definition"></a></dt>
-<dd><p>The asymptotic approach for the
+<dd><p>The full asymptotic approach for the
 isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
 <p>This function provides the asymptotic approach for
 obtaining <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span> in the isotensional ensemble
@@ -333,11 +333,11 @@ under a nondimensional force of 23:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_simplest">
-<span class="sig-name descname"><span class="pre">gamma_isotensional_asymptotic_simplest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.gamma_isotensional_asymptotic_simplest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_simplest" title="Permalink to this definition"></a></dt>
-<dd><p>The simplest asymptotic approach for the
+<dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_reduced">
+<span class="sig-name descname"><span class="pre">gamma_isotensional_asymptotic_reduced</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.gamma_isotensional_asymptotic_reduced"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_reduced" title="Permalink to this definition"></a></dt>
+<dd><p>The reduced asymptotic approach for the
 isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
-<p>This function provides the simplest asymptotic approach for
+<p>This function provides the reduced asymptotic approach for
 obtaining <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span> in the isotensional ensemble,
 a composite approximation for all <span class="math notranslate nohighlight">\(\eta\)</span>
 that is valid for <span class="math notranslate nohighlight">\(\varepsilon\gg 1\)</span>,</p>
@@ -417,7 +417,7 @@ and will therefore return nan for non-harmonic potentials:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.isotensional.uFJCIsotensional.gamma_isotensional_quadrature">
 <span class="sig-name descname"><span class="pre">gamma_isotensional_quadrature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/isotensional.html#uFJCIsotensional.gamma_isotensional_quadrature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_quadrature" title="Permalink to this definition"></a></dt>
-<dd><p>Numerical quadrature approach for the
+<dd><p>The numerical quadrature approach for the
 isotensional <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

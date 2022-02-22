@@ -255,7 +255,7 @@
 <span class="sd">                array([1.25508427])</span>
 <span class="sd">                &gt;&gt;&gt; model.gamma(8, approach=&#39;asymptotic&#39;)</span>
 <span class="sd">                array([1.25508427])</span>
-<span class="sd">                &gt;&gt;&gt; model.gamma(8, approach=&#39;simplest&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; model.gamma(8, approach=&#39;reduced&#39;)</span>
 <span class="sd">                array([1.22282631])</span>
 <span class="sd">                &gt;&gt;&gt; model.gamma(8, approach=&#39;quadrature&#39;)</span>
 <span class="sd">                array([1.25508427])</span>
@@ -384,7 +384,7 @@
 
 <span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
 <span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;log-squared&#39;)</span>
-<span class="sd">                &gt;&gt;&gt; model.vartheta(0.5, method=&#39;legendre&#39;, approach=&#39;simplest&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; model.vartheta(0.5, method=&#39;legendre&#39;, approach=&#39;reduced&#39;)</span>
 <span class="sd">                array([0.39097337])</span>
 
 <span class="sd">        Example:</span>
@@ -394,7 +394,7 @@
 <span class="sd">                &gt;&gt;&gt; import numpy as np</span>
 <span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
 <span class="sd">                &gt;&gt;&gt; model = uFJC()</span>
-<span class="sd">                &gt;&gt;&gt; vartheta = model.vartheta(1e-2, approach=&#39;simplest&#39;)</span>
+<span class="sd">                &gt;&gt;&gt; vartheta = model.vartheta(1e-2, approach=&#39;reduced&#39;)</span>
 <span class="sd">                &gt;&gt;&gt; vartheta_ideal = model.vartheta(1e-2, ideal=True)</span>
 <span class="sd">                &gt;&gt;&gt; np.abs((vartheta - vartheta_ideal)/vartheta) &lt; 1e-1</span>
 <span class="sd">                array([ True])</span>
@@ -529,7 +529,7 @@
 <span class="sd">        This function is obtained using the axioms of transition state theory</span>
 <span class="sd">        :cite:`core-zwanzig2001nonequilibrium`,</span>
 <span class="sd">        and is currently implemented to use the Legendre transformation method</span>
-<span class="sd">        and the simplest asymptotic approach</span>
+<span class="sd">        and the reduced asymptotic approach</span>
 <span class="sd">        :cite:`core-buche2021chain`.</span>
 
 <span class="sd">        Args:</span>

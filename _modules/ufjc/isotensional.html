@@ -156,8 +156,8 @@
         <span class="n">approach</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;approach&#39;</span><span class="p">,</span> <span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;asymptotic&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;simplest&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;reduced&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_reduced</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;exact&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_exact</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;quadrature&#39;</span><span class="p">:</span>
@@ -168,7 +168,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The asymptotic approach for the</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The full asymptotic approach for the</span>
 <span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
 
 <span class="sd">        This function provides the asymptotic approach for</span>
@@ -207,11 +207,11 @@
         <span class="k">return</span> <span class="n">Ln</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">+</span> \
             <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Ln</span><span class="o">*</span><span class="n">coth</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">+</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="n">coth</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic_simplest"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_simplest">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The simplest asymptotic approach for the</span>
+<div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic_reduced"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_reduced">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic_reduced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The reduced asymptotic approach for the</span>
 <span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
 
-<span class="sd">        This function provides the simplest asymptotic approach for</span>
+<span class="sd">        This function provides the reduced asymptotic approach for</span>
 <span class="sd">        obtaining :math:`\gamma(\eta)` in the isotensional ensemble,</span>
 <span class="sd">        a composite approximation for all :math:`\eta`</span>
 <span class="sd">        that is valid for :math:`\varepsilon\gg 1`,</span>
@@ -285,7 +285,7 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">eta</span></div>
 
 <div class="viewcode-block" id="uFJCIsotensional.efjc_gamma_isotensional_exact"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.efjc_gamma_isotensional_exact">[docs]</a>    <span class="k">def</span> <span class="nf">efjc_gamma_isotensional_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Exact approach for the EFJC</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The exact approach for the EFJC</span>
 <span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
 
 <span class="sd">        This function provides the exact, analytical approach for obtaining</span>
@@ -354,11 +354,11 @@
             <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="p">)</span>
 
         <span class="c1"># Return the exact result, making use of existing relations</span>
-        <span class="n">gamma_simplest</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_simplest</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">gamma_simplest</span> <span class="o">+</span> <span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span></div>
+        <span class="n">gamma_reduced</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic_reduced</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">gamma_reduced</span> <span class="o">+</span> <span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span></div>
 
 <div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_quadrature"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_quadrature">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_quadrature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Numerical quadrature approach for the</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The numerical quadrature approach for the</span>
 <span class="sd">        isotensional :math:`\gamma(\eta)`.</span>
 
 <span class="sd">        Args:</span>
@@ -416,7 +416,7 @@
         <span class="k">return</span> <span class="n">quad_vec</span><span class="p">(</span><span class="n">gamma_fun</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_MHMCMC"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_MHMCMC">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Monte Carlo approach for the isotensional :math:`\gamma(\eta)`.</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Monte Carlo approach for the isotensional :math:`\gamma(\eta)`.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            eta (array_like): The nondimensional force(s).</span>

@@ -172,12 +172,12 @@ Passed to the chosen method.</p></li>
 <p>Compute the nondimensional force for an eight-link Morse-FJC at a
 nondimensional end-to-end length of 0.8 in the isometric ensemble,
 using the Legendre transformation method from the isotensional
-ensemble, and using the simplest asymptotic approach to compute
+ensemble, and using the reduced asymptotic approach to compute
 quantities in the isotensional ensemble:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta_isometric</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> \
-<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([4.41715473])</span>
 </pre></div>
 </div>
@@ -283,12 +283,12 @@ Passed to the chosen method.</p></li>
 for an eight-link Morse-FJC at a
 nondimensional end-to-end length of 0.8 in the isometric ensemble,
 using the Legendre transformation method from the isotensional
-ensemble, and using the simplest asymptotic approach to compute
+ensemble, and using the reduced asymptotic approach to compute
 quantities in the isotensional ensemble:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> \
-<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([1.23847534])</span>
 </pre></div>
 </div>
@@ -313,7 +313,7 @@ approximate isometric Helmholtz free energy per link.
 The result is independent of the number of links <span class="math notranslate nohighlight">\(N_b\)</span>, and
 this approximation is asymptotically valid for <span class="math notranslate nohighlight">\(N_b\gg 1\)</span>
 and appreciable loads <span id="id2">[<a class="reference internal" href="#id6" title="Michael R. Buche and Meredith N. Silberstein. Chain breaking in the statistical mechanical constitutive theory of polymer networks. Journal of the Mechanics and Physics of Solids, 156:104593, 2021. doi:10.1016/j.jmps.2021.104593.">2</a>]</span>.
-For example, using the simplest asymptotic approach, this is</p>
+For example, using the reduced asymptotic approach, this is</p>
 <div class="math notranslate nohighlight">
 \[\vartheta(\gamma) \sim
 \ln\left\{\frac{
@@ -346,7 +346,7 @@ using the Legendre method and both asymptotic approaches:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;log-squared&#39;</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="go">array([1.90431381])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([2.09238198])</span>
 </pre></div>
 </div>

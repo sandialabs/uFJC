@@ -323,7 +323,7 @@ using many of the available approaches:</p>
 <span class="go">array([1.25508427])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
 <span class="go">array([1.25508427])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([1.22282631])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;quadrature&#39;</span><span class="p">)</span>
 <span class="go">array([1.25508427])</span>
@@ -354,7 +354,7 @@ forward reaction rate coefficient function for a single link.
 This function is obtained using the axioms of transition state theory
 <span id="id6">[<a class="reference internal" href="#id18" title="Robert W. Zwanzig. Nonequilibrium Statistical Mechanics. Oxford university press, 2001. URL: https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187.">8</a>]</span>,
 and is currently implemented to use the Legendre transformation method
-and the simplest asymptotic approach
+and the reduced asymptotic approach
 <span id="id7">[<a class="reference internal" href="#id12" title="Michael R. Buche and Meredith N. Silberstein. Chain breaking in the statistical mechanical constitutive theory of polymer networks. Journal of the Mechanics and Physics of Solids, 156:104593, 2021. doi:10.1016/j.jmps.2021.104593.">4</a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -504,7 +504,7 @@ and calculate the Helmholtz free energy per link at
 a nondimensional end-to-end length of a half:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;log-squared&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([0.39097337])</span>
 </pre></div>
 </div>
@@ -514,7 +514,7 @@ nondimensional end-to-end lengths:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vartheta</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;simplest&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vartheta</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vartheta_ideal</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">ideal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">vartheta</span> <span class="o">-</span> <span class="n">vartheta_ideal</span><span class="p">)</span><span class="o">/</span><span class="n">vartheta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-1</span>
 <span class="go">array([ True])</span>
