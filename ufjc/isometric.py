@@ -71,14 +71,10 @@ class uFJCIsometric(uFJCIsotensional):
         """
         gamma = self.np_array(gamma)
         method = kwargs.get('method', 'legendre')
-        if method == 'exact':
-            return np.nan*gamma
-        elif method == 'legendre':
+        if method == 'legendre':
             return self.eta_isometric_legendre(gamma, **kwargs)
-        elif method == 'monte carlo':
-            return self.eta_isometric_MHMCMC(gamma, **kwargs)
         else:
-            return self.eta_isometric_legendre(gamma, **kwargs)
+            return np.nan*gamma
 
     def eta_isometric_legendre(self, gamma, **kwargs):
         r"""The Legendre transformation method of approximating
