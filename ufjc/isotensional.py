@@ -66,6 +66,13 @@ class uFJCIsotensional(BasicUtility):
                 >>> model.gamma_isotensional(23, approach='quadrature')
                 array([1.22689438])
 
+        Note:
+            An improperly-specified approach will result in nan:
+
+                >>> from ufjc import uFJC
+                >>> uFJC().gamma_isotensional(0.8, approach='blah blah')
+                array([nan])
+
         """
         eta = self.np_array(eta)
         approach = kwargs.get('approach', 'asymptotic')
@@ -80,7 +87,7 @@ class uFJCIsotensional(BasicUtility):
         elif approach == 'monte carlo':
             return self.gamma_isotensional_MHMCMC(eta, **kwargs)
         else:
-            return self.gamma_isotensional_asymptotic(eta)
+            return np.nan*eta
 
     def gamma_isotensional_asymptotic(self, eta):
         r"""The full asymptotic approach for the
@@ -308,9 +315,7 @@ class uFJCIsotensional(BasicUtility):
             expo_1 = eta*lambda_ - self.varepsilon*self.phi(lambda_) \
                 + np.log(lambda_) - np.log(eta)
             expo_2 = expo_1 - 2*eta*lambda_
-            if (np.array([expo_1, expo_2]) >= self.maximum_exponent).any():
-                return 0
-            else:
+            if (np.array([expo_1, expo_2]) < self.maximum_exponent).all():
                 return np.exp(expo_1) - np.exp(expo_2)
         z_rescaled = quad_vec(z_fun, self.minimum_float, upper_lim)[0]
 
@@ -322,9 +327,7 @@ class uFJCIsotensional(BasicUtility):
             expo_3 = expo_1 - np.log(lambda_) - np.log(eta)
             expo_4 = expo_3 - 2*eta*lambda_
             expos = np.array([expo_1, expo_2, expo_3, expo_4])
-            if (expos >= self.maximum_exponent).any():
-                return 0
-            else:
+            if (expos < self.maximum_exponent).all():
                 term_1 = np.exp(expo_1) + np.exp(expo_2)
                 term_2 = np.exp(expo_3) - np.exp(expo_4)
                 return (term_1 - term_2)/z_rescaled
