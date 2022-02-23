@@ -64,9 +64,16 @@ class uFJCIsometric(uFJCIsotensional):
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(N_b=8, potential='morse')
-                >>> model.eta_isometric(0.8, \
+                >>> model.eta_isometric([0, 0.8], \
                 ...     method='legendre', approach='reduced')
-                array([4.41715473])
+                array([6.03321874e-08, 4.41715473e+00])
+
+        Warning:
+            Only the Legendre transformation method is currently unavailable:
+
+                >>> from ufjc import uFJC
+                >>> uFJC().eta_isometric(0.8, method='exact')
+                array([nan])
 
         """
         gamma = self.np_array(gamma)
