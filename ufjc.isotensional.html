@@ -256,6 +256,15 @@ using numerical quadrature:</p>
 <span class="go">array([1.22689438])</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An improperly-specified approach will result in nan:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uFJC</span><span class="p">()</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;blah blah&#39;</span><span class="p">)</span>
+<span class="go">array([nan])</span>
+</pre></div>
+</div>
+</div>
 </dd></dl>
 
 <dl class="py method">

@@ -347,6 +347,13 @@ Can be used to specify <code class="docutils literal notranslate"><span class="p
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>Compute the nondimensional force at a sample stretch:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">HarmonicPotential</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">HarmonicPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
+<span class="go">70.4</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -658,6 +665,13 @@ Can be used to specify <code class="docutils literal notranslate"><span class="p
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>Compute the nondimensional force at a sample stretch:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LogSquaredPotential</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">LogSquaredPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
+<span class="go">28.736236950770266</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1011,6 +1025,13 @@ and <code class="docutils literal notranslate"><span class="pre">alpha</span></c
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<p>Compute the nondimensional force at a sample stretch:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">MorsePotential</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">MorsePotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="go">28.731992431367807</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -1208,6 +1229,15 @@ Used to specify the potential and then passed to
 an instantiation of that potential.</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An improperly-specified potential will default to harmonic:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;blah&#39;</span><span class="p">)</span>
+<span class="go">Potential &quot;blah&quot; invalid, defaulting to &quot;harmonic&quot; potential.</span>
+</pre></div>
+</div>
+</div>
 </dd></dl>
 
 </dd></dl>

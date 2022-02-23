@@ -185,6 +185,13 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
 
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional force at a sample stretch:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc.potential import HarmonicPotential</span>
+<span class="sd">                &gt;&gt;&gt; HarmonicPotential().eta_link(1.8)</span>
+<span class="sd">                70.4</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="p">(</span><span class="n">lambda_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
 
@@ -276,6 +283,13 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional force at a sample stretch:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc.potential import LogSquaredPotential</span>
+<span class="sd">                &gt;&gt;&gt; LogSquaredPotential().eta_link(1.8)</span>
+<span class="sd">                28.736236950770266</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span><span class="o">/</span><span class="n">lambda_</span></div>
@@ -376,6 +390,13 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Compute the nondimensional force at a sample stretch:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc.potential import MorsePotential</span>
+<span class="sd">                &gt;&gt;&gt; MorsePotential().eta_link(1.23)</span>
+<span class="sd">                28.731992431367807</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">*</span> \
@@ -722,6 +743,13 @@
 <span class="sd">                Used to specify the potential and then passed to</span>
 <span class="sd">                an instantiation of that potential.</span>
 
+<span class="sd">        Note:</span>
+<span class="sd">            An improperly-specified potential will default to harmonic:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;blah&#39;)</span>
+<span class="sd">                Potential &quot;blah&quot; invalid, defaulting to &quot;harmonic&quot; potential.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">:</span>
@@ -739,6 +767,8 @@
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;custom&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">CustomPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Potential &quot;&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">+</span>
+                  <span class="s1">&#39;&quot; invalid, defaulting to &quot;harmonic&quot; potential.&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">HarmonicPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>

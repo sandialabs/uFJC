@@ -272,6 +272,19 @@
 <span class="sd">                &gt;&gt;&gt; np.isclose(gamma_exact, gamma_ideal)</span>
 <span class="sd">                array([ True])</span>
 
+<span class="sd">        Example:</span>
+<span class="sd">            Verify that the single-chain mechanical response is the same</span>
+<span class="sd">            in the isotensional ensemble as it is in the isometric ensemble</span>
+<span class="sd">            when utilizing the Legendre transformation method:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;harmonic&#39;, varepsilon=23)</span>
+<span class="sd">                &gt;&gt;&gt; eta = np.random.rand(88)</span>
+<span class="sd">                &gt;&gt;&gt; (np.abs(model.gamma(eta, ensemble=&#39;isotensional&#39;) -</span>
+<span class="sd">                ...         model.gamma(eta, ensemble=&#39;isometric&#39;,</span>
+<span class="sd">                ...                     method=&#39;legendre&#39;)) &lt; 1e-6).all()</span>
+<span class="sd">                True</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ideal&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">c_kappa</span><span class="p">)</span>
@@ -449,10 +462,22 @@
 
 <span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
 <span class="sd">                &gt;&gt;&gt; model = uFJC(potential=&#39;morse&#39;, N_b=8)</span>
-<span class="sd">                &gt;&gt;&gt; model.nondim_g_eq(23e-2)</span>
-<span class="sd">                array([2.78991089])</span>
-<span class="sd">                &gt;&gt;&gt; model.nondim_g_eq(23e-2, gaussian=True)</span>
-<span class="sd">                array([2.5669256])</span>
+<span class="sd">                &gt;&gt;&gt; model.nondim_P_eq(23e-2)</span>
+<span class="sd">                array([4.19686303])</span>
+<span class="sd">                &gt;&gt;&gt; model.nondim_P_eq(23e-2, gaussian=True)</span>
+<span class="sd">                array([3.86142625])</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Verify that the probability density is normalized:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; model = uFJC()</span>
+<span class="sd">                &gt;&gt;&gt; from scipy.integrate import quad</span>
+<span class="sd">                &gt;&gt;&gt; integrand = lambda gamma: \</span>
+<span class="sd">                ...     4*np.pi*gamma**2*model.nondim_P_eq(gamma)</span>
+<span class="sd">                &gt;&gt;&gt; P_tot_eq = quad(integrand, 0, np.inf)[0]</span>
+<span class="sd">                &gt;&gt;&gt; np.isclose(P_tot_eq, 1)</span>
+<span class="sd">                True</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>

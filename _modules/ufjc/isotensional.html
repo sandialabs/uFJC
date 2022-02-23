@@ -151,6 +151,13 @@
 <span class="sd">                &gt;&gt;&gt; model.gamma_isotensional(23, approach=&#39;quadrature&#39;)</span>
 <span class="sd">                array([1.22689438])</span>
 
+<span class="sd">        Note:</span>
+<span class="sd">            An improperly-specified approach will result in nan:</span>
+
+<span class="sd">                &gt;&gt;&gt; from ufjc import uFJC</span>
+<span class="sd">                &gt;&gt;&gt; uFJC().gamma_isotensional(0.8, approach=&#39;blah blah&#39;)</span>
+<span class="sd">                array([nan])</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
         <span class="n">approach</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;approach&#39;</span><span class="p">,</span> <span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
@@ -165,7 +172,7 @@
         <span class="k">elif</span> <span class="n">approach</span> <span class="o">==</span> <span class="s1">&#39;monte carlo&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">eta</span></div>
 
 <div class="viewcode-block" id="uFJCIsotensional.gamma_isotensional_asymptotic"><a class="viewcode-back" href="../../ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional_asymptotic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The full asymptotic approach for the</span>
@@ -393,9 +400,7 @@
             <span class="n">expo_1</span> <span class="o">=</span> <span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> \
                 <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
             <span class="n">expo_2</span> <span class="o">=</span> <span class="n">expo_1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">expo_1</span><span class="p">,</span> <span class="n">expo_2</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-                <span class="k">return</span> <span class="mi">0</span>
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">expo_1</span><span class="p">,</span> <span class="n">expo_2</span><span class="p">])</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
                 <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_1</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_2</span><span class="p">)</span>
         <span class="n">z_rescaled</span> <span class="o">=</span> <span class="n">quad_vec</span><span class="p">(</span><span class="n">z_fun</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
@@ -407,9 +412,7 @@
             <span class="n">expo_3</span> <span class="o">=</span> <span class="n">expo_1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
             <span class="n">expo_4</span> <span class="o">=</span> <span class="n">expo_3</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">eta</span><span class="o">*</span><span class="n">lambda_</span>
             <span class="n">expos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">expo_1</span><span class="p">,</span> <span class="n">expo_2</span><span class="p">,</span> <span class="n">expo_3</span><span class="p">,</span> <span class="n">expo_4</span><span class="p">])</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">expos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-                <span class="k">return</span> <span class="mi">0</span>
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">expos</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
                 <span class="n">term_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_2</span><span class="p">)</span>
                 <span class="n">term_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_3</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">expo_4</span><span class="p">)</span>
                 <span class="k">return</span> <span class="p">(</span><span class="n">term_1</span> <span class="o">-</span> <span class="n">term_2</span><span class="p">)</span><span class="o">/</span><span class="n">z_rescaled</span>
