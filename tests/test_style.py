@@ -25,8 +25,8 @@ class TestCodeStyle(unittest.TestCase):
         # Collect the files
         tests_dir = path.dirname(__file__)
         files = glob(path.join(tests_dir, './*.py'))
-        files = glob(path.join(tests_dir, '../*.py'))
-        files = glob(path.join(tests_dir, '../docs/*.py'))
+        files += glob(path.join(tests_dir, '../*.py'))
+        files += glob(path.join(tests_dir, '../docs/*.py'))
         files += glob(path.join(tests_dir, '../examples/*.py'))
         files += glob(path.join(tests_dir, '../ufjc/*.py'))
 
