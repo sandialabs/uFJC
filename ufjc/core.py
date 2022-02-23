@@ -187,6 +187,19 @@ class uFJC(Potential, uFJCIsometric):
                 >>> np.isclose(gamma_exact, gamma_ideal)
                 array([ True])
 
+        Example:
+            Verify that the single-chain mechanical response is the same
+            in the isotensional ensemble as it is in the isometric ensemble
+            when utilizing the Legendre transformation method:
+
+                >>> from ufjc import uFJC
+                >>> model = uFJC(potential='harmonic', varepsilon=23)
+                >>> eta = np.random.rand(88)
+                >>> (np.abs(model.gamma(eta, ensemble='isotensional') -
+                ...         model.gamma(eta, ensemble='isometric',
+                ...                     method='legendre')) < 1e-6).all()
+                True
+
         """
         if kwargs.get('ideal', False) is True:
             return self.np_array(eta)/(3*self.c_kappa)
@@ -364,10 +377,22 @@ class uFJC(Potential, uFJCIsometric):
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(potential='morse', N_b=8)
-                >>> model.nondim_g_eq(23e-2)
-                array([2.78991089])
-                >>> model.nondim_g_eq(23e-2, gaussian=True)
-                array([2.5669256])
+                >>> model.nondim_P_eq(23e-2)
+                array([4.19686303])
+                >>> model.nondim_P_eq(23e-2, gaussian=True)
+                array([3.86142625])
+
+        Example:
+            Verify that the probability density is normalized:
+
+                >>> from ufjc import uFJC
+                >>> model = uFJC()
+                >>> from scipy.integrate import quad
+                >>> integrand = lambda gamma: \
+                ...     4*np.pi*gamma**2*model.nondim_P_eq(gamma)
+                >>> P_tot_eq = quad(integrand, 0, np.inf)[0]
+                >>> np.isclose(P_tot_eq, 1)
+                True
 
         """
         if kwargs.get('gaussian', False) is True:
