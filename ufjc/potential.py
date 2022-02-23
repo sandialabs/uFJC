@@ -100,6 +100,13 @@ class HarmonicPotential(object):
         Returns:
             numpy.ndarray: The nondimensional force(s).
 
+        Example:
+            Compute the nondimensional force at a sample stretch:
+
+                >>> from ufjc.potential import HarmonicPotential
+                >>> HarmonicPotential().eta_link(1.8)
+                70.4
+
         """
         return self.varepsilon*(lambda_ - 1)
 
@@ -191,6 +198,13 @@ class LogSquaredPotential(object):
 
         Returns:
             numpy.ndarray: The nondimensional force(s).
+
+        Example:
+            Compute the nondimensional force at a sample stretch:
+
+                >>> from ufjc.potential import LogSquaredPotential
+                >>> LogSquaredPotential().eta_link(1.8)
+                28.736236950770266
 
         """
         return self.varepsilon*np.log(lambda_)/lambda_
@@ -291,6 +305,13 @@ class MorsePotential(object):
 
         Returns:
             numpy.ndarray: The nondimensional force(s).
+
+        Example:
+            Compute the nondimensional force at a sample stretch:
+
+                >>> from ufjc.potential import MorsePotential
+                >>> MorsePotential().eta_link(1.23)
+                28.731992431367807
 
         """
         return 2*self.alpha*self.varepsilon * \
@@ -637,6 +658,13 @@ class Potential(object):
                 Used to specify the potential and then passed to
                 an instantiation of that potential.
 
+        Note:
+            An improperly-specified potential will default to harmonic:
+
+                >>> from ufjc import uFJC
+                >>> model = uFJC(potential='blah')
+                Potential "blah" invalid, defaulting to "harmonic" potential.
+
         """
         self.potential = kwargs.get('potential', 'harmonic')
         if self.potential == 'harmonic':
@@ -654,6 +682,8 @@ class Potential(object):
         elif self.potential == 'custom':
             self.pot = CustomPotential(**kwargs)
         else:
+            print('Potential "' + self.potential +
+                  '" invalid, defaulting to "harmonic" potential.')
             self.pot = HarmonicPotential(**kwargs)
 
     def __getattr__(self, attr):

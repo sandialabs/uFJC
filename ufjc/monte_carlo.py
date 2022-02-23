@@ -234,10 +234,6 @@ class MHMCMC(BasicUtility):
             # Get the results from each process from the output queue
             process_results = [output.get() for p in processes]
 
-            # Print these results if opted
-            if kwargs.get('print_parallel_process_results', False) is True:
-                print(process_results)
-
             # Calculate and return the mean over all processes
             return np.mean(process_results)
 
