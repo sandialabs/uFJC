@@ -2,7 +2,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath("../../"))
 
-
 project = 'uFJC'
 author = 'Michael R. Buche, Scott J. Grutzik'
 copyright = '2022 National Technology & Engineering Solutions of Sandia, \
