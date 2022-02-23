@@ -1,5 +1,7 @@
-import setuptools
 from distutils.core import setup
+
+# Also used in docs/conf.py
+version = '0.3.0'
 
 
 def read(fname):
@@ -11,7 +13,7 @@ def read(fname):
 setup(
     name='ufjc',
     packages=['ufjc'],
-    version='0.3.0',
+    version=version,
     description='The Python package for the uFJC single-chain model.',
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
@@ -22,9 +24,11 @@ setup(
               'model', 'statistical', 'mechanics', 'thermodynamics'],
     install_requires=['numpy', 'scipy'],
     extras_require={
-      'docs':['anybadge', 'matplotlib', 'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
-      'plotting':['matplotlib'],
-      'testing':['colorama', 'matplotlib', 'pycodestyle', 'pytest', 'pytest-cov'],},
+      'docs': ['anybadge', 'matplotlib',
+               'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
+      'plotting': ['matplotlib'],
+      'testing': ['colorama', 'matplotlib', 'pycodestyle',
+                  'pytest', 'pytest-cov']},
     classifiers=[
         'License :: OSI Approved :: BSD License',
         'Development Status :: 5 - Production/Stable',
