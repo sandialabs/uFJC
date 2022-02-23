@@ -1,8 +1,5 @@
 from distutils.core import setup
 
-# Also used in docs/conf.py
-version = '0.3.0'
-
 
 def read(fname):
     with open(fname) as fp:
@@ -13,7 +10,7 @@ def read(fname):
 setup(
     name='ufjc',
     packages=['ufjc'],
-    version=version,
+    version='0.3.0',
     description='The Python package for the uFJC single-chain model.',
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',

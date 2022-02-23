@@ -2,10 +2,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath("../../"))
 
-# Get version from setup.py
-for line in open('../setup.py').readlines():
-    if line.startswith('version ='):
-        exec(line)
 
 project = 'uFJC'
 author = 'Michael R. Buche, Scott J. Grutzik'
