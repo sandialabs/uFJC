@@ -66,7 +66,7 @@ class uFJCIsometric(uFJCIsotensional):
                 >>> model = uFJC(N_b=8, potential='morse')
                 >>> model.eta_isometric([0, 0.8], \
                 ...     method='legendre', approach='reduced')
-                array([6.03321874e-08, 4.41715473e+00])
+                array([0.        , 4.41715473])
 
         Warning:
             Only the Legendre transformation method is currently unavailable:

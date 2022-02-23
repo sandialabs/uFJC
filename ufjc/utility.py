@@ -126,8 +126,8 @@ class BasicUtility(object):
                 guess_0 = guess*0.95
                 guess_1 = guess
             elif y[i] == 0:
-                guess_0 = 1e-2
-                guess_1 = 1e-1
+                guess_0 = 0
+                guess_1 = 1e-2
             else:
                 guess_0 = y[i]*0.95
                 guess_1 = y[i]
