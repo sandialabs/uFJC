@@ -16,7 +16,7 @@ The package can be installed using ``pip`` via the `Python Package Index (PyPI) 
 
     pip install ufjc
 
-or using ``conda`` via the ``mrbuche`` channel on `Anaconda <https://anaconda.org/mrbuche/fjc>`_,
+or using ``conda`` via the ``mrbuche`` channel on `Anaconda <https://anaconda.org/mrbuche/ufjc>`_,
 
 ::
 
