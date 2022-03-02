@@ -31,7 +31,7 @@ class uFJC(Potential, uFJCIsometric):
     ``uFJCIsotensional`` class, which inherits all attributes and
     methods from the ``BasicUtility`` class.
     It also inherits a potential from the ``Potential`` class
-    as the attribute `pot`, a model instance itself.
+    as the attribute ``pot``, a model instance itself.
     Keyword arguments are utilized during instantiation in order to
     specify model parameters; see the inherited classes and various examples
     through the documentation for more information.
