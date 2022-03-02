@@ -30,6 +30,8 @@ class uFJC(Potential, uFJCIsometric):
     class, which inherits all attributes and methods from the
     ``uFJCIsotensional`` class, which inherits all attributes and
     methods from the ``BasicUtility`` class.
+    It also inherits a potential from the ``Potential`` class
+    as the attribute `pot`, a model instance itself.
     Keyword arguments are utilized during instantiation in order to
     specify model parameters; see the inherited classes and various examples
     through the documentation for more information.
@@ -42,9 +44,10 @@ class uFJC(Potential, uFJCIsometric):
         nondim_P_eq_normalizations (dict): The normalizations for the
             nondimensional equilibrium distribution ``nondim_P_eq``
             for each approach.
+        pot (object): The link potential model instance.
 
     Note:
-        The attributes of a model instance should not be changed.
+        The attributes of a instantiated model should not be changed.
         There are several quantities that are computed and stored during
         instantiation that depend on these attributes and are not re-computed.
 
