@@ -1,5 +1,7 @@
+anaconda-client
 anybadge
 colorama
+conda-build
 matplotlib
 numpy
 pycodestyle
