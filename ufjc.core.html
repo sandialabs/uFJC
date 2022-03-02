@@ -112,6 +112,8 @@ It inherits all attributes and methods from the <code class="docutils literal no
 class, which inherits all attributes and methods from the
 <code class="docutils literal notranslate"><span class="pre">uFJCIsotensional</span></code> class, which inherits all attributes and
 methods from the <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> class.
+It also inherits a potential from the <code class="docutils literal notranslate"><span class="pre">Potential</span></code> class
+as the attribute <cite>pot</cite>, a model instance itself.
 Keyword arguments are utilized during instantiation in order to
 specify model parameters; see the inherited classes and various examples
 through the documentation for more information.</p>
@@ -172,9 +174,20 @@ for each approach.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.core.uFJC.pot">
+<span class="sig-name descname"><span class="pre">pot</span></span><a class="headerlink" href="#ufjc.core.uFJC.pot" title="Permalink to this definition"></a></dt>
+<dd><p>The link potential model instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The attributes of a model instance should not be changed.
+<p>The attributes of a instantiated model should not be changed.
 There are several quantities that are computed and stored during
 instantiation that depend on these attributes and are not re-computed.</p>
 </div>

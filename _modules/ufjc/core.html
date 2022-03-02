@@ -118,6 +118,8 @@
 <span class="sd">    class, which inherits all attributes and methods from the</span>
 <span class="sd">    ``uFJCIsotensional`` class, which inherits all attributes and</span>
 <span class="sd">    methods from the ``BasicUtility`` class.</span>
+<span class="sd">    It also inherits a potential from the ``Potential`` class</span>
+<span class="sd">    as the attribute `pot`, a model instance itself.</span>
 <span class="sd">    Keyword arguments are utilized during instantiation in order to</span>
 <span class="sd">    specify model parameters; see the inherited classes and various examples</span>
 <span class="sd">    through the documentation for more information.</span>
@@ -130,9 +132,10 @@
 <span class="sd">        nondim_P_eq_normalizations (dict): The normalizations for the</span>
 <span class="sd">            nondimensional equilibrium distribution ``nondim_P_eq``</span>
 <span class="sd">            for each approach.</span>
+<span class="sd">        pot (object): The link potential model instance.</span>
 
 <span class="sd">    Note:</span>
-<span class="sd">        The attributes of a model instance should not be changed.</span>
+<span class="sd">        The attributes of a instantiated model should not be changed.</span>
 <span class="sd">        There are several quantities that are computed and stored during</span>
 <span class="sd">        instantiation that depend on these attributes and are not re-computed.</span>
 
