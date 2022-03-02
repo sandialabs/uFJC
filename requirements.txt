@@ -6,6 +6,9 @@ pycodestyle
 pytest
 pytest-cov
 scipy
+setuptools
 sphinx
 sphinx-rtd-theme
 sphinxcontrib-bibtex
+twine
+wheel
