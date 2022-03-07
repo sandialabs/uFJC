@@ -95,12 +95,12 @@
 <span class="sd">assign a potential to a given model using keyword arguments.</span>
 
 <span class="sd">Examples:</span>
-<span class="sd">    Create a Lenard-Jones potential model with</span>
+<span class="sd">    Create a Lennard-Jones potential model with</span>
 <span class="sd">    a nondimensional potential energy scale of 8 and evaluate</span>
 <span class="sd">    the nondimensional potential energy at a stretch of 1.23:</span>
 
-<span class="sd">        &gt;&gt;&gt; from ufjc.potential import LenardJonesPotential</span>
-<span class="sd">        &gt;&gt;&gt; model = LenardJonesPotential(varepsilon=8)</span>
+<span class="sd">        &gt;&gt;&gt; from ufjc.potential import LennardJonesPotential</span>
+<span class="sd">        &gt;&gt;&gt; model = LennardJonesPotential(varepsilon=8)</span>
 <span class="sd">        &gt;&gt;&gt; model.beta_u(1.23)</span>
 <span class="sd">        -3.953345685631384</span>
 
@@ -426,8 +426,8 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eta</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span><span class="p">)))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span></div></div>
 
 
-<div class="viewcode-block" id="LenardJonesPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential">[docs]</a><span class="k">class</span> <span class="nc">LenardJonesPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Lenard-Jones potential :cite:`potential-jones1924determinationii`.</span>
+<div class="viewcode-block" id="LennardJonesPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential">[docs]</a><span class="k">class</span> <span class="nc">LennardJonesPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Lennard-Jones potential :cite:`potential-jones1924determinationii`.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        varepsilon (float): The nondimensional energy scale.</span>
@@ -441,8 +441,8 @@
 <span class="sd">            :math:`\lambda_\mathrm{max} = (13/7)^{1/6}`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="LenardJonesPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the ``LenardJonesPotential`` class.</span>
+<div class="viewcode-block" id="LennardJonesPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the ``LennardJonesPotential`` class.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            **kwargs: Arbitrary keyword arguments.</span>
@@ -455,7 +455,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LenardJonesPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+<div class="viewcode-block" id="LennardJonesPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
 
 <span class="sd">            .. math::</span>
@@ -472,7 +472,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">6</span></div>
 
-<div class="viewcode-block" id="LenardJonesPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+<div class="viewcode-block" id="LennardJonesPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
 
 <span class="sd">            .. math::</span>
@@ -488,7 +488,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="LenardJonesPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LenardJonesPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
+<div class="viewcode-block" id="LennardJonesPotential.eta_link"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.eta_link">[docs]</a>    <span class="k">def</span> <span class="nf">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force as a function of stretch,</span>
 
 <span class="sd">            .. math::</span>
@@ -761,8 +761,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">LogSquaredPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;morse&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">MorsePotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;lenard-jones&#39;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">LenardJonesPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;lennard-jones&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">LennardJonesPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;mie&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">MiePotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">==</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">:</span>
