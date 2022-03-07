@@ -284,9 +284,9 @@ class uFJCIsometric(uFJCIsotensional):
             default initial configuration:
 
                 >>> from ufjc import uFJC
-                >>> model = uFJC(N_b=8, potential='lenard-jones', varepsilon=8)
+                >>> model = uFJC(N_b=8, potential='lennard-jones')
                 >>> model.beta_U_config(1.1*model.init_config)
-                -51.86029071342066
+                -570.4631978476273
 
         """
         beta_U = 0

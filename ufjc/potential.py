@@ -7,12 +7,12 @@ This module also contains the parent class ``Potential`` that is used to
 assign a potential to a given model using keyword arguments.
 
 Examples:
-    Create a Lenard-Jones potential model with
+    Create a Lennard-Jones potential model with
     a nondimensional potential energy scale of 8 and evaluate
     the nondimensional potential energy at a stretch of 1.23:
 
-        >>> from ufjc.potential import LenardJonesPotential
-        >>> model = LenardJonesPotential(varepsilon=8)
+        >>> from ufjc.potential import LennardJonesPotential
+        >>> model = LennardJonesPotential(varepsilon=8)
         >>> model.beta_u(1.23)
         -3.953345685631384
 
@@ -338,8 +338,8 @@ class MorsePotential(object):
         return np.log(2/(1 + np.sqrt(1 - eta/self.eta_max)))/self.alpha
 
 
-class LenardJonesPotential(object):
-    r"""The Lenard-Jones potential :cite:`jones1924determinationii`.
+class LennardJonesPotential(object):
+    r"""The Lennard-Jones potential :cite:`jones1924determinationii`.
 
     Attributes:
         varepsilon (float): The nondimensional energy scale.
@@ -354,7 +354,7 @@ class LenardJonesPotential(object):
 
     """
     def __init__(self, **kwargs):
-        """Initializes the ``LenardJonesPotential`` class.
+        """Initializes the ``LennardJonesPotential`` class.
 
         Args:
             **kwargs: Arbitrary keyword arguments.
@@ -673,8 +673,8 @@ class Potential(object):
             self.pot = LogSquaredPotential(**kwargs)
         elif self.potential == 'morse':
             self.pot = MorsePotential(**kwargs)
-        elif self.potential == 'lenard-jones':
-            self.pot = LenardJonesPotential(**kwargs)
+        elif self.potential == 'lennard-jones':
+            self.pot = LennardJonesPotential(**kwargs)
         elif self.potential == 'mie':
             self.pot = MiePotential(**kwargs)
         elif self.potential == 'polynomial':

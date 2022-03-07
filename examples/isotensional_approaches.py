@@ -40,7 +40,7 @@ def main(**kwargs):
                 >>> isotensional_approaches.main()
                 >>> isotensional_approaches.main(potential='log-squared')
                 >>> isotensional_approaches.main(potential='morse')
-                >>> isotensional_approaches.main(potential='lenard-jones')
+                >>> isotensional_approaches.main(potential='lennard-jones')
                 >>> isotensional_approaches.main(potential='mie', n=10, m=4)
                 >>> isotensional_approaches.main(potential='polynomial',
                 ...     coefficients=[1, 2, 3])

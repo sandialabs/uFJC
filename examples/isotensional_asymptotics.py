@@ -40,7 +40,7 @@ def main(**kwargs):
                 ...     varepsilon_list=[10, 25, 250])
                 >>> isotensional_asymptotics.main(potential='morse',
                 ...     varepsilon_list=[10, 25, 250])
-                >>> isotensional_asymptotics.main(potential='lenard-jones',
+                >>> isotensional_asymptotics.main(potential='lennard-jones',
                 ...     varepsilon_list=[1, 2, 5, 15])
                 >>> isotensional_asymptotics.main(potential='mie', n=10, m=4,
                 ...     varepsilon_list=[1, 2, 5, 15])
