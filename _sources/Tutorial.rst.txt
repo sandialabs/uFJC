@@ -56,7 +56,6 @@ An array of nondimensional forces can be input, and these results can be easily 
 
     >>> import numpy as np
     >>> import matplotlib.pyplot as plt
-    >>> plt.rcParams.update({'font.size': 12, 'text.usetex': True})
     >>> from ufjc import uFJC
     >>> model = uFJC(potential='lennard-jones', varepsilon=23)
     >>> eta = np.linspace(0, model.eta_max, 250)
@@ -106,7 +105,6 @@ Here, we apply a few different uFJC models to the eight-chain model configuratio
 
     >>> import numpy as np
     >>> import matplotlib.pyplot as plt
-    >>> plt.rcParams.update({'font.size': 12, 'text.usetex': True})
     >>> from ufjc import uFJC
     >>> def beta_sigma_11(F_11, **kwargs):
     ...     model = uFJC(**kwargs)
