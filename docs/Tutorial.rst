@@ -59,6 +59,7 @@ An array of nondimensional forces can be input, and these results can be easily 
     >>> from ufjc import uFJC
     >>> model = uFJC(potential='lennard-jones', varepsilon=23)
     >>> eta = np.linspace(0, model.eta_max, 250)
+    >>> plt.rcParams.update({'font.size': 13})
     >>> plt.plot(model.gamma(eta), eta)
     >>> plt.xlabel(r'$\gamma$')
     >>> plt.ylabel(r'$\eta$')
