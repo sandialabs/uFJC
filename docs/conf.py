@@ -24,9 +24,6 @@ extensions = [
 latex_engine = 'xelatex'
 bibtex_bibfiles = ['main.bib']
 bibtex_default_style = 'plain'
-autodoc_default_options = {
-    'special-members': '__init__',
-}
 plot_html_show_formats = False
 plot_html_show_source_link = False
 plot_include_source = True
