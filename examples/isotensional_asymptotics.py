@@ -60,7 +60,6 @@ def main(**kwargs):
     # Import external modules
     import numpy as np
     import matplotlib.pyplot as plt
-    plt.rcParams.update({'font.size': 13})
 
     # Import internal modules
     from ufjc import uFJC

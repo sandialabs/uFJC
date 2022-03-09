@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - name : Install LaTeX
-        run: sudo apt-get install texlive texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra dvipng
       - name: Install package and docs extras
         run: pip install .[docs]
       - name: Build docs
