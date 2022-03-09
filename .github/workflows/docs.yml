@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install package and docs extras
-        run: pip install .[docs]
+        run: pip3 install .[docs]
       - name: Build docs
         run: |
           mkdir docs-temp/
