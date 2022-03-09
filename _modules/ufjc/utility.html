@@ -131,14 +131,14 @@
 <span class="sd">            Helps avoid overflow in exponential functions.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="BasicUtility.__init__"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``BasicUtility`` class.</span>
 
 <span class="sd">        Inherits overflow-related parameters from ``sys.float_info``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">maximum_float</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maximum_float</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maximum_float</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BasicUtility.np_array"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.np_array">[docs]</a>    <span class="k">def</span> <span class="nf">np_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to return input as a numpy array.</span>

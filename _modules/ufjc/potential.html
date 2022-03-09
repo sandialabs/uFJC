@@ -131,7 +131,7 @@
 <span class="sd">        c (float): The correction parameter :math:`c=1`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="HarmonicPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``HarmonicPotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -141,7 +141,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="HarmonicPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -228,7 +228,7 @@
 <span class="sd">            :math:`\lambda_\mathrm{max} = e^{1}`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="LogSquaredPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``LogSquaredPotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -240,7 +240,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">5</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <div class="viewcode-block" id="LogSquaredPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LogSquaredPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -331,7 +331,7 @@
 <span class="sd">            :math:`\lambda_\mathrm{max} = 1+\ln(2)/\alpha`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="MorsePotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``MorsePotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -345,7 +345,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">**</span><span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
 
 <div class="viewcode-block" id="MorsePotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MorsePotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -441,7 +441,7 @@
 <span class="sd">            :math:`\lambda_\mathrm{max} = (13/7)^{1/6}`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="LennardJonesPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``LennardJonesPotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -453,7 +453,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="mi">72</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="mi">23</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="p">(</span><span class="mi">13</span><span class="o">/</span><span class="mi">7</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span>
 
 <div class="viewcode-block" id="LennardJonesPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.LennardJonesPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -524,7 +524,7 @@
 <span class="sd">            .</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="MiePotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``MiePotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -541,7 +541,7 @@
             <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MiePotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.MiePotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -609,7 +609,7 @@
 <span class="sd">            :math:`c=(1 - \frac{a_2}{2a_1})^{-1}`.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="PolynomialPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``PolynomialPotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -625,7 +625,7 @@
             <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">eta_c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">phi_c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PolynomialPotential.phi"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.PolynomialPotential.phi">[docs]</a>    <span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The scaled nondimensional potential energy function,</span>
@@ -691,7 +691,7 @@
 <span class="sd">        c (float): The correction parameter.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="CustomPotential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.CustomPotential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``CustomPotential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -711,7 +711,7 @@
         <span class="k">if</span> <span class="s1">&#39;lambda_max&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lambda_max&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="s1">&#39;eta_max&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eta_max&#39;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">eta_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;eta_max&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CustomPotential.beta_u"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.CustomPotential.beta_u">[docs]</a>    <span class="k">def</span> <span class="nf">beta_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lambda_</span><span class="p">):</span>
         <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy function,</span>
@@ -738,7 +738,7 @@
 <span class="sd">        pot (object): The potential model instance.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-<div class="viewcode-block" id="Potential.__init__"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.Potential.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the ``Potential`` class.</span>
 
 <span class="sd">        Args:</span>
@@ -772,7 +772,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Potential &quot;&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">potential</span> <span class="o">+</span>
                   <span class="s1">&#39;&quot; invalid, defaulting to &quot;harmonic&quot; potential.&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">HarmonicPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pot</span> <span class="o">=</span> <span class="n">HarmonicPotential</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Inherit attributes and methods from the chosen potential.</span>

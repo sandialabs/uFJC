@@ -192,29 +192,6 @@ There are several quantities that are computed and stored during
 instantiation that depend on these attributes and are not re-computed.</p>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="ufjc.core.uFJC.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/core.html#uFJC.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.core.uFJC.__init__" title="Permalink to this definition"></a></dt>
-<dd><p>Initializes the <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> class,
-producing a uFJC single-chain model instance.</p>
-<p>First, initialize and inherit all attributes and methods
-from <code class="docutils literal notranslate"><span class="pre">uFJCIsometric</span></code> and <code class="docutils literal notranslate"><span class="pre">Potential</span></code> class instances;
-the latter assigns a potential (as attributes) to the model instance.
-Next, assign the attributes listed above.
-Then assign a default incremental link stretch function
-<code class="docutils literal notranslate"><span class="pre">delta_lambda</span></code> (inversion of <code class="docutils literal notranslate"><span class="pre">eta_link</span></code>) if not already
-available from the potential choice.
-Also, adjust both <code class="docutils literal notranslate"><span class="pre">delta_lambda</span></code> and <code class="docutils literal notranslate"><span class="pre">beta_u</span></code> above
-<code class="docutils literal notranslate"><span class="pre">eta_max</span></code> and <code class="docutils literal notranslate"><span class="pre">lambda_max</span></code>, if they exist for the potential,
-to prevent calculation errors.
-Finally, compute and store the normalization for <code class="docutils literal notranslate"><span class="pre">nondim_P_eq</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="ufjc.core.uFJC.eta">
 <span class="sig-name descname"><span class="pre">eta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/core.html#uFJC.eta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.core.uFJC.eta" title="Permalink to this definition"></a></dt>
 <dd><p>The nondimensional force.</p>
