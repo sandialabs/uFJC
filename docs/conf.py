@@ -11,9 +11,7 @@ copyright = '2022 National Technology & Engineering Solutions of Sandia, \
 templates_path = ['_templates']
 html_static_path = ['_static']
 html_theme = 'sphinx_rtd_theme'
-html_theme_options = {
-    'navigation_depth': 8
-}
+html_theme_options = {'navigation_depth': 8}
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
@@ -28,4 +26,5 @@ plot_html_show_formats = False
 plot_html_show_source_link = False
 plot_include_source = True
 add_module_names = False
-plot_rcparams = {'font.size': 12}
+plot_rcparams = {'font.size': 10}
+plot_formats = [('png', 300)]
