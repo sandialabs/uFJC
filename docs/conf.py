@@ -31,3 +31,4 @@ plot_html_show_formats = False
 plot_html_show_source_link = False
 plot_include_source = True
 add_module_names = False
+plot_rcparams = {'font.size': 12, 'text.usetex': True}
