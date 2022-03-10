@@ -10,7 +10,7 @@ The is the Python package ``ufjc`` developed for the uFJC single-chain model, a 
 Installation
 ************
 
-The package can be installed using ``pip`` via the `Python Package Index (PyPI) <https://pypi.org/project/ufjc/>`_, which is recommended,
+The package can be installed using ``pip`` via the `Python Package Index (PyPI) <https://pypi.org/project/ufjc/>`_,
 
 ::
 
@@ -22,7 +22,7 @@ or using ``conda`` via the ``mrbuche`` channel on `Anaconda <https://anaconda.or
 
     conda install --channel mrbuche ufjc
     
-Alternatively, a branch can be directly installed using ``pip``,
+Alternatively, a branch can be directly installed using
 
 ::
 
