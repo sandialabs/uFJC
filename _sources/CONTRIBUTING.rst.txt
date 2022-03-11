@@ -37,4 +37,4 @@ Contributors can propose changes to the code in the repository by creating a pul
 
   - The tests are all passing, resulting in a high (desirably, complete) code coverage, and any changes are properly tested.
   - The documentation is successfully built, and any changes are properly documented.
-  - The changes provide an appropriate and substantial improvement to the code.
+  - The changes provide an appropriate and substantial improvement to the code; see the `code of conduct <https://github.com/sandialabs/ufjc/blob/main/CODE_OF_CONDUCT.md>`_
