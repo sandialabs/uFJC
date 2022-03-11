@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; uFJC 1.0.1 documentation</title>
+  <title>Contributing &mdash; uFJC 1.0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -17,10 +17,8 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,7 +32,7 @@
                 1.0.1
               </div>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -75,8 +73,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Search</li>
+      <li>Contributing</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CONTRIBUTING.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -84,18 +83,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h1>
+<p>These are guidelines for contributing to the Python package <code class="docutils literal notranslate"><span class="pre">ufjc</span></code>.
+Contributors can:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="Issues">open issues</a>, or</p></li>
+<li><p><a class="reference external" href="PullRequests">creat pull requests</a>.</p></li>
+</ul>
+<section id="issues">
+<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this headline"></a></h2>
+<p>Contributors can open new issues on the GitHub repository <a class="reference external" href="https://github.com/sandialabs/ufjc/issues">here</a>.
+An issue can either report an existing bug, or request a new feature.
+Contributors should ensure that their candidate issue does not match an existing open issue before opening it.
+If a closely-related but incomplete open issue exists, contributors should comment on the existing open issue.</p>
+<section id="bug-reports">
+<h3>Bug Reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline"></a></h3>
+<p>A new bug report can be opened <a class="reference external" href="https://github.com/sandialabs/ufjc/issues/new?template=bug_report.md">here</a>.</p>
+</section>
+<section id="feature-requests">
+<h3>Feature Requests<a class="headerlink" href="#feature-requests" title="Permalink to this headline"></a></h3>
+<p>A new feature request can be opened <a class="reference external" href="https://github.com/sandialabs/ufjc/issues/new?template=feature_request.md">here</a>.
+Feature requests that are deemed feasible will be considered by the developers, and could even be addressed by a contributor through a pull request.
+Feature requests that are deemed infeasible will likely be denied.</p>
+</section>
+</section>
+<section id="pull-requests">
+<h2>Pull Requests<a class="headerlink" href="#pull-requests" title="Permalink to this headline"></a></h2>
+<p>Contributors can propose changes to the code in the repository by creating a pull request as follows:</p>
+<ul class="simple">
+<li><p>Fork the base repository by clicking the <code class="docutils literal notranslate"><span class="pre">fork</span></code> button <a class="reference external" href="https://github.com/sandialabs/ufjc">here</a>.</p></li>
+<li><p>Clone the forked repository, make changes, and push them back to the fork.</p></li>
+<li><p>Create a pull request between the base and forked repositories <a class="reference external" href="https://github.com/sandialabs/ufjc/pulls">here</a>.</p></li>
+<li><dl class="simple">
+<dt>Wait for the pull request to be either approved or dismissed. Approval and subsequent merging of pull requests is contingent upon:</dt><dd><ul>
+<li><p>The tests are all passing, resulting in a high (desirably, complete) code coverage, and any changes are properly tested.</p></li>
+<li><p>The documentation is successfully built, and any changes are properly documented.</p></li>
+<li><p>The changes provide an appropriate and substantial improvement to the code.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
@@ -121,14 +153,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>

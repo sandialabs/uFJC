@@ -4,7 +4,7 @@
    :hidden:
    :titlesonly:
 
-   Tutorial
+   TUTORIAL
 
 .. toctree::
    :hidden:
