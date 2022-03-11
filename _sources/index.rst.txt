@@ -4,6 +4,7 @@
    :hidden:
    :titlesonly:
 
+   CONTRIBUTING
    TUTORIAL
 
 .. toctree::
