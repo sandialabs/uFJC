@@ -1,4 +1,4 @@
-name: publish
+name: package
 on:
   workflow_dispatch:
 env:
