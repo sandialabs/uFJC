@@ -34,10 +34,12 @@ or after cloning a branch and executing ``python setup.py install``.
 Information
 ***********
 
+- `Contributing <https://github.com/sandialabs/ufjc/blob/master/docs/CONTRIBUTING.rst>`__
 - `Documentation <https://sandialabs.github.io/ufjc>`__
 - `Examples <https://sandialabs.github.io/ufjc/examples>`__
+- `License <https://github.com/sandialabs/ufjc/blob/main/LICENSE>`__
 - `Release History <https://github.com/sandialabs/ufjc/releases>`__
-- `Tutorial <https://sandialabs.github.io/ufjc/Tutorial.html>`__
+- `Tutorial <https://sandialabs.github.io/ufjc/TUTORIAL.html>`__
 
 ********
 Citation
