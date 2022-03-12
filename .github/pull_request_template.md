@@ -6,7 +6,7 @@ This template should be used for making any pull requests.
 
 Here, describe the goal of the pull request, i.e. what does it seek to address?
 Does this pull request fix an existing bug, or create a new feature?
-Why are the changed proposed by this pull request necessary?
+Why are the changes proposed by this pull request necessary?
 
 ## Specifics
 
