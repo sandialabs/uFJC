@@ -7,18 +7,18 @@ on:
   workflow_dispatch:
 jobs:
   paper:
-    runs-on: ubuntu-latest
-    name: Paper Draft
+    runs-on: ubuntu-20.04
+    name: Paper
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build draft PDF
+      - name: Build
         uses: openjournals/openjournals-draft-action@master
         with:
           journal: joss
           paper-path: docs/paper.md
-      - name: Upload
+      - name: Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: paper
-          path: paper.pdf
+          name: paper.pdf
+          path: docs/paper.pdf
