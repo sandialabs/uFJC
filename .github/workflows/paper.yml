@@ -8,17 +8,17 @@ on:
 jobs:
   paper:
     runs-on: ubuntu-20.04
-    name: Paper
+    name: draft
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v2
-      - name: Build
+      - name: build
         uses: openjournals/openjournals-draft-action@master
         with:
           journal: joss
           paper-path: docs/paper.md
-      - name: Artifact
+      - name: artifact
         uses: actions/upload-artifact@v1
         with:
-          name: paper.pdf
+          name: paper
           path: docs/paper.pdf
