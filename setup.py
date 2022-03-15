@@ -24,7 +24,11 @@ setup(
                'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
       'plotting': ['matplotlib'],
       'testing': ['colorama', 'matplotlib', 'pycodestyle',
-                  'pytest', 'pytest-cov']},
+                  'pytest', 'pytest-cov'],
+      'all': ['anybadge', 'colorama', 'matplotlib', 'pycodestyle',
+              'pytest', 'pytest-cov',
+              'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex']
+    },
     classifiers=[
         'License :: OSI Approved :: BSD License',
         'Development Status :: 5 - Production/Stable',
