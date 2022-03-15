@@ -41,6 +41,7 @@ jobs:
           anaconda logout
   docker:
     runs-on: ubuntu-20.04
+    needs: pypi
     steps:
       - uses: actions/checkout@v2
       - name: Get version
