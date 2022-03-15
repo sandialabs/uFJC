@@ -68,7 +68,7 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072
     :target: https://pypi.org/project/ufjc/
 
-.. |pypi| image:: https://img.shields.io/pypi/v/ufjc?logo=pypi&logoColor=FBE072
+.. |pypi| image:: https://img.shields.io/pypi/v/ufjc?logo=pypi&logoColor=FBE072&label=PyPI
     :target: https://pypi.org/project/ufjc/
 
 .. |anaconda| image:: https://img.shields.io/conda/v/mrbuche/ufjc.svg?logo=anaconda
