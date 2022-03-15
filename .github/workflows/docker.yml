@@ -6,7 +6,6 @@ env:
 jobs:
   docker:
     runs-on: ubuntu-20.04
-    needs: pypi
     steps:
       - name: Login to DockerHub
         uses: docker/login-action@v1.12.0
