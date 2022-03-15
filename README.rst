@@ -65,13 +65,13 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 .. |coverage| image:: https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
 
-.. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072&color=4B8BBE
+.. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072&color=4B8BBE&label=Python
     :target: https://pypi.org/project/ufjc/
 
 .. |pypi| image:: https://img.shields.io/pypi/v/ufjc?logo=pypi&logoColor=FBE072&label=PyPI&color=4B8BBE
     :target: https://pypi.org/project/ufjc/
 
-.. |conda| image:: https://img.shields.io/conda/v/mrbuche/ufjc.svg?logo=anaconda&color=3EB049&label=conda
+.. |conda| image:: https://img.shields.io/conda/v/mrbuche/ufjc.svg?logo=anaconda&color=3EB049&label=Anaconda
     :target: https://anaconda.org/mrbuche/ufjc/
     :alt: conda
 
