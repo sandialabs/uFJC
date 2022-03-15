@@ -6,4 +6,5 @@
 *ufjc.egg-info/
 *tests/*.csv
 *.vscode
+
 docs/paper.md
