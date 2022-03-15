@@ -18,4 +18,4 @@ jobs:
         uses: docker/build-push-action@v2.8.0
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${REPO_NAME}/${VERSION}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${REPO_NAME}:${VERSION}
