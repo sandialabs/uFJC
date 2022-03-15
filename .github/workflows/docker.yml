@@ -5,8 +5,8 @@ jobs:
   docker:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - name: Get version
-        uses: actions/checkout@v2
         run: |
           export VERSION=$(grep version setup.py | cut -f2 -d "'")
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
