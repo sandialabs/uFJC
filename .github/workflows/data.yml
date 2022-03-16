@@ -1,0 +1,27 @@
+name: data
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: docs
+      - name: update badges
+        run: |
+          mkdir -p badges/
+          curl "https://raw.githubusercontent.com/mrbuche/mrbuche/data/data/google-scholar.json" -o google-scholar.json
+          export NUM_CITES=$(jq '.articles | .[] | select(.citation_id=="YJ8Ei6AAAAAJ:ufrVoPGSRksC") | .cited_by.value' google-scholar.json)
+          curl "https://img.shields.io/badge/Google%20Scholar-${NUM_CITES}%20citations-red?color=4285F4&logoColor=4285F4&logo=googlescholar" -o badges/google-scholar.svg
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+          git add badges/
+          git commit --allow-empty -m 'update data'
+          git push
