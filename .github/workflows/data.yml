@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: docs
+          ref: gh-pages
       - name: update badges
         run: |
           mkdir -p badges/
