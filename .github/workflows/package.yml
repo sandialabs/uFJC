@@ -36,11 +36,15 @@ jobs:
         run: conda skeleton pypi --noarch-python ${REPO_NAME}
       - name: Build conda packages
         run: conda build --python 3.8 ${REPO_NAME}
+      - name: Translate README rst to md for description
+        run: |
+          sudo apt install -y pandoc
+          pandoc -s -o README.md README.rst
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
+          anaconda upload -d README.md /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
   docker:
     runs-on: ubuntu-20.04
