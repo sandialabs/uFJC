@@ -32,6 +32,8 @@ jobs:
         run: python setup.py bdist_wheel
       - name: Upload to PyPI.org
         run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
+      - name: Give PyPI time before proceeding
+        run: sleep 88s
   test-pypi:
     runs-on: ubuntu-20.04
     needs: [get-version, pypi]
