@@ -32,7 +32,7 @@ jobs:
         run: python setup.py bdist_wheel
       - name: Upload to PyPI.org
         run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
-      - name: Give PyPI time before proceeding
+      - name: Give upload time before downloading
         run: sleep 88s
   test-pypi:
     runs-on: ubuntu-20.04
@@ -67,6 +67,8 @@ jobs:
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
           anaconda upload --force -d README.md /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
+      - name: Give upload time before downloading
+        run: sleep 88s
   test-anaconda:
     runs-on: ubuntu-20.04
     needs: [get-version, pypi, anaconda]
@@ -99,6 +101,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ needs.get-version.outputs.VERSION }}
+      - name: Give upload time before downloading
+        run: sleep 88s
   test-docker:
     runs-on: ubuntu-20.04
     needs: docker
