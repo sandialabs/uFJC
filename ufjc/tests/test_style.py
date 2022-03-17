@@ -26,9 +26,9 @@ class TestCodeStyle(unittest.TestCase):
         tests_dir = path.dirname(__file__)
         files = glob(path.join(tests_dir, './*.py'))
         files += glob(path.join(tests_dir, '../*.py'))
-        files += glob(path.join(tests_dir, '../docs/*.py'))
+        files += glob(path.join(tests_dir, '../../*.py'))
+        files += glob(path.join(tests_dir, '../../docs/*.py'))
         files += glob(path.join(tests_dir, '../examples/*.py'))
-        files += glob(path.join(tests_dir, '../ufjc/*.py'))
 
         # Check the style in the files
         style = StyleGuide(quiet=False)

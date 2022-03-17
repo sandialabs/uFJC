@@ -36,7 +36,7 @@ def main(**kwargs):
             as a comparison for non-harmonic cases:
 
                 >>> import numpy as np
-                >>> from examples import isotensional_approaches
+                >>> from ufjc.examples import isotensional_approaches
                 >>> isotensional_approaches.main()
                 >>> isotensional_approaches.main(potential='log-squared')
                 >>> isotensional_approaches.main(potential='morse')

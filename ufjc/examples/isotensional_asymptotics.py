@@ -33,7 +33,7 @@ def main(**kwargs):
 
             Compare the asymptotic approaches for many models and parameters:
 
-                >>> from examples import isotensional_asymptotics
+                >>> from ufjc.examples import isotensional_asymptotics
                 >>> isotensional_asymptotics.main(potential='harmonic',
                 ...     varepsilon_list=[10, 25, 100, 1000])
                 >>> isotensional_asymptotics.main(potential='log-squared',
@@ -51,7 +51,7 @@ def main(**kwargs):
     Example:
         Export a .csv file for external use:
 
-            >>> from examples import isotensional_asymptotics
+            >>> from ufjc.examples import isotensional_asymptotics
             >>> isotensional_asymptotics.main(potential='harmonic',
             ...     varepsilon_list=[10, 25, 100, 1000], csv=1)
 

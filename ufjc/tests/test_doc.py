@@ -18,8 +18,11 @@ class TestDocstringExamples(unittest.TestCase):
     """Class to test examples within docstrings.
 
     """
-    def test_docstring_python_examples(self):
+    def test_docstring_python_examples(self, examples=True):
         """Function to test examples within docstrings.
+
+       Args:
+           examples (bool, optional, default=True): Whether to test examples.
 
         Returns:
             int: The total number of failures from all files.
@@ -29,8 +32,9 @@ class TestDocstringExamples(unittest.TestCase):
         # Collect the files
         tests_dir = path.dirname(__file__)
         files = glob(path.join(tests_dir, './*.py'))
-        files += glob(path.join(tests_dir, '../examples/*.py'))
-        files += glob(path.join(tests_dir, '../ufjc/*.py'))
+        files += glob(path.join(tests_dir, '../*.py'))
+        if examples:
+            files += glob(path.join(tests_dir, '../examples/*.py'))
 
         # Check the docstring examples in the files
         failures = 0
