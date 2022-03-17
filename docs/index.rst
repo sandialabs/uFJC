@@ -12,7 +12,12 @@
    :caption: Modules
    :glob:
    
-   ufjc.*
+   ufjc.core
+   ufjc.isometric
+   ufjc.isotensional
+   ufjc.monte_carlo
+   ufjc.potential
+   ufjc.utility
 
 .. toctree::
    :hidden:

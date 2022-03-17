@@ -42,7 +42,7 @@ Information
 
 - `Contributing <https://sandialabs.github.io/ufjc/CONTRIBUTING.html>`__
 - `Documentation <https://sandialabs.github.io/ufjc>`__
-- `Examples <https://sandialabs.github.io/ufjc/examples>`__
+- `Examples <https://sandialabs.github.io/ufjc/ufjc.examples>`__
 - `License <https://github.com/sandialabs/ufjc/blob/main/LICENSE>`__
 - `Releases <https://github.com/sandialabs/ufjc/releases>`__
 - `Tutorial <https://sandialabs.github.io/ufjc/TUTORIAL.html>`__
