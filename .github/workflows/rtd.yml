@@ -47,6 +47,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "<>"
+          git add README.rst
           git add docs/
-          git commit -m 'update from main branch'
+          git commit --allow-empty -m 'update from main branch'
           git push
