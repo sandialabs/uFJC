@@ -1,4 +1,5 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 
 def read(fname):
@@ -9,8 +10,9 @@ def read(fname):
 
 setup(
     name='ufjc',
-    packages=['ufjc'],
-    version='1.1.3b',
+    version='1.1.3c',
+    package_dir={'ufjc': 'ufjc'},
+    packages=find_packages(),
     description='The Python package for the uFJC single-chain model.',
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
