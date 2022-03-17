@@ -7,6 +7,16 @@ on:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
 jobs:
+  get-version:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - id: version
+        run: |
+          export VERSION=$(grep version setup.py | cut -f2 -d "'")
+          echo "::set-output name=VERSION::${VERSION}"
+    outputs:
+      VERSION: ${{ steps.version.outputs.VERSION }}
   pypi:
     runs-on: ubuntu-20.04
     steps:
@@ -24,17 +34,16 @@ jobs:
         run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
   test-pypi:
     runs-on: ubuntu-20.04
-    needs: pypi
+    needs: [get-version, pypi]
     steps:
       - name: Install and test the package
         run: |
-          export VERSION=$(grep version setup.py | cut -f2 -d "'")
           python -m pip install --upgrade pip
-          pip install ${REPO_NAME}==${VERSION}
+          pip install ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
           python -m ${REPO_NAME}.tests
   anaconda:
     runs-on: ubuntu-20.04
-    needs: pypi
+    needs: [get-version, pypi]
     steps:
       - uses: actions/checkout@v2
       - name: Prepare conda
@@ -58,22 +67,17 @@ jobs:
           anaconda logout
   test-anaconda:
     runs-on: ubuntu-20.04
-    needs: anaconda
+    needs: [get-version, pypi, anaconda]
     steps:
       - name: Install and test the package
         run: |
-          export VERSION=$(grep version setup.py | cut -f2 -d "'")
-          conda install --channel mrbuche ${REPO_NAME}==${VERSION}
+          conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
           python -m ${REPO_NAME}.tests
   docker:
     runs-on: ubuntu-20.04
-    needs: pypi
+    needs: [get-version, pypi]
     steps:
       - uses: actions/checkout@v2
-      - name: Get version
-        run: |
-          export VERSION=$(grep version setup.py | cut -f2 -d "'")
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
       - name: Translate README.rst to .md for description
         run: |
           sudo apt install -y pandoc
@@ -89,7 +93,7 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ env.VERSION }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ needs.get-version.outputs.VERSION }}
   test-docker:
     runs-on: ubuntu-20.04
     needs: docker

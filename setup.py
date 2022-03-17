@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name='ufjc',
     packages=['ufjc'],
-    version='1.1.3a',
+    version='1.1.3b',
     description='The Python package for the uFJC single-chain model.',
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
