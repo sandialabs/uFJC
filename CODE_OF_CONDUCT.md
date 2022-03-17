@@ -6,5 +6,3 @@ Inspired by [the Sandia values](https://hr.sandia.gov/career/performance-managem
 - **Deliver with excellence.** Standards are high for code performance, style, and testing.
 - **Respect each other.** Criticize ideas, not people, and treat everyone with innate dignity.
 - **Team up for great results.** Combine knowledge and skillsets for the best outcome, and help each other.
-
-By following this code of conduct, contributors can help Sandia **serve the nation.**
