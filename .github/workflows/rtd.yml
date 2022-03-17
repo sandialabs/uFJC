@@ -22,6 +22,7 @@ jobs:
           path: docs/
   rtd:
     runs-on: ubuntu-20.04
+    needs: docs
     steps:
       - name: Checkout rtd branch
         uses: actions/checkout@v2
