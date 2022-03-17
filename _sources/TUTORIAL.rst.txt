@@ -75,17 +75,17 @@ Generally, the results differ whether a constant force or a constant end-to-end 
 Calculation Approaches
 ----------------------
 
-For the isotensional ensemble, there are several calculation approaches available: exact closed-form (FJC, EFJC), numerical quadrature, Monte Carlo, and asymptotically-correct approximations. Here, the ``approach`` refers to the calculation approach for results in the isotensional ensemble. For example, we can use the ``simplest`` asymptotic approach to compute ``gamma`` in the ``isotensional`` ensemble (default) under a nondimensional force of 55, 
+For the isotensional ensemble, there are several calculation approaches available: exact closed-form (FJC, EFJC), numerical quadrature, Monte Carlo, and asymptotically-correct approximations. Here, the ``approach`` refers to the calculation approach for results in the isotensional ensemble. For example, we can use the ``reduced`` asymptotic approach to compute ``gamma`` in the ``isotensional`` ensemble (default) under a nondimensional force of 55, 
 
 .. code-block:: python
 
-    >>> model.gamma(55, approach='simplest')
+    >>> model.gamma(55, approach='reduced')
     array([1.0441542])
 
 Combinations
 ------------
 
-Since neither ensemble is typically exactly analytically tractable, we often need to combine approximations methods and approaches when working with the isometric ensemble. The above example for the isometric ensemble actually used the ``asymptotic`` approach, since it is the default,
+Since neither ensemble is typically exactly analytically tractable, we often need to combine approximations methods and approaches when working with the isometric ensemble. The above example for the ``isometric`` ensemble actually used the ``asymptotic`` approach, since it is the default,
 
 .. code-block:: python
 
