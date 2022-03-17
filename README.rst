@@ -28,7 +28,11 @@ Alternatively, a branch can be directly installed using
 
     pip install git+https://github.com/sandialabs/ufjc.git@<branch-name>
 
-or after cloning a branch and executing ``python setup.py install``.
+or after cloning a branch and executing ``python setup.py install``. Any installation can be tested with
+
+::
+
+    python -m ufjc.tests
 
 ***********
 Information

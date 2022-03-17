@@ -1,0 +1,41 @@
+name: docs
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  docs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+      - name: Install package and docs extras
+        run: pip install .[docs]
+      - name: Set up docs
+        run:  source .github/workflows/docs.sh
+      - name: Upload docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: docs/
+  rtd:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout rtd branch
+        uses: actions/checkout@v2
+        with:
+          ref: rtd
+      - name: Download docs
+        uses: actions/download-artifact@v2
+        with:
+          name: docs
+          path: docs/
+      - name: Push docs to rtd branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+          git add docs/
+          git commit -m 'update from main branch'
+          git push
