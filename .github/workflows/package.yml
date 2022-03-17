@@ -71,10 +71,12 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [get-version, pypi, anaconda]
     steps:
-      - name: Install and test the package
-        run: |
-          conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
-          python -m ${REPO_NAME}.tests
+      - name: Install the package
+        shell: bash -l {0}
+        run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
+      - name: Test the package
+        shell: bash -l {0}
+        run: python -m ${REPO_NAME}.tests
   docker:
     runs-on: ubuntu-20.04
     needs: [get-version, pypi]
