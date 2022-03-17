@@ -19,11 +19,11 @@
    :caption: Examples
    :glob:
 
-   examples.*
+   ufjc.examples.*
 
 .. toctree::
    :hidden:
    :caption: Tests
    :glob:
 
-   tests.*
+   ufjc.tests.*
