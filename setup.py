@@ -10,7 +10,7 @@ def read(fname):
 setup(
     name='ufjc',
     packages=['ufjc'],
-    version='1.1.2',
+    version='1.1.3a',
     description='The Python package for the uFJC single-chain model.',
     long_description=read("README.rst"),
     author='Michael R. Buche, Scott J. Grutzik',
@@ -18,7 +18,7 @@ setup(
     url='https://sandialabs.github.io/ufjc',
     license='BSD-3-Clause',
     keywords=['ufjc', 'polymers', 'statistical mechanics', 'thermodynamics'],
-    install_requires=['numpy', 'scipy'],
+    install_requires=['colorama', 'numpy', 'pycodestyle', 'scipy'],
     extras_require={
       'docs': ['colorama', 'matplotlib', 'pycodestyle',
                'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
