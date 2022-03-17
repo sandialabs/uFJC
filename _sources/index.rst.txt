@@ -12,18 +12,23 @@
    :caption: Modules
    :glob:
    
-   ufjc.*
+   ufjc.core
+   ufjc.isometric
+   ufjc.isotensional
+   ufjc.monte_carlo
+   ufjc.potential
+   ufjc.utility
 
 .. toctree::
    :hidden:
    :caption: Examples
    :glob:
 
-   examples.*
+   ufjc.examples.*
 
 .. toctree::
    :hidden:
    :caption: Tests
    :glob:
 
-   tests.*
+   ufjc.tests.*
