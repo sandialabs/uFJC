@@ -31,5 +31,5 @@
    :caption: Tests
    :glob:
 
-   ufjc.tests_doc
-   ufjc.tests_style
+   ufjc.tests.test_doc
+   ufjc.tests.test_style
