@@ -1,6 +1,10 @@
 name: package
 on:
   push:
+    branches: [ anaconda-upload ]
+  pull_request:
+    branches: [ anaconda-upload ]
+  push:
     tags:
       - '*'
   workflow_dispatch:
