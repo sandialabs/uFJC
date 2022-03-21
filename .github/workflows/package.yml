@@ -4,9 +4,9 @@ on:
     branches: [ anaconda-upload ]
   pull_request:
     branches: [ anaconda-upload ]
-  push:
-    tags:
-      - '*'
+  # push:
+  #   tags:
+  #     - '*'
   workflow_dispatch:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
