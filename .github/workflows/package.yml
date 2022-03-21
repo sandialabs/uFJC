@@ -69,7 +69,7 @@ jobs:
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload --force -d README.md /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
+          anaconda upload --force -d "this is a test \n test1 \n\n test2" /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
       - name: Give upload time before downloading
         run: sleep 88s
