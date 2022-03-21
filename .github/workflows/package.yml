@@ -60,33 +60,40 @@ jobs:
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
         run: conda skeleton pypi --noarch-python ${REPO_NAME}
-      - name: Build conda packages
-        run: conda build --python 3.8 ${REPO_NAME}
-      - name: Translate README.rst to .md for description
+      - name: Edit meta.yml
         run: |
+          sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@doc_url:@& \"https://sandialabs.github.io/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@license_file:& \"https://github.com/sandialabs/'${REPO_NAME}'/blob/main/LICENSE\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ${REPO_NAME}/meta.yaml
+          sed -i "s@BSD@BSD-3-Clause@" ${REPO_NAME}/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
+          sed -i '/summary/a \ \ description: |' ${REPO_NAME}/meta.yaml
+          sed -i '/doc_url/e cat README.md' ${REPO_NAME}/meta.yaml
+          cat ${REPO_NAME}/meta.yaml
+      - name: Build conda packages
+        run: conda build --python 3.8 ${REPO_NAME}
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload --force -d "this is a test \n test1 \n\n test2" /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
+          anaconda upload --force /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
-      - name: Give upload time before downloading
-        run: sleep 88s
-  test-anaconda:
-    runs-on: ubuntu-20.04
-    # needs: [get-version, pypi, anaconda]
-    needs: [get-version, anaconda]
-    steps:
-      - name: Install the package
-        run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
-      - name: Test the package
-        run: |
-          conda init
-          conda list
-          PATH="/usr/share/miniconda/bin/:$PATH"
-          python -m ${REPO_NAME}.tests
+  #     - name: Give upload time before downloading
+  #       run: sleep 88s
+  # test-anaconda:
+  #   runs-on: ubuntu-20.04
+  #   needs: [get-version, pypi, anaconda]
+  #   steps:
+  #     - name: Install the package
+  #       run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
+  #     - name: Test the package
+  #       run: |
+  #         conda init
+  #         conda list
+  #         PATH="/usr/share/miniconda/bin/:$PATH"
+  #         python -m ${REPO_NAME}.tests
   # docker:
   #   runs-on: ubuntu-20.04
   #   needs: [get-version, pypi]
