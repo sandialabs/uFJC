@@ -69,6 +69,7 @@ jobs:
           sed -i "s@BSD@BSD-3-Clause@" ${REPO_NAME}/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
+          sed -i 's/^/    /' README.md
           sed -i '/summary/a \ \ description: |/' ${REPO_NAME}/meta.yaml
           sed -i '/doc_url/e cat README.md' ${REPO_NAME}/meta.yaml
           cat ${REPO_NAME}/meta.yaml
