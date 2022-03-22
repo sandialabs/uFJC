@@ -66,7 +66,7 @@ jobs:
           sed -i 's@doc_url:@& \"https://sandialabs.github.io/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
           sed -i 's@license_file:@& \"https://github.com/sandialabs/'${REPO_NAME}'/blob/main/LICENSE\"@' ${REPO_NAME}/meta.yaml
           sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ${REPO_NAME}/meta.yaml
-          sed -i "s@BSD@BSD-3-Clause@" ${REPO_NAME}/meta.yaml
+          sed -i "s@license: BSD@license: BSD-3-Clause@" ${REPO_NAME}/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
           sed -i 's/^/    /' README.md
