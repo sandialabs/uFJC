@@ -16,7 +16,7 @@ affiliations:
  - name: Materials and Failure Modeling, Sandia National Laboratories, Albuquerque, NM 87185, USA
    index: 1
 date: 16 March 2022
-bibliography: ../docs/main.bib
+bibliography: paper.bib
 ---
 
 # Summary
