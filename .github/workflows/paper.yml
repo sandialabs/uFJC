@@ -15,14 +15,14 @@ jobs:
       - name: figure
         run: |
           pip install .[plotting]
-          python docs/figure.py
+          python paper/figure.py
       - name: build
         uses: openjournals/openjournals-draft-action@master
         with:
           journal: joss
-          paper-path: docs/paper.md
+          paper-path: paper/paper.md
       - name: artifact
         uses: actions/upload-artifact@v1
         with:
           name: paper
-          path: docs/paper.pdf
+          path: paper/paper.pdf
