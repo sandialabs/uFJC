@@ -1,9 +1,9 @@
 name: paper
 on:
   push:
-    branches: [ never ]
+    branches: [ joss ]
   pull_request:
-    branches: [ never ]
+    branches: [ joss ]
   workflow_dispatch:
 jobs:
   paper:
@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+      - name: figure
+        run: |
+          pip install .[plotting]
+          python docs/figure.py
       - name: build
         uses: openjournals/openjournals-draft-action@master
         with:
