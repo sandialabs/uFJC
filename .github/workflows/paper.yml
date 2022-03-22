@@ -1,9 +1,9 @@
 name: paper
 on:
   push:
-    branches: [ joss ]
+    branches: [ main ]
   pull_request:
-    branches: [ joss ]
+    branches: [ main ]
   workflow_dispatch:
 jobs:
   paper:
