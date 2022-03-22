@@ -92,5 +92,4 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
     :target: https://doi.org/10.5281/zenodo.6114263
 
 .. |joss| image:: https://joss.theoj.org/papers/86d9311405cf90b4fbf9e9a5141fe953/status.svg
-
-    [![status](https://joss.theoj.org/papers/86d9311405cf90b4fbf9e9a5141fe953/status.svg)](https://joss.theoj.org/papers/86d9311405cf90b4fbf9e9a5141fe953)
+    :target: https://joss.theoj.org/papers/86d9311405cf90b4fbf9e9a5141fe953
