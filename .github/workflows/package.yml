@@ -1,12 +1,8 @@
 name: package
 on:
   push:
-    branches: [ anaconda-upload ]
-  pull_request:
-    branches: [ anaconda-upload ]
-  # push:
-  #   tags:
-  #     - '*'
+    tags:
+      - '*'
   workflow_dispatch:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
@@ -39,7 +35,7 @@ jobs:
       - name: Give upload time before downloading
         run: sleep 88s
   test-pypi:
-    needs: pypi
+    needs: [get-version, pypi]
     runs-on: ubuntu-20.04
     steps:
       - name: Install and test the package
@@ -87,7 +83,7 @@ jobs:
       - name: Give upload time before downloading
         run: sleep 88s
   test-anaconda:
-    needs: anaconda
+    needs: [get-version, anaconda]
     runs-on: ubuntu-20.04
     steps:
       - name: Install the package
