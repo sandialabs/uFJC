@@ -63,6 +63,10 @@ jobs:
       - name: Edit meta.yml
         run: |
           sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@doc_url:@& \"https://sandialabs.github.io/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@license_file:& \"https://github.com/sandialabs/'${REPO_NAME}'/blob/main/LICENSE\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ${REPO_NAME}/meta.yaml
+          sed -i "s@BSD@BSD-3-Clause@" ${REPO_NAME}/meta.yaml
       - name: Build conda packages
         run: conda build --python 3.8 ${REPO_NAME}
       - name: Upload to Anaconda.org
