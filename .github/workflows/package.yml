@@ -58,7 +58,7 @@ jobs:
           conda update conda
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
-        run: conda skeleton pypi --noarch-python ${REPO_NAME}
+        run: conda skeleton pypi --noarch-python --version ${{ needs.get-version.outputs.VERSION }} ${REPO_NAME}
       - name: Edit meta.yml
         run: |
           sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
