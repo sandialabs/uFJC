@@ -35,8 +35,8 @@ jobs:
       - name: Give upload time before downloading
         run: sleep 88s
   test-pypi:
-    runs-on: ubuntu-20.04
     needs: [get-version, pypi]
+    runs-on: ubuntu-20.04
     steps:
       - name: Install and test the package
         run: |
@@ -44,8 +44,8 @@ jobs:
           pip install ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
           python -m ${REPO_NAME}.tests
   anaconda:
-    runs-on: ubuntu-20.04
     needs: [get-version, pypi]
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Prepare conda
@@ -54,24 +54,37 @@ jobs:
           conda update conda
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
-        run: conda skeleton pypi --noarch-python ${REPO_NAME}
-      - name: Build conda packages
-        run: conda build --python 3.8 ${REPO_NAME}
-      - name: Translate README.rst to .md for description
+        run: conda skeleton pypi --noarch-python --version ${{ needs.get-version.outputs.VERSION }} ${REPO_NAME}
+      - name: Edit meta.yml
         run: |
+          sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@doc_url:@& \"https://sandialabs.github.io/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          cp LICENSE ${REPO_NAME}/LICENSE
+          sed -i 's@license_file:@& LICENSE@' ${REPO_NAME}/meta.yaml
+          sed -i '/license_file/a \ \ license_url:' ${REPO_NAME}/meta.yaml
+          sed -i 's@license_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'/blob/main/LICENSE\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ${REPO_NAME}/meta.yaml
+          sed -i "s@license: BSD@license: BSD-3-Clause@" ${REPO_NAME}/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
+          sed -e 's/title: //g' -i README.md
+          sed -i 's/^/    /' README.md
+          sed -i '/summary/a \ \ description: |' ${REPO_NAME}/meta.yaml
+          sed -i '/doc_url/e cat README.md' ${REPO_NAME}/meta.yaml
+          cat ${REPO_NAME}/meta.yaml
+      - name: Build conda packages
+        run: conda build --python 3.8 ${REPO_NAME}
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload --force -d README.md /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
+          anaconda upload --force /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
           anaconda logout
       - name: Give upload time before downloading
         run: sleep 88s
   test-anaconda:
+    needs: [get-version, anaconda]
     runs-on: ubuntu-20.04
-    needs: [get-version, pypi, anaconda]
     steps:
       - name: Install the package
         run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
@@ -82,8 +95,8 @@ jobs:
           PATH="/usr/share/miniconda/bin/:$PATH"
           python -m ${REPO_NAME}.tests
   docker:
-    runs-on: ubuntu-20.04
     needs: [get-version, pypi]
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Translate README.rst to .md for description
@@ -105,8 +118,8 @@ jobs:
       - name: Give upload time before downloading
         run: sleep 88s
   test-docker:
-    runs-on: ubuntu-20.04
     needs: docker
+    runs-on: ubuntu-20.04
     container: mrbuche/ufjc
     steps:
       - name: Test the package
