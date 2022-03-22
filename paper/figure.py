@@ -33,4 +33,4 @@ plt.ylabel(r'$\mathscr{g}_\mathrm{eq}(\gamma)$')
 plt.legend()
 
 plt.tight_layout()
-plt.savefig('docs/figure.png')
+plt.savefig('paper/figure.png')
