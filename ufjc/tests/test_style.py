@@ -9,7 +9,6 @@ for adherence to the PEP 8 style standard for Python code.
 import unittest
 from os import path
 from glob import glob
-from colorama import Fore, Style
 from pycodestyle import StyleGuide
 
 
@@ -34,22 +33,18 @@ class TestCodeStyle(unittest.TestCase):
         style = StyleGuide(quiet=False)
         failures = 0
         for file in files:
-            print(Fore.YELLOW +
-                  '{:.<63}'.format('Testing ' + path.relpath(file)), end=' ')
-            print(Fore.RED)
+            print('Testing ' + path.relpath(file) + '........', end='')
             if style.input_file(file):
                 failures += 1
             else:
-                print(Fore.GREEN + f'\033[F\033[{64}Gpassed!')
+                print('passed!')
 
         # Check the total number of failues
         if failures > 0:
-            print(Fore.RED + 'Failures detected!', end='')
-            print(Style.RESET_ALL)
+            print('Failures detected!')
             self.assertEqual(failures, 0)
         else:
-            print(Fore.GREEN + 'All passed!', end='')
-            print(Style.RESET_ALL)
+            print('All passed!')
 
 
 if __name__ == '__main__':

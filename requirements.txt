@@ -1,5 +1,4 @@
 anaconda-client
-colorama
 conda-build
 matplotlib
 numpy

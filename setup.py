@@ -20,15 +20,13 @@ setup(
     url='https://sandialabs.github.io/ufjc',
     license='BSD-3-Clause',
     keywords=['ufjc', 'polymers', 'statistical mechanics', 'thermodynamics'],
-    install_requires=['colorama', 'numpy', 'pycodestyle', 'scipy'],
+    install_requires=['numpy', 'pycodestyle', 'scipy'],
     extras_require={
-      'docs': ['colorama', 'matplotlib', 'pycodestyle',
+      'docs': ['matplotlib', 'pycodestyle',
                'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
       'plotting': ['matplotlib'],
-      'testing': ['colorama', 'matplotlib', 'pycodestyle',
-                  'pytest', 'pytest-cov'],
-      'all': ['colorama', 'matplotlib', 'pycodestyle',
-              'pytest', 'pytest-cov',
+      'testing': ['matplotlib', 'pycodestyle', 'pytest', 'pytest-cov'],
+      'all': ['matplotlib', 'pycodestyle', 'pytest', 'pytest-cov',
               'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex']
     },
     classifiers=[
