@@ -108,9 +108,9 @@ class BasicUtility(object):
             Invert a polynomial function:
 
                 >>> from ufjc.utility import BasicUtility
-                >>> f = lambda x: 1 + 8*x**3 + 23*x**5
+                >>> f = lambda x: 1 + x**2/8 + x**3/23
                 >>> BasicUtility().inv_fun_1D([55, 88], f)
-                array([1.13037023, 1.25370131])
+                array([ 9.8712079, 11.7121826])
 
         """
         y = self.np_array(y)

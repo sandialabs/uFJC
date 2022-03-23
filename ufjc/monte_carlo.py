@@ -19,7 +19,9 @@ from .utility import BasicUtility
 # Import external modules
 import numpy as np
 import numpy.linalg as la
-import multiprocessing as mp
+from sys import platform
+if platform == "linux" or platform == "linux2":
+    import multiprocessing as mp
 
 
 class MHMCMC(BasicUtility):
@@ -206,9 +208,16 @@ class MHMCMC(BasicUtility):
         Returns:
             float: The process-averaged result.
 
+        Note:
+            To avoid issues with ``multiprocessing`` and MacOS/Windows,
+            ``num_processes`` is set to 1 for anything but Linux.
+
         """
         burned_in_config = self.burn_in(self.init_config, **kwargs)
-        num_processes = kwargs.get('num_processes', mp.cpu_count())
+        if platform == "linux" or platform == "linux2":
+            num_processes = kwargs.get('num_processes', mp.cpu_count())
+        else:
+            num_processes = 1
         if num_processes > 1:
 
             # Create an output queue
