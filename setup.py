@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name='ufjc',
-    version='1.2.4',
+    version='1.2.5',
     package_dir={'ufjc': 'ufjc'},
     packages=find_packages(),
     description='The Python package for the uFJC single-chain model.',
