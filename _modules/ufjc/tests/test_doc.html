@@ -100,7 +100,6 @@
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
 <span class="kn">from</span> <span class="nn">glob</span> <span class="k">import</span> <span class="n">glob</span>
-<span class="kn">from</span> <span class="nn">colorama</span> <span class="k">import</span> <span class="n">Fore</span><span class="p">,</span> <span class="n">Style</span>
 
 
 <div class="viewcode-block" id="TestDocstringExamples"><a class="viewcode-back" href="../../../ufjc.tests.test_doc.html#ufjc.tests.test_doc.TestDocstringExamples">[docs]</a><span class="k">class</span> <span class="nc">TestDocstringExamples</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -128,22 +127,18 @@
         <span class="c1"># Check the docstring examples in the files</span>
         <span class="n">failures</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">YELLOW</span> <span class="o">+</span>
-                  <span class="s1">&#39;</span><span class="si">{:.&lt;63}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Testing &#39;</span> <span class="o">+</span> <span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">file</span><span class="p">)),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing &#39;</span> <span class="o">+</span> <span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;........&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">doctest</span><span class="o">.</span><span class="n">testfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">module_relative</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
                 <span class="n">failures</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">+</span> <span class="n">f</span><span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[F</span><span class="se">\033</span><span class="s1">[</span><span class="si">{64}</span><span class="s1">Gpassed!&#39;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed!&#39;</span><span class="p">)</span>
 
         <span class="c1"># Check the total number of failues</span>
         <span class="k">if</span> <span class="n">failures</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">RED</span> <span class="o">+</span> <span class="s1">&#39;Failures detected!&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Style</span><span class="o">.</span><span class="n">RESET_ALL</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failures detected!&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">failures</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Fore</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">+</span> <span class="s1">&#39;All passed!&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">Style</span><span class="o">.</span><span class="n">RESET_ALL</span><span class="p">)</span></div></div>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All passed!&#39;</span><span class="p">)</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
