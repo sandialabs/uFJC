@@ -71,7 +71,7 @@ jobs:
           sed -i '/doc_url/e cat README.md' ${REPO_NAME}/meta.yaml
           cat ${REPO_NAME}/meta.yaml
       - name: Build conda packages
-        run: conda build --python 3.8 ${REPO_NAME}
+        run: conda build --python 3.9 ${REPO_NAME}
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
@@ -85,13 +85,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Install the package
-        run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
-      - name: Test the package
         run: |
+          conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
           conda init
           conda list
           PATH="/usr/share/miniconda/bin/:$PATH"
-          python -m ${REPO_NAME}.tests
+      - name: Test the package
+        run: python -m ${REPO_NAME}.tests
   docker:
     needs: [get-version, pypi]
     runs-on: ubuntu-20.04
