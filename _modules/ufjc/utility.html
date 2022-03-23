@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ufjc.utility &mdash; uFJC 1.2.2 documentation</title>
+  <title>ufjc.utility &mdash; uFJC 1.2.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -28,7 +28,7 @@
             <a href="../../index.html" class="icon icon-home"> uFJC
           </a>
               <div class="version">
-                1.2.2
+                1.2.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -197,9 +197,9 @@
 <span class="sd">            Invert a polynomial function:</span>
 
 <span class="sd">                &gt;&gt;&gt; from ufjc.utility import BasicUtility</span>
-<span class="sd">                &gt;&gt;&gt; f = lambda x: 1 + 8*x**3 + 23*x**5</span>
+<span class="sd">                &gt;&gt;&gt; f = lambda x: 1 + x**2/8 + x**3/23</span>
 <span class="sd">                &gt;&gt;&gt; BasicUtility().inv_fun_1D([55, 88], f)</span>
-<span class="sd">                array([1.13037023, 1.25370131])</span>
+<span class="sd">                array([ 9.8712079, 11.7121826])</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>

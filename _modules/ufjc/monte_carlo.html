@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ufjc.monte_carlo &mdash; uFJC 1.2.2 documentation</title>
+  <title>ufjc.monte_carlo &mdash; uFJC 1.2.3 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -28,7 +28,7 @@
             <a href="../../index.html" class="icon icon-home"> uFJC
           </a>
               <div class="version">
-                1.2.2
+                1.2.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -108,7 +108,9 @@
 <span class="c1"># Import external modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
-<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="k">import</span> <span class="n">platform</span>
+<span class="k">if</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linux&quot;</span> <span class="ow">or</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linux2&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
 
 
 <div class="viewcode-block" id="MHMCMC"><a class="viewcode-back" href="../../ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC">[docs]</a><span class="k">class</span> <span class="nc">MHMCMC</span><span class="p">(</span><span class="n">BasicUtility</span><span class="p">):</span>
@@ -295,9 +297,16 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The process-averaged result.</span>
 
+<span class="sd">        Note:</span>
+<span class="sd">            To avoid issues with ``multiprocessing`` and MacOS/Windows,</span>
+<span class="sd">            ``num_processes`` is set to 1 for anything but Linux.</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">burned_in_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">burn_in</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init_config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">num_processes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_processes&#39;</span><span class="p">,</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linux&quot;</span> <span class="ow">or</span> <span class="n">platform</span> <span class="o">==</span> <span class="s2">&quot;linux2&quot;</span><span class="p">:</span>
+            <span class="n">num_processes</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_processes&#39;</span><span class="p">,</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">num_processes</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">num_processes</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
 
             <span class="c1"># Create an output queue</span>

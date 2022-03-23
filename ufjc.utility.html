@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ufjc.utility module &mdash; uFJC 1.2.2 documentation</title>
+  <title>ufjc.utility module &mdash; uFJC 1.2.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -32,7 +32,7 @@
             <a href="index.html" class="icon icon-home"> uFJC
           </a>
               <div class="version">
-                1.2.2
+                1.2.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -194,9 +194,9 @@ Passed to <code class="docutils literal notranslate"><span class="pre">root_scal
 <p class="rubric">Example</p>
 <p>Invert a polynomial function:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">8</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">23</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">([</span><span class="mi">55</span><span class="p">,</span> <span class="mi">88</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
-<span class="go">array([1.13037023, 1.25370131])</span>
+<span class="go">array([ 9.8712079, 11.7121826])</span>
 </pre></div>
 </div>
 </dd></dl>
