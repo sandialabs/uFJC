@@ -36,7 +36,11 @@ jobs:
         run: sleep 88s
   test-pypi:
     needs: [get-version, pypi]
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-20.04', 'windows-2022', 'macos-11']
     steps:
       - name: Install and test the package
         run: |
@@ -84,7 +88,11 @@ jobs:
         run: sleep 88s
   test-anaconda:
     needs: [get-version, anaconda]
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-20.04', 'windows-2022', 'macos-11']
     steps:
       - name: Install the package
         run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
@@ -119,7 +127,11 @@ jobs:
         run: sleep 88s
   test-docker:
     needs: docker
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-20.04', 'windows-2022', 'macos-11']
     container: mrbuche/ufjc
     steps:
       - name: Test the package
