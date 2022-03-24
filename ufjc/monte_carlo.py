@@ -219,11 +219,8 @@ class MHMCMC(BasicUtility):
 
         """
         burned_in_config = self.burn_in(self.init_config, **kwargs)
-        if platform == "linux" or platform == "linux2":
-            num_processes = kwargs.get('num_processes', mp.cpu_count())
-        else:
-            num_processes = 1
-        if num_processes > 1:
+        num_processes = kwargs.get('num_processes', mp.cpu_count())
+        if num_processes > 1 and (platform == "linux" or platform == "linux2"):
 
             # Create an output queue
             output = mp.Queue()

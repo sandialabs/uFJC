@@ -49,10 +49,12 @@ def main(**kwargs):
                 ...     varepsilon_list=[10, 25, 100])
 
     Example:
-        Export a .csv file for external use:
+        Export .csv files for external use:
 
             >>> from ufjc.examples import isotensional_asymptotics
             >>> isotensional_asymptotics.main(potential='harmonic',
+            ...     varepsilon_list=[10, 25, 100, 1000], csv=1)
+            >>> isotensional_asymptotics.main(potential='morse',
             ...     varepsilon_list=[10, 25, 100, 1000], csv=1)
 
     """
@@ -145,7 +147,7 @@ def main(**kwargs):
         plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     """For command line execution.
 
     """

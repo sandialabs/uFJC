@@ -52,7 +52,7 @@ class TestDocstringExamples(unittest.TestCase):
             print('All passed!')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     """For command line execution.
 
     """

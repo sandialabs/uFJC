@@ -101,7 +101,7 @@ def main(**kwargs):
     plt.show()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     """For command line execution.
 
     """

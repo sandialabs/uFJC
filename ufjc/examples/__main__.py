@@ -7,6 +7,10 @@ Example:
 
         python -m ufjc.examples
 
+    Alternatively:
+
+        >>> from ufjc.examples import __main__
+
 """
 
 from ufjc.examples import isotensional_approaches
