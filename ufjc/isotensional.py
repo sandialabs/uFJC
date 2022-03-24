@@ -127,7 +127,9 @@ class uFJCIsotensional(BasicUtility):
         Ln = self.langevin(eta)
         coth = self.coth(eta)
         return Ln + self.delta_lambda(eta) + \
-            eta/self.kappa*((1 - Ln*coth)/(self.c + eta/self.kappa*coth))
+            eta/self.kappa*(
+                (1 - Ln*coth)/(self.c + eta/self.kappa*coth)
+            )
 
     def gamma_isotensional_asymptotic_reduced(self, eta):
         r"""The reduced asymptotic approach for the

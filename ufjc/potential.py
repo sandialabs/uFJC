@@ -335,7 +335,9 @@ class MorsePotential(object):
             numpy.ndarray: The incremental stretch(s).
 
         """
-        return np.log(2/(1 + np.sqrt(1 - eta/self.eta_max)))/self.alpha
+        return np.log(
+            2/(1 + np.sqrt(1 - eta/self.eta_max))
+        )/self.alpha
 
 
 class LennardJonesPotential(object):
@@ -449,10 +451,17 @@ class MiePotential(object):
         self.m = kwargs.get('m', 6)
         self.n = kwargs.get('n', 12)
         self.kappa = self.n*self.m*self.varepsilon
-        self.c = (4*self.m*(self.m + 1) - 2*self.n*(self.n + 1))/(
+        self.c = (
+            4*self.m*(self.m + 1) - 2*self.n*(self.n + 1)
+        )/(
             2*self.m*(self.m**2 + 5*self.m + 4) -
-            self.n*(self.n**2 + 5*self.n + 4))
-        self.lambda_max = ((self.n + 1)/(self.m + 1))**(1/(self.n - self.m))
+            self.n*(self.n**2 + 5*self.n + 4)
+        )
+        self.lambda_max = (
+            (self.n + 1)/(self.m + 1)
+        )**(
+            1/(self.n - self.m)
+        )
         self.eta_max = self.eta_link(self.lambda_max)
 
     def phi(self, lambda_):
@@ -470,8 +479,11 @@ class MiePotential(object):
             numpy.ndarray: The scaled nondimensional potential energy(s).
 
         """
-        return (self.m/lambda_**self.n -
-                self.n/lambda_**self.m)/(self.n - self.m)
+        return (
+            self.m/lambda_**self.n - self.n/lambda_**self.m
+        )/(
+            self.n - self.m
+        )
 
     def beta_u(self, lambda_):
         r"""The nondimensional potential energy function,
@@ -506,7 +518,8 @@ class MiePotential(object):
 
         """
         return self.varepsilon*self.n*self.m/(self.n - self.m)*(
-            1/lambda_**(self.m + 1) - 1/lambda_**(self.n + 1))
+            1/lambda_**(self.m + 1) - 1/lambda_**(self.n + 1)
+        )
 
 
 class PolynomialPotential(object):
@@ -533,8 +546,10 @@ class PolynomialPotential(object):
         self.varepsilon = kwargs.get('varepsilon', 88)
         coef = np.array(kwargs.get('coefficients', [1, 0]))
         self.eta_c = np.append(np.array([0]), coef)
-        self.phi_c = np.append([0], self.eta_c) * \
-            np.append([0, 0], [1/n for n in range(2, len(coef) + 2)])
+        self.phi_c = np.append([0], self.eta_c)*np.append(
+            [0, 0],
+            [1/n for n in range(2, len(coef) + 2)]
+        )
         self.kappa = self.varepsilon*self.eta_c[1]
         if len(self.phi_c) > 3:
             self.c = 1/(1 - self.phi_c[3]/self.phi_c[2]/2)

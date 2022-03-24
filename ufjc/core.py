@@ -81,17 +81,21 @@ class uFJC(Potential, uFJCIsometric):
         self.nondim_P_eq_normalizations = {}
 
         # Default initial configuration for Monte Carlo calculations
-        self.init_config = np.append(np.array(
-            [np.arange(self.N_b + 1)]).T, np.zeros((self.N_b + 1, 2)), axis=1)
+        self.init_config = np.append(
+            np.array([np.arange(self.N_b + 1)]).T,
+            np.zeros((self.N_b + 1, 2)),
+            axis=1
+        )
 
         # Constant for ideal/Gaussian approximations
-        self.c_kappa = \
-            self.kappa*(self.kappa + 1)/(self.kappa**2 + 6*self.kappa + 3)
+        self.c_kappa = self.kappa*(self.kappa + 1) / \
+            (self.kappa**2 + 6*self.kappa + 3)
 
         # Default to inverting eta(lambda) for the link if unavailable
         if hasattr(self, 'delta_lambda') is False:
             self.delta_lambda = lambda eta: self.np_array(
-               self.inv_fun_1D(eta, self.eta_link, guess=1, maxiter=250) - 1)
+               self.inv_fun_1D(eta, self.eta_link, guess=1, maxiter=250) - 1
+            )
 
         # Prevent calculating bond stretch above a possible maximum force
         if hasattr(self, 'eta_max'):
@@ -420,7 +424,9 @@ class uFJC(Potential, uFJCIsometric):
                 self.nondim_P_eq_normalizations[var_str] = \
                     quad(lambda gamma: 4*np.pi*gamma**2 *
                          np.exp(-self.N_b*self.vartheta(gamma)),
-                         self.minimum_float, upper_lim)[0]
+                         self.minimum_float,
+                         upper_lim
+                         )[0]
 
             # Return the nondimensional equilibrium probability density
             return np.exp(-self.N_b*self.vartheta(gamma, **kwargs)) / \

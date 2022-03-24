@@ -100,7 +100,10 @@ class MHMCMC(BasicUtility):
         """
         cov_config = kwargs.get('transition_variance', 1e-2)*np.eye(3)
         delta_config = np.random.multivariate_normal(
-            np.zeros(3), cov_config, len(prev_config))
+            np.zeros(3),
+            cov_config,
+            len(prev_config)
+        )
         delta_config[0, :] = 0
         if kwargs.get('ensemble', 'isotensional') == 'isometric':
             delta_config[-1, :] = 0
@@ -148,8 +151,10 @@ class MHMCMC(BasicUtility):
             numpy.ndarray: The updated history of configurations.
 
         """
-        return np.append(prev_configs, np.array(
-            [self.mh_next_config(prev_configs[-1], **kwargs)]), axis=0)
+        return np.append(
+            prev_configs,
+            np.array([self.mh_next_config(prev_configs[-1], **kwargs)]),
+            axis=0)
 
     def burn_in(self, init_config, **kwargs):
         """Burn-in (throw away samples) until in the effective sampling region.
@@ -225,12 +230,18 @@ class MHMCMC(BasicUtility):
 
             # Set up the function run by each process
             def fun(seed, output):
-                output.put(serial_fun(burned_in_config,
-                           urng=np.random.RandomState(seed).random, **kwargs))
+                output.put(
+                    serial_fun(
+                        burned_in_config,
+                        urng=np.random.RandomState(seed).random, **kwargs
+                    )
+                )
 
             # Create the processes, each with a random seed
-            processes = [mp.Process(target=fun, args=(seed, output))
-                         for seed in np.random.randint(88, size=num_processes)]
+            processes = [
+                mp.Process(target=fun, args=(seed, output))
+                for seed in np.random.randint(88, size=num_processes)
+            ]
 
             # Run each process
             for p in processes:
@@ -285,8 +296,11 @@ class MHMCMC(BasicUtility):
         num_samples = int(kwargs.get('num_samples', int(1e4)))
         for counter in range(1, 1 + num_samples):
             gamma_vector_next = (
-                config[-1, :] - config[0, :])/self.N_b
-            gamma_vector += (gamma_vector_next - gamma_vector)/counter
+                config[-1, :] - config[0, :]
+            )/self.N_b
+            gamma_vector += (
+                gamma_vector_next - gamma_vector
+            )/counter
             config = self.mh_next_config(config, **kwargs)
 
         # Return gamma as a scalar
@@ -336,7 +350,9 @@ class MHMCMC(BasicUtility):
 
             # Calculate gamma using an ensemble average
             gamma[index] = self.parallel_calculation(
-                self.gamma_isotensional_MHMCMC_serial, **kwargs)
+                self.gamma_isotensional_MHMCMC_serial,
+                **kwargs
+            )
 
         # Return the resulting averaged gamma
         return gamma
