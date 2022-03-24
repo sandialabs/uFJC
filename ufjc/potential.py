@@ -14,7 +14,7 @@ Examples:
         >>> from ufjc.potential import LennardJonesPotential
         >>> model = LennardJonesPotential(varepsilon=8)
         >>> model.beta_u(1.23)
-        -3.953345685631384
+        4.046654314368616
 
     Create a single-link model in one dimension, instantiate it with
     the Morse potential, and compute the incremental link stretch under
@@ -374,7 +374,7 @@ class LennardJonesPotential(object):
 
             .. math::
                 \phi(\lambda) =
-                    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6}
+                    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
                 .
 
         Args:
@@ -384,7 +384,7 @@ class LennardJonesPotential(object):
             numpy.ndarray: The scaled nondimensional potential energy(s).
 
         """
-        return 1/lambda_**12 - 2/lambda_**6
+        return 1/lambda_**12 - 2/lambda_**6 + 1
 
     def beta_u(self, lambda_):
         r"""The nondimensional potential energy function,

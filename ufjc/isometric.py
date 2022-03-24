@@ -286,7 +286,7 @@ class uFJCIsometric(uFJCIsotensional):
                 >>> from ufjc import uFJC
                 >>> model = uFJC(N_b=8, potential='lennard-jones')
                 >>> model.beta_U_config(1.1*model.init_config)
-                -570.4631978476273
+                133.5368021523727
 
         """
         beta_U = 0
