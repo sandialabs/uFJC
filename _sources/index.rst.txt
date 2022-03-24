@@ -24,7 +24,8 @@
    :caption: Examples
    :glob:
 
-   ufjc.examples.*
+   ufjc.examples.isotensional_approaches
+   ufjc.examples.isotensional_asymptotics
 
 .. toctree::
    :hidden:
