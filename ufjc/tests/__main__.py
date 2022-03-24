@@ -7,10 +7,6 @@ Example:
 
         python -m ufjc.tests
 
-    Alternatively:
-
-        >>> from ufjc.tests import __main__
-
 """
 
 from .test_doc import TestDocstringExamples
