@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ufjc.core &mdash; uFJC 1.2.5 documentation</title>
+  <title>ufjc.core &mdash; uFJC 1.2.6 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
@@ -28,7 +28,7 @@
             <a href="../../index.html" class="icon icon-home"> uFJC
           </a>
               <div class="version">
-                1.2.5
+                1.2.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -53,6 +53,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ufjc.examples.__main__.html">ufjc.examples.__main__ module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ufjc.examples.isotensional_approaches.html">ufjc.examples.isotensional_approaches module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ufjc.examples.isotensional_asymptotics.html">ufjc.examples.isotensional_asymptotics module</a></li>
 </ul>
@@ -170,17 +171,21 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nondim_P_eq_normalizations</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="c1"># Default initial configuration for Monte Carlo calculations</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_config</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_config</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+        <span class="p">)</span>
 
         <span class="c1"># Constant for ideal/Gaussian approximations</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">c_kappa</span> <span class="o">=</span> \
-            <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_kappa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> \
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
 
         <span class="c1"># Default to inverting eta(lambda) for the link if unavailable</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;delta_lambda&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">delta_lambda</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">eta</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">np_array</span><span class="p">(</span>
-               <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_link</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="p">)</span>
 
         <span class="c1"># Prevent calculating bond stretch above a possible maximum force</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;eta_max&#39;</span><span class="p">):</span>
@@ -509,7 +514,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">nondim_P_eq_normalizations</span><span class="p">[</span><span class="n">var_str</span><span class="p">]</span> <span class="o">=</span> \
                     <span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">gamma</span><span class="p">:</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">gamma</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span>
                          <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="n">gamma</span><span class="p">)),</span>
-                         <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">upper_lim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                         <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span>
+                         <span class="n">upper_lim</span>
+                         <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
             <span class="c1"># Return the nondimensional equilibrium probability density</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">N_b</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">vartheta</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span> <span class="o">/</span> \

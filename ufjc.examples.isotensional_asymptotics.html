@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ufjc.examples.isotensional_asymptotics module &mdash; uFJC 1.2.5 documentation</title>
+  <title>ufjc.examples.isotensional_asymptotics module &mdash; uFJC 1.2.6 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> uFJC
           </a>
               <div class="version">
-                1.2.5
+                1.2.6
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -56,6 +56,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ufjc.examples.__main__.html">ufjc.examples.__main__</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.examples.isotensional_approaches.html">ufjc.examples.isotensional_approaches</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.examples.isotensional_asymptotics</a></li>
 </ul>
@@ -152,9 +153,11 @@ Passed to <code class="docutils literal notranslate"><span class="pre">uFJC</spa
 <img alt="_images/ufjc-examples-isotensional_asymptotics-1_05.png" class="plot-directive" src="_images/ufjc-examples-isotensional_asymptotics-1_05.png" />
 </figure>
 <p class="rubric">Example</p>
-<p>Export a .csv file for external use:</p>
+<p>Export .csv files for external use:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.examples</span> <span class="k">import</span> <span class="n">isotensional_asymptotics</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">isotensional_asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;harmonic&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">csv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isotensional_asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">csv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
