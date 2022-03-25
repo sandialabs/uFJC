@@ -4,5 +4,6 @@
 *dist/
 *build/
 *ufjc.egg-info/
-*tests/*.csv
+**.csv
 *.vscode
+**.coverage

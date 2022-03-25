@@ -142,7 +142,7 @@ def main(**kwargs):
         # Plot labels and legend
         plt.legend()
         plt.xlabel(r'$\gamma$')
-        plt.ylabel(r'$\eta$')
+        plt.ylabel(r'$\eta/\eta_\mathrm{max}$')
         plt.title(model.potential + '-FJC isotensional ' + r'$\gamma(\eta)$')
         plt.show()
 

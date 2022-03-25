@@ -16,6 +16,13 @@ Examples:
         >>> model.beta_u(1.23)
         4.046654314368616
 
+    Do the same with the Lenard-Jones-FENE potential:
+
+        >>> from ufjc.potential import LJFENEPotential
+        >>> model = LJFENEPotential(varepsilon=(8, 8))
+        >>> model.beta_u(1.23)
+        8.866896542699108
+
     Create a single-link model in one dimension, instantiate it with
     the Morse potential, and compute the incremental link stretch under
     a nondimensional force of 8:
@@ -26,12 +33,15 @@ Examples:
         ...         Potential.__init__(self, **kwargs)
         >>> Link1D(potential='morse').delta_lambda(8)
         0.04890980361596759
+        >>> Link1D(potential='lj-fene').eta_link(1)
+        307.14286789402354
 
 """
 
 # Import external modules
 import numpy as np
 from scipy.special import lambertw
+from scipy.optimize import minimize_scalar
 
 
 class HarmonicPotential(object):
@@ -420,6 +430,117 @@ class LennardJonesPotential(object):
         return self.varepsilon*(12/lambda_**7 - 12/lambda_**13)
 
 
+class LJFENEPotential(object):
+    r"""The Lennard-Jones-FENE potential :cite:`kremer1990dynamics`.
+
+    Attributes:
+        varepsilon (float): The nondimensional energy scale.
+        kappa (float): The nondimensional stiffness.
+        c (float): The correction parameter.
+        eta_max (float): The maximum nondimensional force
+            :math:`\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})`.
+        lambda_max (float): The stretch at the maximum nondimensional force.
+
+    """
+    def __init__(self, **kwargs):
+        """Initializes the ``LJFENEPotential`` class.
+
+        Args:
+            **kwargs: Arbitrary keyword arguments.
+                Can be used to specify ``varepsilon`` (default (88, 230))
+                and ``lambda_max`` (default 1.5).
+
+        """
+        self.varepsilon_1, self.varepsilon_2 = \
+            kwargs.get('varepsilon', (88, 230))
+        self.varepsilon = self.varepsilon_2
+        self.lambda_max = kwargs.get('lambda_max', 1.5)
+        self.lambda_minimum = 1
+        self.lambda_minimum = minimize_scalar(self.phi,
+                                              bounds=(0, self.lambda_max),
+                                              method='bounded').x
+        self.kappa = 72*self.varepsilon_1 + self.varepsilon_2 * \
+            (self.lambda_max**2 + 1)/(self.lambda_max**2 - 1)**2
+        self.c = 1/(1 - (
+                -1512 + (6*self.lambda_max**2 + 2)/(self.lambda_max**2 - 1)**3
+            )/(2*self.kappa/self.varepsilon_2)
+        )
+        self.eta_max = self.eta_link(self.lambda_max)
+
+    def phi(self, lambda_):
+        r"""The scaled nondimensional potential energy function,
+
+            .. math::
+                \phi(\lambda) =
+                \frac{\varepsilon_1}{\varepsilon_2}\left(
+                    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
+                \right) - \frac{1}{2}\,\ln\left[
+                    1 - \left(\frac{\lambda}{\lambda_\mathrm{max}}\right)^2
+                \right]
+                .
+
+        Args:
+            lambda_ (array_like): The stretch(s).
+
+        Returns:
+            numpy.ndarray: The scaled nondimensional potential energy(s).
+
+        """
+        lambda_ /= self.lambda_minimum
+        lambda_fene = (lambda_ < self.lambda_max)*lambda_
+        return self.varepsilon_1/self.varepsilon_2*(
+            1/lambda_**12 - 2/lambda_**6 + 1
+        ) - 0.5*np.log(
+            1 - (lambda_fene/self.lambda_max)**2
+        )*(lambda_ < self.lambda_max)
+
+    def beta_u(self, lambda_):
+        r"""The nondimensional potential energy function,
+
+            .. math::
+                \beta u(\lambda) =
+                \varepsilon\phi(\lambda) =
+                \varepsilon_1\left(
+                    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
+                \right) - \frac{\varepsilon_2}{2}\,\ln\left[
+                    1 - \left(\frac{\lambda}{\lambda_\mathrm{max}}\right)^2
+                \right]
+                .
+
+        Args:
+            lambda_ (array_like): The stretch(s).
+
+        Returns:
+            numpy.ndarray: The nondimensional potential energy(s).
+
+        """
+        return self.varepsilon*self.phi(lambda_)
+
+    def eta_link(self, lambda_):
+        r"""The nondimensional force as a function of stretch,
+
+            .. math::
+                \eta(\lambda) = 12\varepsilon_1\left(
+                    \frac{1}{\lambda^7} - \frac{1}{\lambda^{13}}
+                \right) + \frac{\varepsilon_2\lambda}
+                {\lambda_\mathrm{max}^2 - \lambda^2}
+                .
+
+        Args:
+            lambda_ (array_like): The stretch(s).
+
+        Returns:
+            numpy.ndarray: The nondimensional force(s).
+
+        """
+        lambda_ /= self.lambda_minimum
+        lambda_fene = (lambda_ < self.lambda_max)*lambda_
+        return self.varepsilon_1*(12/lambda_**7 - 12/lambda_**13) + \
+            self.varepsilon_2*lambda_fene/(
+                self.lambda_max**2 - lambda_fene**2
+        )*(lambda_ < self.lambda_max)
+
+
 class MiePotential(object):
     r"""The Mie potential :cite:`mie1903kinetischen`.
 
@@ -690,6 +811,8 @@ class Potential(object):
             self.pot = MorsePotential(**kwargs)
         elif self.potential == 'lennard-jones':
             self.pot = LennardJonesPotential(**kwargs)
+        elif self.potential == 'lj-fene':
+            self.pot = LJFENEPotential(**kwargs)
         elif self.potential == 'mie':
             self.pot = MiePotential(**kwargs)
         elif self.potential == 'polynomial':
