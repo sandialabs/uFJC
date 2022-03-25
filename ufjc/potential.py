@@ -21,7 +21,7 @@ Examples:
         >>> from ufjc.potential import LJFENEPotential
         >>> model = LJFENEPotential(varepsilon=(8, 8))
         >>> model.beta_u(1.23)
-        8.866896542699108
+        8.510502022381505
 
     Create a single-link model in one dimension, instantiate it with
     the Morse potential, and compute the incremental link stretch under
@@ -34,14 +34,13 @@ Examples:
         >>> Link1D(potential='morse').delta_lambda(8)
         0.04890980361596759
         >>> Link1D(potential='lj-fene').eta_link(1)
-        307.14286789402354
+        184.0
 
 """
 
 # Import external modules
 import numpy as np
 from scipy.special import lambertw
-from scipy.optimize import minimize_scalar
 
 
 class HarmonicPotential(object):
@@ -455,10 +454,6 @@ class LJFENEPotential(object):
             kwargs.get('varepsilon', (88, 230))
         self.varepsilon = self.varepsilon_2
         self.lambda_max = kwargs.get('lambda_max', 1.5)
-        self.lambda_minimum = 1
-        self.lambda_minimum = minimize_scalar(self.phi,
-                                              bounds=(0, self.lambda_max),
-                                              method='bounded').x
         self.kappa = 72*self.varepsilon_1 + self.varepsilon_2 * \
             (self.lambda_max**2 + 1)/(self.lambda_max**2 - 1)**2
         self.c = 1/(1 - (
@@ -486,7 +481,6 @@ class LJFENEPotential(object):
             numpy.ndarray: The scaled nondimensional potential energy(s).
 
         """
-        lambda_ /= self.lambda_minimum
         lambda_fene = (lambda_ < self.lambda_max)*lambda_
         return self.varepsilon_1/self.varepsilon_2*(
             1/lambda_**12 - 2/lambda_**6 + 1
@@ -533,7 +527,6 @@ class LJFENEPotential(object):
             numpy.ndarray: The nondimensional force(s).
 
         """
-        lambda_ /= self.lambda_minimum
         lambda_fene = (lambda_ < self.lambda_max)*lambda_
         return self.varepsilon_1*(12/lambda_**7 - 12/lambda_**13) + \
             self.varepsilon_2*lambda_fene/(
