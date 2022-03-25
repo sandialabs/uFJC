@@ -105,7 +105,14 @@ the nondimensional potential energy at a stretch of 1.23:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LennardJonesPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LennardJonesPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
-<span class="go">-3.953345685631384</span>
+<span class="go">4.046654314368616</span>
+</pre></div>
+</div>
+<p>Do the same with the Lenard-Jones-FENE potential:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LJFENEPotential</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LJFENEPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
+<span class="go">8.866896542699108</span>
 </pre></div>
 </div>
 <p>Create a single-link model in one dimension, instantiate it with
@@ -117,6 +124,8 @@ a nondimensional force of 8:</p>
 <span class="gp">... </span>        <span class="n">Potential</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="go">0.04890980361596759</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lj-fene&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">307.14286789402354</span>
 </pre></div>
 </div>
 <dl class="py class">
@@ -362,10 +371,153 @@ nondimensional force (optional).</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJFENEPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Lennard-Jones-FENE potential <span id="id1">[<a class="reference internal" href="#id23" title="Kurt Kremer and Gary S Grest. Dynamics of entangled linear polymer melts: A molecular-dynamics simulation. The Journal of Chemical Physics, 92(8):5057–5086, 1990. doi:10.1063/1.458541.">2</a>]</span>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.varepsilon">
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional energy scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.kappa">
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.kappa" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional stiffness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.c">
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.c" title="Permalink to this definition"></a></dt>
+<dd><p>The correction parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.eta_max">
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_max" title="Permalink to this definition"></a></dt>
+<dd><p>The maximum nondimensional force
+<span class="math notranslate nohighlight">\(\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.lambda_max">
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.lambda_max" title="Permalink to this definition"></a></dt>
+<dd><p>The stretch at the maximum nondimensional force.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.beta_u">
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.beta_u" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional potential energy function,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\beta u(\lambda) =
+\varepsilon\phi(\lambda) =
+\varepsilon_1\left(
+    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
+\right) - \frac{\varepsilon_2}{2}\,\ln\left[
+    1 - \left(\frac{\lambda}{\lambda_\mathrm{max}}\right)^2
+\right]
+.\]</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lambda</strong> (<em>array_like</em>) – The stretch(s).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The nondimensional potential energy(s).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.eta_link">
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_link" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional force as a function of stretch,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\eta(\lambda) = 12\varepsilon_1\left(
+    \frac{1}{\lambda^7} - \frac{1}{\lambda^{13}}
+\right) + \frac{\varepsilon_2\lambda}
+{\lambda_\mathrm{max}^2 - \lambda^2}
+.\]</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lambda</strong> (<em>array_like</em>) – The stretch(s).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The nondimensional force(s).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.phi">
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.phi" title="Permalink to this definition"></a></dt>
+<dd><p>The scaled nondimensional potential energy function,</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\phi(\lambda) =
+\frac{\varepsilon_1}{\varepsilon_2}\left(
+    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
+\right) - \frac{1}{2}\,\ln\left[
+    1 - \left(\frac{\lambda}{\lambda_\mathrm{max}}\right)^2
+\right]
+.\]</div>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>lambda</strong> (<em>array_like</em>) – The stretch(s).</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The scaled nondimensional potential energy(s).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LennardJonesPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The Lennard-Jones potential <span id="id1">[<a class="reference internal" href="#id21" title="John Edward Jones. On the determination of molecular fields. II. From the equation of state of a gas. Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character, 106(738):463–477, 1924. doi:10.1098/rspa.1924.0082.">1</a>]</span>.</p>
+<p>The Lennard-Jones potential <span id="id2">[<a class="reference internal" href="#id22" title="John Edward Jones. On the determination of molecular fields. II. From the equation of state of a gas. Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character, 106(738):463–477, 1924. doi:10.1098/rspa.1924.0082.">1</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.varepsilon">
 <span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.varepsilon" title="Permalink to this definition"></a></dt>
@@ -477,7 +629,7 @@ nondimensional force (optional).</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
 \[\phi(\lambda) =
-    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6}
+    \frac{1}{\lambda^{12}} - \frac{2}{\lambda^6} + 1
 .\]</div>
 </div></blockquote>
 <dl class="field-list simple">
@@ -499,7 +651,7 @@ nondimensional force (optional).</p>
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LogSquaredPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The log-squared potential <span id="id2">[<a class="reference internal" href="#id19" title="Yunwei Mao, Brandon Talamini, and Lallit Anand. Rupture of polymers by chain scission. Extreme Mechanics Letters, 13:17–24, 2017. doi:10.1016/j.eml.2017.01.003.">2</a>]</span>.</p>
+<p>The log-squared potential <span id="id3">[<a class="reference internal" href="#id20" title="Yunwei Mao, Brandon Talamini, and Lallit Anand. Rupture of polymers by chain scission. Extreme Mechanics Letters, 13:17–24, 2017. doi:10.1016/j.eml.2017.01.003.">3</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.varepsilon">
 <span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.varepsilon" title="Permalink to this definition"></a></dt>
@@ -659,7 +811,7 @@ nondimensional force (optional).</p>
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MiePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The Mie potential <span id="id3">[<a class="reference internal" href="#id22" title="Gustav Mie. Zur kinetischen theorie der einatomigen körper. Annalen der Physik, 316(8):657–697, 1903. doi:10.1002/andp.19033160802.">3</a>]</span>.</p>
+<p>The Mie potential <span id="id4">[<a class="reference internal" href="#id24" title="Gustav Mie. Zur kinetischen theorie der einatomigen körper. Annalen der Physik, 316(8):657–697, 1903. doi:10.1002/andp.19033160802.">4</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.varepsilon">
 <span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.varepsilon" title="Permalink to this definition"></a></dt>
@@ -817,7 +969,7 @@ nondimensional force (optional).</p>
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MorsePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The Morse potential <span id="id4">[<a class="reference internal" href="#id20" title="Philip M Morse. Diatomic molecules according to the wave mechanics. II. Vibrational levels. Physical Review, 34(1):57, 1929. doi:10.1103/PhysRev.34.57.">4</a>]</span>.</p>
+<p>The Morse potential <span id="id5">[<a class="reference internal" href="#id21" title="Philip M Morse. Diatomic molecules according to the wave mechanics. II. Vibrational levels. Physical Review, 34(1):57, 1929. doi:10.1103/PhysRev.34.57.">5</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.varepsilon">
 <span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.varepsilon" title="Permalink to this definition"></a></dt>
@@ -1139,17 +1291,20 @@ nondimensional force (optional).</p>
 </dd></dl>
 
   <hr><p><strong>References</strong></p>
-<p id="id5"><dl class="citation">
-<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<p id="id6"><dl class="citation">
+<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
 <dd><p>John Edward Jones. On the determination of molecular fields. II. From the equation of state of a gas. <em>Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character</em>, 106(738):463–477, 1924. <a class="reference external" href="https://doi.org/10.1098/rspa.1924.0082">doi:10.1098/rspa.1924.0082</a>.</p>
 </dd>
-<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="id23"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Kurt Kremer and Gary S Grest. Dynamics of entangled linear polymer melts: A molecular-dynamics simulation. <em>The Journal of Chemical Physics</em>, 92(8):5057–5086, 1990. <a class="reference external" href="https://doi.org/10.1063/1.458541">doi:10.1063/1.458541</a>.</p>
+</dd>
+<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>Yunwei Mao, Brandon Talamini, and Lallit Anand. Rupture of polymers by chain scission. <em>Extreme Mechanics Letters</em>, 13:17–24, 2017. <a class="reference external" href="https://doi.org/10.1016/j.eml.2017.01.003">doi:10.1016/j.eml.2017.01.003</a>.</p>
 </dd>
-<dt class="label" id="id22"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dt class="label" id="id24"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
 <dd><p>Gustav Mie. Zur kinetischen theorie der einatomigen körper. <em>Annalen der Physik</em>, 316(8):657–697, 1903. <a class="reference external" href="https://doi.org/10.1002/andp.19033160802">doi:10.1002/andp.19033160802</a>.</p>
 </dd>
-<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
 <dd><p>Philip M Morse. Diatomic molecules according to the wave mechanics. II. Vibrational levels. <em>Physical Review</em>, 34(1):57, 1929. <a class="reference external" href="https://doi.org/10.1103/PhysRev.34.57">doi:10.1103/PhysRev.34.57</a>.</p>
 </dd>
 </dl>
