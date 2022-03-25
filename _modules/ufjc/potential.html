@@ -110,7 +110,7 @@
 <span class="sd">        &gt;&gt;&gt; from ufjc.potential import LJFENEPotential</span>
 <span class="sd">        &gt;&gt;&gt; model = LJFENEPotential(varepsilon=(8, 8))</span>
 <span class="sd">        &gt;&gt;&gt; model.beta_u(1.23)</span>
-<span class="sd">        8.866896542699108</span>
+<span class="sd">        8.510502022381505</span>
 
 <span class="sd">    Create a single-link model in one dimension, instantiate it with</span>
 <span class="sd">    the Morse potential, and compute the incremental link stretch under</span>
@@ -123,14 +123,13 @@
 <span class="sd">        &gt;&gt;&gt; Link1D(potential=&#39;morse&#39;).delta_lambda(8)</span>
 <span class="sd">        0.04890980361596759</span>
 <span class="sd">        &gt;&gt;&gt; Link1D(potential=&#39;lj-fene&#39;).eta_link(1)</span>
-<span class="sd">        307.14286789402354</span>
+<span class="sd">        184.0</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Import external modules</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="k">import</span> <span class="n">lambertw</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">minimize_scalar</span>
 
 
 <div class="viewcode-block" id="HarmonicPotential"><a class="viewcode-back" href="../../ufjc.potential.html#ufjc.potential.HarmonicPotential">[docs]</a><span class="k">class</span> <span class="nc">HarmonicPotential</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -544,10 +543,6 @@
             <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;varepsilon&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">88</span><span class="p">,</span> <span class="mi">230</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lambda_max&#39;</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_minimum</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lambda_minimum</span> <span class="o">=</span> <span class="n">minimize_scalar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">,</span>
-                                              <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">),</span>
-                                              <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bounded&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kappa</span> <span class="o">=</span> <span class="mi">72</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_2</span> <span class="o">*</span> \
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span>
@@ -575,7 +570,6 @@
 <span class="sd">            numpy.ndarray: The scaled nondimensional potential energy(s).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">lambda_</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_minimum</span>
         <span class="n">lambda_fene</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambda_</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span><span class="o">*</span><span class="n">lambda_</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_2</span><span class="o">*</span><span class="p">(</span>
             <span class="mi">1</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span>
@@ -622,7 +616,6 @@
 <span class="sd">            numpy.ndarray: The nondimensional force(s).</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">lambda_</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_minimum</span>
         <span class="n">lambda_fene</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambda_</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">lambda_max</span><span class="p">)</span><span class="o">*</span><span class="n">lambda_</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_1</span><span class="o">*</span><span class="p">(</span><span class="mi">12</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">7</span> <span class="o">-</span> <span class="mi">12</span><span class="o">/</span><span class="n">lambda_</span><span class="o">**</span><span class="mi">13</span><span class="p">)</span> <span class="o">+</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">varepsilon_2</span><span class="o">*</span><span class="n">lambda_fene</span><span class="o">/</span><span class="p">(</span>
