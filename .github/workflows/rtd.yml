@@ -59,6 +59,7 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "<>"
           git add README.rst
+          git add .readthedocs.yaml
           git add docs/
           git add ufjc/
           git commit --allow-empty -m 'update from main branch'
