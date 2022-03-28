@@ -22,11 +22,11 @@ setup(
     keywords=['ufjc', 'polymers', 'statistical mechanics', 'thermodynamics'],
     install_requires=['numpy', 'pycodestyle', 'scipy'],
     extras_require={
-      'docs': ['matplotlib', 'pycodestyle',
+      'docs': ['matplotlib',
                'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
       'plotting': ['matplotlib'],
-      'testing': ['matplotlib', 'pycodestyle', 'pytest', 'pytest-cov'],
-      'all': ['matplotlib', 'pycodestyle', 'pytest', 'pytest-cov',
+      'testing': ['matplotlib', 'pytest', 'pytest-cov'],
+      'all': ['matplotlib', 'pytest', 'pytest-cov',
               'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex']
     },
     classifiers=[
