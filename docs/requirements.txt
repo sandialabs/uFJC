@@ -1,0 +1,7 @@
+matplotlib
+numpy
+pycodestyle
+scipy
+sphinx
+sphinx-rtd-theme
+sphinxcontrib-bibtex
