@@ -17,8 +17,9 @@ jobs:
         run: pip install .[docs]
       - name: Set up docs
         run:  source .github/workflows/docs.sh
-      - name: Move README
+      - name: Move README.rst and .readthedocs.yaml
         run:  cp ./README.rst docs/README.rst
+        run:  cp ./.readthedocs.yaml docs/.readthedocs.yaml
       - name: Upload docs
         uses: actions/upload-artifact@v2
         with:
@@ -42,10 +43,11 @@ jobs:
         with:
           name: docs
           path: docs/
-      - name: Move README
+      - name: Move README.rst and .readthedocs.yaml
         run: |
           ls docs/
           mv docs/README.rst ./README.rst
+          mv docs/.readthedocs.yaml ./.readthedocs.yaml
       - name: Download source
         uses: actions/download-artifact@v2
         with:
