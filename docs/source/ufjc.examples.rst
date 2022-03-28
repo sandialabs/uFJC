@@ -1,0 +1,21 @@
+ufjc.examples package
+=====================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   ufjc.examples.__main__
+   ufjc.examples.isotensional_approaches
+   ufjc.examples.isotensional_asymptotics
+
+Module contents
+---------------
+
+.. automodule:: ufjc.examples
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
