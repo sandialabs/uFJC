@@ -40,12 +40,12 @@ In all of these cases, a valid installation can be tested by running
 Information
 ***********
 
-- `Contributing <https://sandialabs.github.io/ufjc/CONTRIBUTING.html>`__
-- `Documentation <https://sandialabs.github.io/ufjc>`__
-- `Examples <https://sandialabs.github.io/ufjc/ufjc.examples>`__
+- `Contributing <https://ufjc.readthedocs.io/en/latest/CONTRIBUTING.html>`__
+- `Documentation <https://ufjc.readthedocs.io/en/latest/>`__
+- `Examples <https://ufjc.readthedocs.io/en/latest/ufjc.examples.html>`__
 - `License <https://github.com/sandialabs/ufjc/blob/main/LICENSE>`__
 - `Releases <https://github.com/sandialabs/ufjc/releases>`__
-- `Tutorial <https://sandialabs.github.io/ufjc/TUTORIAL.html>`__
+- `Tutorial <https://ufjc.readthedocs.io/en/latest/TUTORIAL.html>`__
 
 ********
 Citation
@@ -62,8 +62,8 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 ..
     Badges ========================================================================
 
-.. |docs| image:: https://github.com/sandialabs/ufjc/actions/workflows/docs.yml/badge.svg
-    :target: https://sandialabs.github.io/ufjc
+.. |docs| image:: https://img.shields.io/readthedocs/ufjc?logo=readthedocs
+    :target: https://ufjc.readthedocs.io/en/latest/?badge=latest
 
 .. |build| image:: https://github.com/sandialabs/ufjc/workflows/main/badge.svg
     :target: https://github.com/sandialabs/ufjc
