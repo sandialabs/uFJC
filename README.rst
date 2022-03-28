@@ -2,7 +2,7 @@
 uFJC Python Package
 ###################
 
-|docs| |build| |coverage| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
+|docs| |build| |coverage| |coverage2| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
 
 The is the Python package ``ufjc`` developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.
 
@@ -69,6 +69,9 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
     :target: https://github.com/sandialabs/ufjc
 
 .. |coverage| image:: https://img.shields.io/coveralls/github/sandialabs/ufjc?logo=coveralls
+    :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
+
+.. |coverage2| image:: https://coveralls.io/repos/github/sandialabs/ufjc/badge.svg?branch=main
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072&color=4B8BBE&label=Python
