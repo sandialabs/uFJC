@@ -62,8 +62,8 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 ..
     Badges ========================================================================
 
-.. |docs| image:: https://github.com/sandialabs/ufjc/actions/workflows/docs.yml/badge.svg
-    :target: https://sandialabs.github.io/ufjc
+.. |docs| image:: https://img.shields.io/readthedocs/ufjc?logo=readthedocs
+    :target: https://ufjc.readthedocs.io/en/latest/?badge=latest
 
 .. |build| image:: https://github.com/sandialabs/ufjc/workflows/main/badge.svg
     :target: https://github.com/sandialabs/ufjc
