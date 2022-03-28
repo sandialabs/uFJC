@@ -1,0 +1,8 @@
+ufjc.tests.test\_doc module
+===========================
+
+.. automodule:: ufjc.tests.test_doc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
