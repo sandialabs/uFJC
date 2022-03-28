@@ -1,9 +1,9 @@
 name: rtd
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ dev ]
+    branches: [ main ]
   workflow_dispatch:
 jobs:
   docs:
@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v2
-        with:
-          ref: dev
       - name: Install package and docs extras
         run: pip install .[docs]
       - name: Set up docs
