@@ -1,0 +1,55 @@
+name: rtd
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+  workflow_dispatch:
+jobs:
+  docs:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+      - name: Install package and docs extras
+        run: pip install .[docs]
+      - name: Set up docs
+        run:  source .github/workflows/docs.sh
+      - name: Upload README
+        uses: actions/upload-artifact@v2
+        with:
+          name: README
+          path: README.rst
+      - name: Upload docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: docs/
+  rtd:
+    runs-on: ubuntu-20.04
+    needs: docs
+    steps:
+      - name: Checkout rtd branch
+        uses: actions/checkout@v2
+        with:
+          ref: rtd
+      - name: Download README
+        uses: actions/download-artifact@v2
+        with:
+          name: README
+          path: README.rst
+      - name: Download docs
+        uses: actions/download-artifact@v2
+        with:
+          name: docs
+          path: docs/
+      - name: Push docs to rtd branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "<>"
+          git add README.rst
+          git add docs/
+          git commit --allow-empty -m 'update from main branch'
+          git push
