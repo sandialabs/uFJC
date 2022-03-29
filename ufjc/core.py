@@ -38,11 +38,10 @@ class uFJC(Potential, uFJCIsometric):
 
     Attributes:
         N_b (int): The number of links in the chain.
-        k_0 (float): The initial reaction rate coefficient.
         init_config (np.ndarray): The initial configuration for Monte Carlo.
         c_kappa (float): The constant used for ideal/Gaussian approximations.
-        nondim_P_eq_normalizations (dict): The normalizations for the
-            nondimensional equilibrium distribution ``nondim_P_eq``
+        P_eq_normalizations (dict): The normalizations for the
+            nondimensional equilibrium distribution ``P_eq``
             for each approach.
         pot (object): The link potential model instance.
 
@@ -66,7 +65,7 @@ class uFJC(Potential, uFJCIsometric):
         Also, adjust both ``delta_lambda`` and ``beta_u`` above
         ``eta_max`` and ``lambda_max``, if they exist for the potential,
         to prevent calculation errors.
-        Finally, compute and store the normalization for ``nondim_P_eq``.
+        Finally, compute and store the normalization for ``P_eq``.
 
         Args:
             **kwargs: Arbitrary keyword arguments.
@@ -77,8 +76,7 @@ class uFJC(Potential, uFJCIsometric):
 
         # Get general single-chain model parameters
         self.N_b = int(kwargs.get('N_b', 1))
-        self.k_0 = kwargs.get('k_0', 1)
-        self.nondim_P_eq_normalizations = {}
+        self.P_eq_normalizations = {}
 
         # Default initial configuration for Monte Carlo calculations
         self.init_config = np.append(
@@ -340,7 +338,7 @@ class uFJC(Potential, uFJCIsometric):
         else:
             return self.vartheta_isometric(gamma, **kwargs)
 
-    def nondim_P_eq(self, gamma, **kwargs):
+    def P_eq(self, gamma, **kwargs):
         r"""The nondimensional equilibrium distribution function.
 
         This function computes the nondimensional probability density
@@ -354,7 +352,7 @@ class uFJC(Potential, uFJCIsometric):
             .
 
         Since the uFJC model is spherically-symmetric in
-        :math:`\boldsymbol{\gamma}`,  ``nondim_P_eq`` is only a function
+        :math:`\boldsymbol{\gamma}`,  ``P_eq`` is only a function
         of the scalar nondimensional end-to-end length :math:`\gamma`,
         and the normalization can be calculated
         using a one-dimensional integral over :math:`\gamma` instead
@@ -384,9 +382,9 @@ class uFJC(Potential, uFJCIsometric):
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(potential='morse', N_b=8)
-                >>> model.nondim_P_eq(23e-2)
+                >>> model.P_eq(23e-2)
                 array([4.19686303])
-                >>> model.nondim_P_eq(23e-2, gaussian=True)
+                >>> model.P_eq(23e-2, gaussian=True)
                 array([3.86142625])
 
         Example:
@@ -396,7 +394,7 @@ class uFJC(Potential, uFJCIsometric):
                 >>> model = uFJC()
                 >>> from scipy.integrate import quad
                 >>> integrand = lambda gamma: \
-                ...     4*np.pi*gamma**2*model.nondim_P_eq(gamma)
+                ...     4*np.pi*gamma**2*model.P_eq(gamma)
                 >>> P_tot_eq = quad(integrand, 0, np.inf)[0]
                 >>> np.isclose(P_tot_eq, 1)
                 True
@@ -408,11 +406,11 @@ class uFJC(Potential, uFJCIsometric):
         else:
 
             # A variable string based on the approach
-            var_str = 'nondim_P_eq_normalization_' + \
+            var_str = 'P_eq_normalization_' + \
                 str(kwargs.get('approach', 'asymptotic'))
 
             # Compute the normalization if not done already for the approach
-            if self.nondim_P_eq_normalizations.get(var_str) is None:
+            if self.P_eq_normalizations.get(var_str) is None:
 
                 # Set upper limit of integration
                 if hasattr(self, 'lambda_max') is True:
@@ -421,7 +419,7 @@ class uFJC(Potential, uFJCIsometric):
                     upper_lim = np.inf
 
                 # Compute the normalzation and attribute it
-                self.nondim_P_eq_normalizations[var_str] = \
+                self.P_eq_normalizations[var_str] = \
                     quad(lambda gamma: 4*np.pi*gamma**2 *
                          np.exp(-self.N_b*self.vartheta(gamma)),
                          self.minimum_float,
@@ -430,9 +428,9 @@ class uFJC(Potential, uFJCIsometric):
 
             # Return the nondimensional equilibrium probability density
             return np.exp(-self.N_b*self.vartheta(gamma, **kwargs)) / \
-                self.nondim_P_eq_normalizations[var_str]
+                self.P_eq_normalizations[var_str]
 
-    def nondim_g_eq(self, gamma, **kwargs):
+    def g_eq(self, gamma, **kwargs):
         r"""The nondimensional equilibrium radial distribution function.
 
         This function computes the nondimensional radial probability density
@@ -445,7 +443,7 @@ class uFJC(Potential, uFJCIsometric):
 
         Args:
             gamma (array_like): The nondimensional end-to-end length(s).
-            **kwargs: Arbitrary keyword arguments. Passed to ``nondim_P_eq``.
+            **kwargs: Arbitrary keyword arguments. Passed to ``P_eq``.
 
         Returns:
             numpy.ndarray: The nondimensional equilibrium radial
@@ -460,16 +458,16 @@ class uFJC(Potential, uFJCIsometric):
                 >>> from ufjc import uFJC
                 >>> model = uFJC(potential='morse')
                 >>> from scipy.integrate import quad
-                >>> P_tot_eq = quad(model.nondim_g_eq, 0, model.lambda_max)[0]
+                >>> P_tot_eq = quad(model.g_eq, 0, model.lambda_max)[0]
                 >>> np.isclose(P_tot_eq, 1)
                 True
 
         """
         return 4*np.pi*self.np_array(gamma)**2 * \
-            self.nondim_P_eq(gamma, **kwargs)
+            self.P_eq(gamma, **kwargs)
 
     def k(self, gamma):
-        r"""The net forward reaction rate coefficient function.
+        r"""The nondimensional net forward reaction rate coefficient function.
 
         This function computes the net forward reaction rate coefficient
         as a function of the nondimensional end-to-end length,
@@ -485,11 +483,12 @@ class uFJC(Potential, uFJCIsometric):
             gamma (array_like): The nondimensional end-to-end length(s).
 
         Returns:
-            numpy.ndarray: The net forward reaction rate coefficient(s).
+            numpy.ndarray:
+                The nondimensional net forward reaction rate coefficient(s).
 
         Example:
-            Compute the net forward reaction rate coefficients at several
-            nondimensional end-to-end lengths:
+            Compute the nondimensional net forward reaction rate coefficients
+            at several nondimensional end-to-end lengths:
 
                 >>> from ufjc import uFJC
                 >>> model = uFJC(potential='morse')
@@ -501,7 +500,7 @@ class uFJC(Potential, uFJCIsometric):
         eta = self.np_array(self.eta(gamma))
         lambda_ = 1 + self.delta_lambda(eta)
 
-        # Compute the free energy barrier for a link, translated so k(0)=k_0
+        # Compute the free energy barrier for a link, translated so k(0)=1
         beta_delta_Psi_TS_single_link = \
             self.varepsilon*(self.phi(1) - self.phi(lambda_))
         if hasattr(self, 'lambda_max'):
@@ -511,6 +510,6 @@ class uFJC(Potential, uFJCIsometric):
                 - eta*self.coth(eta)
 
         # Avoid overflow when returning the results
-        exponent = np.log(self.N_b*self.k_0) - beta_delta_Psi_TS_single_link
+        exponent = np.log(self.N_b) - beta_delta_Psi_TS_single_link
         exponent[exponent > self.maximum_exponent] = self.maximum_exponent
         return np.exp(exponent)
