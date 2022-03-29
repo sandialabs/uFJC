@@ -58,7 +58,7 @@ jobs:
       - name: Edit meta.yml
         run: |
           sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
-          sed -i 's@doc_url:@& \"https://sandialabs.github.io/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
+          sed -i 's@doc_url:@& \"https://'${REPO_NAME}'.readthedocs.io/en/latest/\"@' ${REPO_NAME}/meta.yaml
           cp LICENSE ${REPO_NAME}/LICENSE
           sed -i 's@license_file:@& LICENSE@' ${REPO_NAME}/meta.yaml
           sed -i '/license_file/a \ \ license_url:' ${REPO_NAME}/meta.yaml
