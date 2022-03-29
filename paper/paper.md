@@ -58,7 +58,7 @@ Optional keyword arguments in each method are available in order to specify cert
 For example, evaluate the nondimensional equilibrium radial distribution function using the reduced asymptotic approach:
 
 ```python
->>> model.nondim_g_eq([0, 0.23, 0.88], approach='reduced')
+>>> model.g_eq([0, 0.23, 0.88], approach='reduced')
 array([0.00000000e+00, 2.64707367e+00, 1.24115933e-04])
 ```
 

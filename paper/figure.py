@@ -25,7 +25,7 @@ plt.subplot(2, 1, 2)
 for N_b in [3, 5, 10, 25]:
     model = uFJC(potential='morse', N_b=N_b)
     gamma = np.linspace(0, 1.6, num_points)
-    plt.plot(gamma, model.nondim_g_eq(gamma), label=r'$N_b=$'+str(N_b))
+    plt.plot(gamma, model.g_eq(gamma), label=r'$N_b=$'+str(N_b))
 plt.xlim([0, 1.1])
 plt.ylim([0, 5.2])
 plt.xlabel(r'$\gamma$')
