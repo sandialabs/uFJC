@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ufjc.swfjc module &mdash; uFJC 1.2.7 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ufjc.tests.test_doc module" href="ufjc.tests.test_doc.html" />
+    <link rel="prev" title="ufjc.examples.isotensional_asymptotics module" href="ufjc.examples.isotensional_asymptotics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> uFJC
+          </a>
+              <div class="version">
+                1.2.7
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUTORIAL.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.examples.isotensional_approaches.html">ufjc.examples.isotensional_approaches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.examples.isotensional_asymptotics.html">ufjc.examples.isotensional_asymptotics</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.swfjc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.tests.test_doc.html">ufjc.tests.test_doc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.tests.test_style.html">ufjc.tests.test_style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ufjc.swfjc</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ufjc.swfjc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ufjc.swfjc">
+<span id="ufjc-swfjc-module"></span><h1>ufjc.swfjc<a class="headerlink" href="#module-ufjc.swfjc" title="Permalink to this headline"></a></h1>
+<p>The core module for the SWFJC single-chain model.</p>
+<p>This module contains the core class <code class="docutils literal notranslate"><span class="pre">SWFJC</span></code> which, upon instantiation,
+becomes a SWFJC single-chain model instance with methods for computing
+single-chain quantities in either thermodynamic ensemble.
+The <code class="docutils literal notranslate"><span class="pre">SWFJCIsometric</span></code> and <code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional</span></code> classes are also
+contained within this module.
+The SWFJC is the uFJC model with a square-well link potential,
+which is a special case that is efficiently treated separately.</p>
+<p class="rubric">Example</p>
+<p>Import and create an instance of the model:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">SWFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">SWFJC</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJC</span></span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsotensional" title="ufjc.swfjc.SWFJCIsotensional"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.swfjc.SWFJCIsotensional</span></code></a></p>
+<p>The SWFJC single-chain model class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJC.N">
+<span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJC.N" title="Permalink to this definition"></a></dt>
+<dd><p>The number of links in the chain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJC.varsigma">
+<span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJC.varsigma" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional well width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsometric">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsometric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsometric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility" title="ufjc.utility.BasicUtility"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.utility.BasicUtility</span></code></a></p>
+<p>The SWFJC model class for the isometric ensemble.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsometric.N">
+<span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric.N" title="Permalink to this definition"></a></dt>
+<dd><p>The number of links in the chain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsometric.varsigma">
+<span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric.varsigma" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional well width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsotensional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsometric" title="ufjc.swfjc.SWFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.swfjc.SWFJCIsometric</span></code></a></p>
+<p>The SWFJC model class for the isotensional ensemble.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.N">
+<span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.N" title="Permalink to this definition"></a></dt>
+<dd><p>The number of links in the chain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.varsigma">
+<span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.varsigma" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional well width.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.beta_varphi">
+<span class="sig-name descname"><span class="pre">beta_varphi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional.beta_varphi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.beta_varphi" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional isotensional free energy as a function of
+the nondimensional force,</p>
+<div class="math notranslate nohighlight">
+\[\beta\varphi(\eta) =
+-\ln\mathfrak{z}(\eta).\]</div>
+<p>Note that this becomes the isotensional free energy
+of the FJC model as <span class="math notranslate nohighlight">\(\varsigma\)</span> goes to zero,</p>
+<div class="math notranslate nohighlight">
+\[\lim_{\varsigma\to 0}\beta\varphi(\eta) =
+\ln\left[\frac{\eta}{\sinh(\eta)}\right].\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The nondimensional isotensional free energy.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Plot the nondimensional isotensional free energy as a function of
+the nondimensional force for varying <span class="math notranslate nohighlight">\(\varsigma\)</span>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.swfjc</span> <span class="k">import</span> <span class="n">SWFJCIsotensional</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">model</span> <span class="o">=</span> <span class="n">SWFJCIsotensional</span><span class="p">(</span><span class="n">varsigma</span><span class="o">=</span><span class="n">varsigma</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">beta_varphi</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span>
+<span class="gp">... </span>                 <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\varsigma=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varsigma</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">eta</span><span class="p">)),</span>
+<span class="gp">... </span>             <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;FJC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\beta\varphi$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/ufjc-swfjc-1.png" class="plot-directive" src="_images/ufjc-swfjc-1.png" />
+</figure>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.gamma_isotensional">
+<span class="sig-name descname"><span class="pre">gamma_isotensional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional.gamma_isotensional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.gamma_isotensional" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional end-to-end length as a function of
+the nondimensional force in the isotensional ensemble,</p>
+<div class="math notranslate nohighlight">
+\[\gamma(\eta) =
+-\frac{\partial}{\partial\eta}\,\beta\varphi(\eta) =
+\frac{\partial}{\partial\eta}\,\ln\mathfrak{z}(\eta).\]</div>
+<p>Note that this becomes the Langevin function of the FJC model
+as <span class="math notranslate nohighlight">\(\varsigma\)</span> goes to zero,</p>
+<div class="math notranslate nohighlight">
+\[\lim_{\varsigma\to 0}\gamma(\eta) =
+\coth(\eta) - \frac{1}{\eta} =
+\mathcal{L}(\eta).\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The nondimensional end-to-end length.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Plot the nondimensional single-chain mechanical response
+in the isotensional ensemble for varying <span class="math notranslate nohighlight">\(\varsigma\)</span>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.swfjc</span> <span class="k">import</span> <span class="n">SWFJCIsotensional</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="n">model</span> <span class="o">=</span> <span class="n">SWFJCIsotensional</span><span class="p">(</span><span class="n">varsigma</span><span class="o">=</span><span class="n">varsigma</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span> <span class="n">eta</span><span class="p">,</span>
+<span class="gp">... </span>                 <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\varsigma=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varsigma</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">eta</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span>
+<span class="gp">... </span>             <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;FJC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/ufjc-swfjc-2.png" class="plot-directive" src="_images/ufjc-swfjc-2.png" />
+</figure>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.z">
+<span class="sig-name descname"><span class="pre">z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional.z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.z" title="Permalink to this definition"></a></dt>
+<dd><p>The nondimensional single-link isotensional partition function
+as a function of the nondimensional force,</p>
+<div class="math notranslate nohighlight">
+\[\mathfrak{z}(\eta) =
+\frac{1}{\eta^3}\left\{
+    \sinh(\eta) - \eta\cosh(\eta)
+    - \sinh[(1+\varsigma)\eta]
+    + (1+\varsigma)\eta\cosh[(1+\varsigma)\eta]
+\right\}.\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The nondimensional isotensional partition function.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ufjc.examples.isotensional_asymptotics.html" class="btn btn-neutral float-left" title="ufjc.examples.isotensional_asymptotics module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ufjc.tests.test_doc.html" class="btn btn-neutral float-right" title="ufjc.tests.test_doc module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia,     LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS,     the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

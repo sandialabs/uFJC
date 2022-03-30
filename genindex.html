@@ -56,6 +56,10 @@
 <li class="toctree-l1"><a class="reference internal" href="ufjc.examples.isotensional_approaches.html">ufjc.examples.isotensional_approaches</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.examples.isotensional_asymptotics.html">ufjc.examples.isotensional_asymptotics</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.swfjc.html">ufjc.swfjc</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Tests</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.tests.test_doc.html">ufjc.tests.test_doc</a></li>
@@ -102,9 +106,11 @@
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -147,6 +153,8 @@
       <li><a href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.beta_U_config">beta_U_config (MHMCMC attribute)</a>
 </li>
       <li><a href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.beta_U_config">beta_U_config() (uFJCIsometric method)</a>
+</li>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.beta_varphi">beta_varphi() (SWFJCIsotensional method)</a>
 </li>
       <li><a href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.burn_in">burn_in() (MHMCMC method)</a>
 </li>
@@ -260,8 +268,12 @@
 </li>
       <li><a href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.gamma_isometric">gamma_isometric() (uFJCIsometric method)</a>
 </li>
-      <li><a href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional">gamma_isotensional() (uFJCIsotensional method)</a>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.gamma_isotensional">gamma_isotensional() (SWFJCIsotensional method)</a>
+
+      <ul>
+        <li><a href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional">(uFJCIsotensional method)</a>
 </li>
+      </ul></li>
       <li><a href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic">gamma_isotensional_asymptotic() (uFJCIsotensional method)</a>
 </li>
   </ul></td>
@@ -410,6 +422,8 @@
 </li>
         <li><a href="ufjc.potential.html#module-ufjc.potential">ufjc.potential</a>
 </li>
+        <li><a href="ufjc.swfjc.html#module-ufjc.swfjc">ufjc.swfjc</a>
+</li>
         <li><a href="ufjc.tests.html#module-ufjc.tests">ufjc.tests</a>
 </li>
         <li><a href="ufjc.tests.__main__.html#module-ufjc.tests.__main__">ufjc.tests.__main__</a>
@@ -433,14 +447,22 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ufjc.potential.html#ufjc.potential.MiePotential.n">n (MiePotential attribute)</a>
 </li>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJC.N">N (SWFJC attribute)</a>
+
+      <ul>
+        <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric.N">(SWFJCIsometric attribute)</a>
+</li>
+        <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.N">(SWFJCIsotensional attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.N_b">N_b (MHMCMC attribute)</a>
 
       <ul>
         <li><a href="ufjc.core.html#ufjc.core.uFJC.N_b">(uFJC attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ufjc.utility.html#ufjc.utility.BasicUtility.np_array">np_array() (BasicUtility method)</a>
 </li>
   </ul></td>
@@ -491,6 +513,20 @@
         <li><a href="ufjc.potential.html#ufjc.potential.Potential.potential">(Potential attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJC">SWFJC (class in ufjc.swfjc)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric">SWFJCIsometric (class in ufjc.swfjc)</a>
+</li>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional">SWFJCIsotensional (class in ufjc.swfjc)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -566,8 +602,6 @@
         <li><a href="ufjc.isotensional.html#module-ufjc.isotensional">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ufjc.monte_carlo
 
@@ -575,11 +609,20 @@
         <li><a href="ufjc.monte_carlo.html#module-ufjc.monte_carlo">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     ufjc.potential
 
       <ul>
         <li><a href="ufjc.potential.html#module-ufjc.potential">module</a>
+</li>
+      </ul></li>
+      <li>
+    ufjc.swfjc
+
+      <ul>
+        <li><a href="ufjc.swfjc.html#module-ufjc.swfjc">module</a>
 </li>
       </ul></li>
       <li>
@@ -647,11 +690,27 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJC.varsigma">varsigma (SWFJC attribute)</a>
+
+      <ul>
+        <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric.varsigma">(SWFJCIsometric attribute)</a>
+</li>
+        <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.varsigma">(SWFJCIsotensional attribute)</a>
+</li>
+      </ul></li>
       <li><a href="ufjc.core.html#ufjc.core.uFJC.vartheta">vartheta() (uFJC method)</a>
 </li>
       <li><a href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric">vartheta_isometric() (uFJCIsometric method)</a>
 </li>
       <li><a href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric_legendre">vartheta_isometric_legendre() (uFJCIsometric method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.z">z() (SWFJCIsotensional method)</a>
 </li>
   </ul></td>
 </tr></table>

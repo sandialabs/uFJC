@@ -29,6 +29,13 @@
 
 .. toctree::
    :hidden:
+   :caption: Extras
+   :glob:
+
+   ufjc.swfjc
+
+.. toctree::
+   :hidden:
    :caption: Tests
    :glob:
 
