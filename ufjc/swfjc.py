@@ -75,7 +75,7 @@ class SWFJCIsotensional(SWFJCIsometric):
 
                 >>> import numpy as np
                 >>> import matplotlib.pyplot as plt
-                >>> from swfjc import SWFJCIsotensional
+                >>> from ufjc.swfjc import SWFJCIsotensional
                 >>> eta = np.linspace(0, 10, 1000)[1:]
                 >>> _ = plt.figure()
                 >>> for varsigma in [0.001, 1, 3, 10, 30]:
@@ -119,7 +119,7 @@ class SWFJC(SWFJCIsotensional):
 
     def gamma(self, eta, ensemble='isotensional'):
         """
-        
+
         """
         if ensemble == 'isotensional':
             return self.gamma_isotensional(eta)
@@ -128,9 +128,15 @@ class SWFJC(SWFJCIsotensional):
 
     def eta(self, gamma, ensemble='isometric'):
         """
-        
+
         """
         if ensemble == 'isotensional':
             return self.eta_isotensional(gamma)
         elif ensemble == 'isometric':
             return self.eta_isometric(gamma)
+
+    def k(self, gamma):
+        """
+
+        """
+        pass
