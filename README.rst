@@ -10,7 +10,7 @@ The is the Python package ``ufjc`` developed for the uFJC single-chain model, a 
 Installation
 ************
 
-The package can be installed using ``pip`` via the `Python Package Index (PyPI) <https://pypi.org/project/ufjc/>`_,
+The package can be installed using ``pip`` via the `Python Package Index <https://pypi.org/project/ufjc/>`_ (PyPI),
 
 ::
 
