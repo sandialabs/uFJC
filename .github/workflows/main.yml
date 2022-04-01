@@ -30,3 +30,8 @@ jobs:
           coveralls --service=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Coverage via Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          name: codecov-umbrella
+          verbose: true
