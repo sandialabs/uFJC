@@ -2,7 +2,7 @@
 uFJC Python Package
 ###################
 
-|docs| |build| |coveralls| |codecov| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
+|build| |docs| |codecov| |coveralls| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
 
 The is the Python package ``ufjc`` developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.
 
@@ -62,16 +62,16 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 ..
     Badges ========================================================================
 
-.. |docs| image:: https://img.shields.io/readthedocs/ufjc?logo=readthedocs
+.. |docs| image:: https://img.shields.io/readthedocs/ufjc?logo=readthedocs&label=Read%20the%20Docs
     :target: https://ufjc.readthedocs.io/en/latest/
 
-.. |build| image:: https://github.com/sandialabs/ufjc/workflows/main/badge.svg
+.. |build| image:: https://img.shields.io/github/workflow/status/sandialabs/ufjc/main?label=GitHub&logo=github
     :target: https://github.com/sandialabs/ufjc
 
-.. |coveralls| image:: https://img.shields.io/coveralls/github/sandialabs/ufjc?logo=coveralls
+.. |coveralls| image:: https://img.shields.io/coveralls/github/sandialabs/ufjc?logo=coveralls&label=Coveralls
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
 
-.. |codecov| image:: https://codecov.io/gh/sandialabs/ufjc/branch/main/graph/badge.svg?token=ATGNZetpAV
+.. |codecov| image:: https://img.shields.io/codecov/c/github/sandialabs/ufjc?label=Codecov&logo=codecov
     :target: https://codecov.io/gh/sandialabs/ufjc
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072&color=4B8BBE&label=Python
@@ -88,7 +88,7 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
     :target: https://hub.docker.com/r/mrbuche/ufjc
     :alt: docker
 
-.. |license| image:: https://img.shields.io/github/license/sandialabs/ufjc
+.. |license| image:: https://img.shields.io/github/license/sandialabs/ufjc?label=License
     :target: https://github.com/sandialabs/ufjc/blob/main/LICENSE
 
 .. |zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.6114263.svg
