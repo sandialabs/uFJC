@@ -43,7 +43,7 @@ setup(
     ],
     project_urls={
       'Anaconda': 'https://anaconda.org/mrbuche/ufjc',
-      'Documentation': 'https://sandialabs.github.io/ufjc',
+      'Documentation': 'https://ufjc.readthedocs.io/en/latest',
       'GitHub': 'https://github.com/sandialabs/ufjc',
       'Issues': 'https://github.com/sandialabs/ufjc/issues',
     },
