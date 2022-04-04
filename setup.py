@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name='ufjc',
-    version='1.2.7',
+    version='1.2.8',
     package_dir={'ufjc': 'ufjc'},
     packages=find_packages(),
     description='The Python package for the uFJC single-chain model.',
@@ -43,7 +43,7 @@ setup(
     ],
     project_urls={
       'Anaconda': 'https://anaconda.org/mrbuche/ufjc',
-      'Documentation': 'https://ufjc.readthedocs.io/en/latest',
+      'Documentation': 'https://ufjc.readthedocs.io',
       'GitHub': 'https://github.com/sandialabs/ufjc',
       'Issues': 'https://github.com/sandialabs/ufjc/issues',
     },
