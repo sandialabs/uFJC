@@ -34,6 +34,8 @@ class TestDocstringExamples(unittest.TestCase):
         files += glob(path.join(tests_dir, '../*.py'))
         if examples:
             files += glob(path.join(tests_dir, '../examples/*.py'))
+        else:
+            files.remove(glob(path.join(tests_dir, '../swfjc.py'))[0]
 
         # Check the docstring examples in the files
         failures = 0

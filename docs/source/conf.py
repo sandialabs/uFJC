@@ -28,5 +28,5 @@ plot_include_source = True
 add_module_names = False
 plot_rcparams = {'font.size': 10}
 plot_formats = [('png', 300)]
-release = '1.2.7'
-version = '1.2.7'
+release = '1.2.8'
+version = '1.2.8'
