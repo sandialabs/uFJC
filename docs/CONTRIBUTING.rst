@@ -3,7 +3,7 @@ Contributing
 ************
 
 These are guidelines for contributing to the Python package ``ufjc``.
-Contributors can `open issues <https://github.com/sandialabs/ufjc/edit/main/docs/CONTRIBUTING.rst#issues>`_ or `creat pull requests <https://github.com/sandialabs/ufjc/edit/main/docs/CONTRIBUTING.rst#pull-requests>`_.
+Contributors can `open issues <https://github.com/sandialabs/ufjc/edit/main/docs/CONTRIBUTING.rst#issues>`_ or `create pull requests <https://github.com/sandialabs/ufjc/edit/main/docs/CONTRIBUTING.rst#pull-requests>`_.
 
 Issues
 ======
