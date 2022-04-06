@@ -12,10 +12,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: figure
-        run: |
-          pip install .[plotting]
-          python paper/figure.py
       - name: build
         uses: openjournals/openjournals-draft-action@master
         with:
