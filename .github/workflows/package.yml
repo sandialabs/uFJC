@@ -1,10 +1,8 @@
 name: package
 on:
   push:
-    branches: [ main ]
     tags:
       - '*'
-  workflow_dispatch:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
 jobs:
