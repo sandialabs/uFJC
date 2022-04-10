@@ -126,7 +126,7 @@ jobs:
         run: |
           python -m ${REPO_NAME}.tests
   test-zenodo:
-    needs: [get-version]
+    needs: get-version
     runs-on: ubuntu-20.04
     steps:
       - name: Give upload time before downloading
