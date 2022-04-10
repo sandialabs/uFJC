@@ -8,9 +8,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: test zenodo
         run: |
-          curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v1.3.0.zip?download=1 -o ufjc.zip
-          unzip -d ufjc/ ufjc.zip
-          echo $(ls ufjc/)
-          cd ufjc/$(ls ufjc/)
+          curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v1.3.0.zip?download=1 -o clone.zip
+          unzip -d clone/ clone.zip
+          cd clone/$(ls clone/)
           pip install numpy scipy
           python -m ufjc.tests
