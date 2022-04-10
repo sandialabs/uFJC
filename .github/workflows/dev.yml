@@ -10,7 +10,7 @@ jobs:
         run: |
           curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v1.3.0.zip?download=1 -o ufjc.zip
           unzip -d ufjc/ ufjc.zip
-          mv ufjc/*/* ufjc/
+          mv ufjc/$(ls ufjc/)/* ufjc/
           cd ufjc/
           python setup.py install
           cd ../../
