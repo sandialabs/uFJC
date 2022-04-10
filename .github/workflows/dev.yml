@@ -1,15 +1,30 @@
 on:
   push:
     branches: [ dev ]
+env:
+  REPO_NAME: ${{ github.event.repository.name }}
 jobs:
-  test-zenodo:
-    runs-on: ubuntu-latest
+  get-version:
+    runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
+      - id: version
+        run: |
+          export VERSION=$(grep version setup.py | cut -f2 -d "'")
+          echo "::set-output name=VERSION::${VERSION}"
+    outputs:
+      VERSION: ${{ steps.version.outputs.VERSION }}
+  test-zenodo:
+    needs: [get-version]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Give upload time before downloading
+        run: sleep 234s
       - uses: actions/checkout@v3
       - name: test zenodo
         run: |
-          curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v1.3.0.zip?download=1 -o clone.zip
+          curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v${{ needs.get-version.outputs.VERSION }}.zip?download=1 -o clone.zip
           unzip -d clone/ clone.zip
           cd clone/$(ls clone/)
           pip install numpy scipy
-          python -m ufjc.tests
+          python -m ${REPO_NAME}.tests
