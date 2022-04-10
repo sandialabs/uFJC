@@ -9,9 +9,12 @@ jobs:
       - name: test zenodo
         run: |
           curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v1.3.0.zip?download=1 -o ufjc.zip
-          unzip -d ufjc/ ufjc.zip
-          mv ufjc/$(ls ufjc/)/* ufjc/
-          cd ufjc/
+          unzip -d ufjc-0/ ufjc.zip
+          mkdir ufjc-1/
+          mv ufjc-0/$(ls ufjc-0/)/* ufjc-1/
+          cd ufjc-1/
+          pip install numpy scipy
+          python -m ufjc.tests
           python setup.py install
           cd ../../
           python -m ufjc.tests
