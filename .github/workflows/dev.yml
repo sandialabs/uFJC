@@ -15,6 +15,3 @@ jobs:
           cd ufjc-1/
           pip install numpy scipy
           python -m ufjc.tests
-          python setup.py install
-          cd ../../
-          python -m ufjc.tests
