@@ -11,6 +11,7 @@ import doctest
 import unittest
 from os import path
 from glob import glob
+from sys import platform
 
 
 class TestDocstringExamples(unittest.TestCase):
@@ -35,7 +36,10 @@ class TestDocstringExamples(unittest.TestCase):
         if examples:
             files += glob(path.join(tests_dir, '../examples/*.py'))
         else:
-            files.remove(glob(path.join(tests_dir, '../swfjc.py'))[0])
+            if platform == 'win32' or platform == 'win64':
+                files.remove(glob(path.join(tests_dir, '..\\swfjc.py'))[0])
+            else:
+                files.remove(glob(path.join(tests_dir, '../swfjc.py'))[0])
 
         # Check the docstring examples in the files
         failures = 0
