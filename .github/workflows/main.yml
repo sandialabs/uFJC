@@ -13,10 +13,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: ['ubuntu-20.04', 'windows-2022']
         python-version: ['3.5','3.6', '3.7', '3.8', '3.9', '3.10']
     steps:
       - uses: actions/checkout@v2
-      - name: Python ${{ matrix.python-version }}
+      - name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
