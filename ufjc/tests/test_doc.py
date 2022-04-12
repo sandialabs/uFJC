@@ -28,8 +28,6 @@ class TestDocstringExamples(unittest.TestCase):
             int: The total number of failures from all files.
 
         """
-
-        # Collect the files
         tests_dir = path.dirname(__file__)
         files = glob(path.join(tests_dir, './*.py'))
         files += glob(path.join(tests_dir, '../*.py'))
@@ -40,26 +38,9 @@ class TestDocstringExamples(unittest.TestCase):
                 files.remove(glob(path.join(tests_dir, '..\\swfjc.py'))[0])
             else:
                 files.remove(glob(path.join(tests_dir, '../swfjc.py'))[0])
-
-        # Check the docstring examples in the files
-        failures = 0
         for file in files:
-            print('Testing ' + path.relpath(file) + '........', end='')
-            if doctest.testfile(file, module_relative=False)[0]:
-                failures += 1
-            else:
-                print('passed!')
-
-        # Check the total number of failues
-        if failures > 0:
-            print('Failures detected!')
-            self.assertEqual(failures, 0)
-        else:
-            print('All passed!')
+            self.assertFalse(doctest.testfile(file, module_relative=False)[0])
 
 
 if __name__ == '__main__':  # pragma: no cover
-    """For command line execution.
-
-    """
     unittest.main()

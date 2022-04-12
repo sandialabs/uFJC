@@ -148,9 +148,7 @@ def main(**kwargs):
 
 
 if __name__ == '__main__':  # pragma: no cover
-    """For command line execution.
 
-    """
     # Import external modules
     import argparse
 

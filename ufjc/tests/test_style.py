@@ -20,35 +20,16 @@ class TestCodeStyle(unittest.TestCase):
         """Function to test conformance of code to PEP style standards.
 
         """
-
-        # Collect the files
         tests_dir = path.dirname(__file__)
         files = glob(path.join(tests_dir, './*.py'))
         files += glob(path.join(tests_dir, '../*.py'))
         files += glob(path.join(tests_dir, '../../*.py'))
         files += glob(path.join(tests_dir, '../../docs/*.py'))
         files += glob(path.join(tests_dir, '../examples/*.py'))
-
-        # Check the style in the files
         style = StyleGuide(quiet=False)
-        failures = 0
         for file in files:
-            print('Testing ' + path.relpath(file) + '........', end='')
-            if style.input_file(file):
-                failures += 1
-            else:
-                print('passed!')
-
-        # Check the total number of failues
-        if failures > 0:
-            print('Failures detected!')
-            self.assertEqual(failures, 0)
-        else:
-            print('All passed!')
+            self.assertFalse(style.input_file(file))
 
 
 if __name__ == '__main__':  # pragma: no cover
-    """For command line execution.
-
-    """
     unittest.main()
