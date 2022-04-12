@@ -121,8 +121,6 @@
 <span class="sd">            int: The total number of failures from all files.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Collect the files</span>
         <span class="n">tests_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
         <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tests_dir</span><span class="p">,</span> <span class="s1">&#39;./*.py&#39;</span><span class="p">))</span>
         <span class="n">files</span> <span class="o">+=</span> <span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tests_dir</span><span class="p">,</span> <span class="s1">&#39;../*.py&#39;</span><span class="p">))</span>
@@ -133,28 +131,11 @@
                 <span class="n">files</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tests_dir</span><span class="p">,</span> <span class="s1">&#39;..</span><span class="se">\\</span><span class="s1">swfjc.py&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">files</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tests_dir</span><span class="p">,</span> <span class="s1">&#39;../swfjc.py&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
-
-        <span class="c1"># Check the docstring examples in the files</span>
-        <span class="n">failures</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing &#39;</span> <span class="o">+</span> <span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;........&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">doctest</span><span class="o">.</span><span class="n">testfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">module_relative</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]:</span>
-                <span class="n">failures</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;passed!&#39;</span><span class="p">)</span>
-
-        <span class="c1"># Check the total number of failues</span>
-        <span class="k">if</span> <span class="n">failures</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failures detected!&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">failures</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All passed!&#39;</span><span class="p">)</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">doctest</span><span class="o">.</span><span class="n">testfile</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">module_relative</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span></div></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-    <span class="sd">&quot;&quot;&quot;For command line execution.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </pre></div>
 
