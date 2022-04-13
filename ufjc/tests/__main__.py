@@ -9,5 +9,5 @@ Example:
 
 """
 
-from .test_doc import TestDocstringExamples
-TestDocstringExamples().test_docstring_python_examples(examples=False)
+from .test_doc import TestDocstringExamples  # pragma: no cover
+TestDocstringExamples().test_docstring_python_examples(examples=False)  # pragma: no cover
