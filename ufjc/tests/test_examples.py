@@ -1,4 +1,4 @@
-"""A module for testing  examples within docstrings.
+"""A module for testing examples within docstrings.
 
 This module checks all other modules in the package
 and ensures that the examples within each docstring

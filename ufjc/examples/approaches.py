@@ -11,7 +11,7 @@ Example:
 
     ::
 
-        python isotensional_approaches --num_samples 1000
+        python -m ufjc.examples.approaches --num_samples 1000
 
 """
 
@@ -36,15 +36,15 @@ def main(**kwargs):
             as a comparison for non-harmonic cases:
 
                 >>> import numpy as np
-                >>> from ufjc.examples import isotensional_approaches
-                >>> isotensional_approaches.main()
-                >>> isotensional_approaches.main(potential='log-squared')
-                >>> isotensional_approaches.main(potential='morse')
-                >>> isotensional_approaches.main(potential='lennard-jones')
-                >>> isotensional_approaches.main(potential='mie', n=10, m=4)
-                >>> isotensional_approaches.main(potential='polynomial',
+                >>> from ufjc.examples import approaches
+                >>> approaches.main(potential='harmonic')
+                >>> approaches.main(potential='log-squared')
+                >>> approaches.main(potential='morse')
+                >>> approaches.main(potential='lennard-jones')
+                >>> approaches.main(potential='mie', n=10, m=4)
+                >>> approaches.main(potential='polynomial',
                 ...     coefficients=[1, 2, 3])
-                >>> isotensional_approaches.main(potential='custom',
+                >>> approaches.main(potential='custom',
                 ...     varepsilon=88,
                 ...     phi=lambda lambda_: 1 - np.cos(lambda_ - 1),
                 ...     eta_link=lambda lambda_: 88*np.sin(lambda_ - 1),
@@ -73,7 +73,7 @@ def main(**kwargs):
         eta_max = 0.95*model.eta_max
     else:
         eta_max = (0.5 + model.kappa/4)
-    eta = np.linspace(1e-2, eta_max, 100)
+    eta = np.linspace(1e-2, eta_max, kwargs.get('num_points_eta', 100))
     eta_mc = np.linspace(eta[0], eta[-1], int(kwargs.get('num_forces', 5)))
 
     # Plot each available approach for the isotensional gamma(eta)

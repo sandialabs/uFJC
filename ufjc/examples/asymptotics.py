@@ -12,7 +12,7 @@ Example:
 
     ::
 
-        python isotensional_asymptotics --varepsilon_list 10 25 100 1000
+        python -m ufjc.examples.asymptotics --varepsilon_list 10 25 100 1000
 
 """
 
@@ -33,28 +33,28 @@ def main(**kwargs):
 
             Compare the asymptotic approaches for many models and parameters:
 
-                >>> from ufjc.examples import isotensional_asymptotics
-                >>> isotensional_asymptotics.main(potential='harmonic',
+                >>> from ufjc.examples import asymptotics
+                >>> asymptotics.main(potential='harmonic',
                 ...     varepsilon_list=[10, 25, 100, 1000])
-                >>> isotensional_asymptotics.main(potential='log-squared',
+                >>> asymptotics.main(potential='log-squared',
                 ...     varepsilon_list=[10, 25, 250])
-                >>> isotensional_asymptotics.main(potential='morse',
+                >>> asymptotics.main(potential='morse',
                 ...     varepsilon_list=[10, 25, 250])
-                >>> isotensional_asymptotics.main(potential='lennard-jones',
+                >>> asymptotics.main(potential='lennard-jones',
                 ...     varepsilon_list=[1, 2, 5, 15])
-                >>> isotensional_asymptotics.main(potential='mie', n=10, m=4,
+                >>> asymptotics.main(potential='mie', n=10, m=4,
                 ...     varepsilon_list=[1, 2, 5, 15])
-                >>> isotensional_asymptotics.main(potential='polynomial',
+                >>> asymptotics.main(potential='polynomial',
                 ...     coefficients=[1, 2, 3],
                 ...     varepsilon_list=[10, 25, 100])
 
     Example:
         Export .csv files for external use:
 
-            >>> from ufjc.examples import isotensional_asymptotics
-            >>> isotensional_asymptotics.main(potential='harmonic',
+            >>> from ufjc.examples import asymptotics
+            >>> asymptotics.main(potential='harmonic',
             ...     varepsilon_list=[10, 25, 100, 1000], csv=1)
-            >>> isotensional_asymptotics.main(potential='morse',
+            >>> asymptotics.main(potential='morse',
             ...     varepsilon_list=[10, 25, 100, 1000], csv=1)
 
     """
@@ -85,7 +85,8 @@ def main(**kwargs):
         # If harmonic potentials, use the exact solution
         if model.potential == 'harmonic':
             eta_scale = model.varepsilon
-            eta = np.linspace(1e-2, 0.3*model.varepsilon, 100)
+            eta = np.linspace(1e-2, 0.3*model.varepsilon,
+                              kwargs.get('num_points_eta', 100))
             if export_csv_not_plot is True:
                 data = np.vstack((model.gamma(eta, approach='exact'),
                                   eta/eta_scale)).T
@@ -100,7 +101,8 @@ def main(**kwargs):
                 eta_scale = model.varepsilon
             else:
                 eta_scale = model.eta_max
-            eta = np.linspace(1e-2, 0.99*eta_scale, 100)
+            eta = np.linspace(1e-2, 0.99*eta_scale,
+                              kwargs.get('num_points_eta', 100))
             if export_csv_not_plot is True:
                 data = np.vstack((model.gamma(eta, approach='quadrature'),
                                   eta/eta_scale)).T
