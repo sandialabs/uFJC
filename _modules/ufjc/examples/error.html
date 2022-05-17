@@ -51,6 +51,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../ufjc.potential.html">ufjc.potential module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ufjc.utility.html">ufjc.utility module</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ufjc.examples.approaches.html">ufjc.examples.approaches module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ufjc.examples.asymptotics.html">ufjc.examples.asymptotics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ufjc.examples.error.html">ufjc.examples.error module</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Extras</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../ufjc.swfjc.html">ufjc.swfjc module</a></li>
@@ -149,7 +155,19 @@
     <span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
 
     <span class="c1"># Enumerate nondimensional energies</span>
-    <span class="n">varepsilons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_points&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">varepsilon</span><span class="o">/</span><span class="n">temp</span><span class="o">.</span><span class="n">kappa</span>
+    <span class="n">log_lims</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale</span><span class="o">*</span><span class="mf">1e1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale</span><span class="o">*</span><span class="mf">1e3</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;log-squared&#39;</span><span class="p">:</span>
+        <span class="n">log_lims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale</span><span class="o">*</span><span class="mf">2.5e1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;potential&#39;</span><span class="p">,</span> <span class="s1">&#39;harmonic&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;lennard-jones&#39;</span><span class="p">:</span>
+        <span class="n">log_lims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale</span><span class="o">*</span><span class="mf">5e1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">varepsilons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span>
+        <span class="n">log_lims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">log_lims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_points&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="c1"># Allocate space</span>
     <span class="n">kappas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">varepsilons</span><span class="p">))</span>
@@ -212,9 +230,9 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">kappas</span><span class="p">,</span> <span class="n">L_2_rel_error_norm_asymptotic</span><span class="p">,</span>
-                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;asymptotic&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+                   <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;asymptotic&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">kappas</span><span class="p">,</span> <span class="n">L_2_rel_error_norm_reduced</span><span class="p">,</span>
-                   <span class="n">label</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+                   <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\kappa$&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$||\gamma - \gamma_0||_2/||\gamma_0||_2$&#39;</span><span class="p">)</span>
