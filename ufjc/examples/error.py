@@ -61,7 +61,19 @@ def main(**kwargs):
     from ufjc import uFJC
 
     # Enumerate nondimensional energies
-    varepsilons = np.logspace(1, 3, kwargs.get('num_points', 100))
+    temp = uFJC(**kwargs)
+    scale = temp.varepsilon/temp.kappa
+    log_lims = [
+        np.log(scale*1e1)/np.log(10),
+        np.log(scale*1e3)/np.log(10)
+    ]
+    if kwargs.get('potential', 'harmonic') == 'log-squared':
+        log_lims[0] = np.log(scale*2.5e1)/np.log(10),
+    elif kwargs.get('potential', 'harmonic') == 'lennard-jones':
+        log_lims[0] = np.log(scale*5e1)/np.log(10),
+    varepsilons = np.logspace(
+        log_lims[0], log_lims[1], kwargs.get('num_points', 10)
+    )
 
     # Allocate space
     kappas = np.zeros(len(varepsilons))
@@ -124,9 +136,9 @@ def main(**kwargs):
     else:
         plt.figure()
         plt.loglog(kappas, L_2_rel_error_norm_asymptotic,
-                   label='asymptotic', linewidth=1.5)
+                   'o-', label='asymptotic', linewidth=1.5)
         plt.loglog(kappas, L_2_rel_error_norm_reduced,
-                   label='reduced', linewidth=1.5)
+                   'o-', label='reduced', linewidth=1.5)
         plt.legend()
         plt.xlabel(r'$\kappa$')
         plt.ylabel(r'$||\gamma - \gamma_0||_2/||\gamma_0||_2$')
