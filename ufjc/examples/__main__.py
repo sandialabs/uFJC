@@ -13,7 +13,9 @@ Example:
 
 """
 
-from ufjc.examples import isotensional_approaches
-from ufjc.examples import isotensional_asymptotics
-isotensional_approaches.main()
-isotensional_asymptotics.main(varepsilon_list=[10, 25, 100, 1000])
+from ufjc.examples import error
+from ufjc.examples import approaches
+from ufjc.examples import asymptotics
+error.main()
+approaches.main()
+asymptotics.main(varepsilon_list=[10, 25, 100, 1000])
