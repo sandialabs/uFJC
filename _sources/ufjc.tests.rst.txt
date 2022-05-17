@@ -8,7 +8,7 @@ Submodules
    :maxdepth: 4
 
    ufjc.tests.__main__
-   ufjc.tests.test_doc
+   ufjc.tests.test_examples
    ufjc.tests.test_style
 
 Module contents

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ufjc.examples.asymptotics module &mdash; uFJC 1.3.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> uFJC
+          </a>
+              <div class="version">
+                1.3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TUTORIAL.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.swfjc.html">ufjc.swfjc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.tests.test_examples.html">ufjc.tests.test_examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ufjc.tests.test_style.html">ufjc.tests.test_style</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">uFJC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ufjc.examples.asymptotics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ufjc.examples.asymptotics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ufjc.examples.asymptotics">
+<span id="ufjc-examples-asymptotics-module"></span><h1>ufjc.examples.asymptotics<a class="headerlink" href="#module-ufjc.examples.asymptotics" title="Permalink to this headline"></a></h1>
+<p>An example module involving isotensional asymptotics.</p>
+<p>This module contains a <code class="docutils literal notranslate"><span class="pre">main</span></code> function that allows the asymptotic
+approaches to be compared to exact approaches, when available, and
+otherwise to the numerical quadrature approach.
+The results are plotted using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.
+When executed at the command line, flags are passed as keyword arguments.</p>
+<p class="rubric">Example</p>
+<p>Compare the asymptotic approaches to the exact approach for the EFJC
+model for a few nondimensional energy scales:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">ufjc</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">asymptotics</span> <span class="o">--</span><span class="n">varepsilon_list</span> <span class="mi">10</span> <span class="mi">25</span> <span class="mi">100</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="ufjc.examples.asymptotics.main">
+<span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/examples/asymptotics.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.examples.asymptotics.main" title="Permalink to this definition"></a></dt>
+<dd><p>Main function for the module.</p>
+<p>This is the main function, called when executing the module from the
+command line, also available when importing the module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> – Arbitrary keyword arguments.
+Passed to <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> instantiation.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>Compare the asymptotic approaches for many models and parameters:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.examples</span> <span class="k">import</span> <span class="n">asymptotics</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;harmonic&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;log-squared&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">250</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">250</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lennard-jones&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;mie&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">coefficients</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_00.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_00.png" />
+</figure>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_01.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_01.png" />
+</figure>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_02.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_02.png" />
+</figure>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_03.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_03.png" />
+</figure>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_04.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_04.png" />
+</figure>
+<figure class="align-default">
+<img alt="_images/ufjc-examples-asymptotics-1_05.png" class="plot-directive" src="_images/ufjc-examples-asymptotics-1_05.png" />
+</figure>
+<p class="rubric">Example</p>
+<p>Export .csv files for external use:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.examples</span> <span class="k">import</span> <span class="n">asymptotics</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;harmonic&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">csv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asymptotics</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">varepsilon_list</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">csv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 National Technology &amp; Engineering Solutions of Sandia,     LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS,     the U.S. Government retains certain rights in this software.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
