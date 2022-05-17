@@ -127,7 +127,7 @@ def main(**kwargs):
             np.vstack((
                 L_2_rel_error_norm_asymptotic,
                 L_2_rel_error_norm_reduced,
-                varepsilons
+                kappas
             )).T,
             delimiter=","
         )
