@@ -63,16 +63,10 @@ def main(**kwargs):
     # Enumerate nondimensional energies
     temp = uFJC(**kwargs)
     scale = temp.varepsilon/temp.kappa
-    log_lims = [
-        np.log(scale*1e1)/np.log(10),
-        np.log(scale*1e3)/np.log(10)
-    ]
-    if kwargs.get('potential', 'harmonic') == 'log-squared':
-        log_lims[0] = np.log(scale*2.5e1)/np.log(10)
-    elif kwargs.get('potential', 'harmonic') == 'lennard-jones':
-        log_lims[0] = np.log(scale*5e1)/np.log(10)
     varepsilons = np.logspace(
-        log_lims[0], log_lims[1], kwargs.get('num_points', 10)
+        np.log(scale*1e1)/np.log(10),
+        np.log(scale*1e4)/np.log(10),
+        int(kwargs.get('num_points', 3))
     )
 
     # Allocate space
