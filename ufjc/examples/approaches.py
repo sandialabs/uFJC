@@ -73,7 +73,7 @@ def main(**kwargs):
         eta_max = 0.95*model.eta_max
     else:
         eta_max = (0.5 + model.kappa/4)
-    eta = np.linspace(1e-2, eta_max, kwargs.get('num_points_eta', 100))
+    eta = np.linspace(1e-2, eta_max, int(kwargs.get('num_points_eta', 100)))
     eta_mc = np.linspace(eta[0], eta[-1], int(kwargs.get('num_forces', 5)))
 
     # Plot each available approach for the isotensional gamma(eta)

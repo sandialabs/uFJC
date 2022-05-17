@@ -86,7 +86,7 @@ def main(**kwargs):
         if model.potential == 'harmonic':
             eta_scale = model.varepsilon
             eta = np.linspace(1e-2, 0.3*model.varepsilon,
-                              kwargs.get('num_points_eta', 100))
+                              int(kwargs.get('num_points_eta', 100)))
             if export_csv_not_plot is True:
                 data = np.vstack((model.gamma(eta, approach='exact'),
                                   eta/eta_scale)).T
@@ -102,7 +102,7 @@ def main(**kwargs):
             else:
                 eta_scale = model.eta_max
             eta = np.linspace(1e-2, 0.99*eta_scale,
-                              kwargs.get('num_points_eta', 100))
+                              int(kwargs.get('num_points_eta', 100)))
             if export_csv_not_plot is True:
                 data = np.vstack((model.gamma(eta, approach='quadrature'),
                                   eta/eta_scale)).T
