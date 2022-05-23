@@ -16,8 +16,6 @@ Example:
 
 """
 
-# NOTE: include k as a function in core class
-
 # Import internal modules
 from .utility import BasicUtility
 
@@ -59,7 +57,7 @@ class SWFJCIsotensional(SWFJCIsometric):
         varsigma (float): The nondimensional well width.
 
     """
-    def __init__(self, N_b=8, varsigma=3):
+    def __init__(self, N_b=8, varsigma=2):
         """Initializes the ``SWFJCIsotensional`` class.
 
         Initialize and inherit all attributes and methods
@@ -69,7 +67,7 @@ class SWFJCIsotensional(SWFJCIsometric):
             N_b (int, optional, default=8):
                 The number of links in the chain.
             varsigma (float, optional, default=3):
-                The nondimensional well width.
+                One plus the nondimensional well width.
 
         """
         super().__init__()
@@ -82,11 +80,11 @@ class SWFJCIsotensional(SWFJCIsometric):
 
         .. math::
             \mathfrak{z}(\eta) =
-            \frac{1}{\eta^3}\left\{
-                \sinh(\eta) - \eta\cosh(\eta)
-                - \sinh[(1+\varsigma)\eta]
-                + (1+\varsigma)\eta\cosh[(1+\varsigma)\eta]
-            \right\}.
+            \frac{1}{\eta^3}\left[
+                \varsigma\eta\cosh(\varsigma\eta)
+                - \sinh(\varsigma\eta)
+                - \eta\cosh(\eta) + \sinh(\eta)
+            \right].
 
         Args:
             v (array_like): The nondimensional force.
@@ -100,10 +98,10 @@ class SWFJCIsotensional(SWFJCIsometric):
         eta[eta_zero] = -1
         z = (
             np.sinh(eta) - eta*np.cosh(eta)
-            - np.sinh((1 + self.varsigma)*eta)
-            + (1 + self.varsigma)*eta*np.cosh((1 + self.varsigma)*eta)
+            - np.sinh(self.varsigma*eta)
+            + self.varsigma*eta*np.cosh(self.varsigma*eta)
         )/eta**3
-        z[eta_zero] = ((1 + self.varsigma)**3 - 1)/3
+        z[eta_zero] = (self.varsigma**3 - 1)/3
         return z
 
     def beta_varphi(self, eta):
@@ -138,7 +136,7 @@ class SWFJCIsotensional(SWFJCIsometric):
                 >>> from ufjc.swfjc import SWFJCIsotensional
                 >>> eta = np.linspace(0, 10, 1000)[1:]
                 >>> _ = plt.figure()
-                >>> for varsigma in [0.01, 1, 3, 10, 30]:
+                >>> for varsigma in [2, 3, 5, 10]:
                 ...     model = SWFJCIsotensional(varsigma=varsigma)
                 ...     _ = plt.plot(eta, model.beta_varphi(eta),
                 ...                  label=r'$\varsigma=$'+str(varsigma))
@@ -150,7 +148,7 @@ class SWFJCIsotensional(SWFJCIsometric):
                 >>> plt.show()
 
         """
-        return (np.log(self.z(0)) - np.log(self.z(eta)))/(1 + self.varsigma)
+        return (np.log(self.z(0)) - np.log(self.z(eta)))/self.varsigma
 
     def gamma_isotensional(self, eta):
         r"""The nondimensional end-to-end length as a function of
@@ -158,8 +156,14 @@ class SWFJCIsotensional(SWFJCIsometric):
 
         .. math::
             \gamma(\eta) =
-            -\frac{\partial}{\partial\eta}\,\beta\varphi(\eta) =
-            \frac{\partial}{\partial\eta}\,\ln\mathfrak{z}(\eta).
+            \frac{\partial}{\partial\eta}\,\ln\mathfrak{z}(\eta) =
+            \frac{
+                \varsigma^2\eta\sinh(\varsigma\eta) - \eta\sinh(\eta)
+            }{
+                \varsigma\eta\cosh(\varsigma\eta)
+                - \sinh(\varsigma\eta)
+                - \eta\cosh(\eta) + \sinh(\eta)
+            }
 
         Note that this becomes the Langevin function of the FJC model
         as :math:`\varsigma` goes to zero,
@@ -186,33 +190,27 @@ class SWFJCIsotensional(SWFJCIsometric):
                 >>> from ufjc.swfjc import SWFJCIsotensional
                 >>> eta = np.linspace(0, 10, 1000)[1:]
                 >>> _ = plt.figure()
-                >>> for varsigma in [0.01, 1, 3, 10, 30]:
+                >>> for varsigma in [2, 3, 5, 10]:
                 ...     model = SWFJCIsotensional(varsigma=varsigma)
-                ...     _ = plt.plot(model.gamma_isotensional(eta), eta,
-                ...                  label=r'$\varsigma=$'+str(varsigma))
+                ...     _ = plt.plot(
+                ...         model.gamma_isotensional(eta)/varsigma,
+                ...         eta, label=r'$\varsigma=$'+str(varsigma))
                 >>> _ = plt.plot(1/np.tanh(eta) - 1/eta, eta,
                 ...              'k--', label='FJC')
-                >>> _ = plt.xlabel(r'$\gamma$')
+                >>> _ = plt.xlabel(r'$\gamma/\varsigma$')
                 >>> _ = plt.ylabel(r'$\eta$')
                 >>> _ = plt.legend()
                 >>> plt.show()
 
         """
         return (
-            3*np.sinh(eta)
-            - 3*np.sinh((1 + self.varsigma)*eta)
-            - 3*eta*np.cosh(eta)
-            + 3*(1 + self.varsigma)*eta*np.cosh((1 + self.varsigma)*eta)
-            + eta**2*np.sinh(eta)
-            - ((1 + self.varsigma)*eta)**2*np.sinh((1 + self.varsigma)*eta)
+            self.varsigma**2*eta*np.sinh(self.varsigma*eta)
+            - eta*np.sinh(eta)
         )/(
-            (1 + self.varsigma)*eta*(
-                np.sinh((1 + self.varsigma)*eta)
-                - (1 + self.varsigma)*eta*np.cosh((1 + self.varsigma)*eta)
-                - np.sinh(eta)
-                + eta*np.cosh(eta)
-            )
-        )
+            np.sinh(eta) - eta*np.cosh(eta)
+            - np.sinh(self.varsigma*eta)
+            + self.varsigma*eta*np.cosh(self.varsigma*eta)
+        ) - 3/eta
 
 
 class SWFJC(SWFJCIsotensional):
