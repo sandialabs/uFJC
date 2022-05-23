@@ -171,7 +171,7 @@ which is a special case that is efficiently treated separately.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsotensional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsotensional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsometric" title="ufjc.swfjc.SWFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.swfjc.SWFJCIsometric</span></code></a></p>
 <p>The SWFJC model class for the isotensional ensemble.</p>
 <dl class="py attribute">
@@ -228,7 +228,7 @@ the nondimensional force for varying <span class="math notranslate nohighlight">
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.swfjc</span> <span class="k">import</span> <span class="n">SWFJCIsotensional</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
 <span class="gp">... </span>    <span class="n">model</span> <span class="o">=</span> <span class="n">SWFJCIsotensional</span><span class="p">(</span><span class="n">varsigma</span><span class="o">=</span><span class="n">varsigma</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">beta_varphi</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span>
 <span class="gp">... </span>                 <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\varsigma=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varsigma</span><span class="p">))</span>
@@ -252,8 +252,14 @@ the nondimensional force for varying <span class="math notranslate nohighlight">
 the nondimensional force in the isotensional ensemble,</p>
 <div class="math notranslate nohighlight">
 \[\gamma(\eta) =
--\frac{\partial}{\partial\eta}\,\beta\varphi(\eta) =
-\frac{\partial}{\partial\eta}\,\ln\mathfrak{z}(\eta).\]</div>
+\frac{\partial}{\partial\eta}\,\ln\mathfrak{z}(\eta) =
+\frac{
+    \varsigma^2\eta\sinh(\varsigma\eta) - \eta\sinh(\eta)
+}{
+    \varsigma\eta\cosh(\varsigma\eta)
+    - \sinh(\varsigma\eta)
+    - \eta\cosh(\eta) + \sinh(\eta)
+}\]</div>
 <p>Note that this becomes the Langevin function of the FJC model
 as <span class="math notranslate nohighlight">\(\varsigma\)</span> goes to zero,</p>
 <div class="math notranslate nohighlight">
@@ -279,13 +285,14 @@ in the isotensional ensemble for varying <span class="math notranslate nohighlig
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.swfjc</span> <span class="k">import</span> <span class="n">SWFJCIsotensional</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">]:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">varsigma</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]:</span>
 <span class="gp">... </span>    <span class="n">model</span> <span class="o">=</span> <span class="n">SWFJCIsotensional</span><span class="p">(</span><span class="n">varsigma</span><span class="o">=</span><span class="n">varsigma</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="n">eta</span><span class="p">),</span> <span class="n">eta</span><span class="p">,</span>
-<span class="gp">... </span>                 <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\varsigma=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varsigma</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">model</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">/</span><span class="n">varsigma</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">eta</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\varsigma=$&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">varsigma</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">eta</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span>
 <span class="gp">... </span>             <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;FJC&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma/\varsigma$&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\eta$&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -303,11 +310,11 @@ in the isotensional ensemble for varying <span class="math notranslate nohighlig
 as a function of the nondimensional force,</p>
 <div class="math notranslate nohighlight">
 \[\mathfrak{z}(\eta) =
-\frac{1}{\eta^3}\left\{
-    \sinh(\eta) - \eta\cosh(\eta)
-    - \sinh[(1+\varsigma)\eta]
-    + (1+\varsigma)\eta\cosh[(1+\varsigma)\eta]
-\right\}.\]</div>
+\frac{1}{\eta^3}\left[
+    \varsigma\eta\cosh(\varsigma\eta)
+    - \sinh(\varsigma\eta)
+    - \eta\cosh(\eta) + \sinh(\eta)
+\right].\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
