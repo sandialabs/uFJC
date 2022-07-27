@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.core module &mdash; uFJC 1.3.1 documentation</title>
@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -96,7 +97,7 @@
            <div itemprop="articleBody">
              
   <section id="module-ufjc.core">
-<span id="ufjc-core-module"></span><h1>ufjc.core<a class="headerlink" href="#module-ufjc.core" title="Permalink to this headline"></a></h1>
+<span id="ufjc-core-module"></span><h1>ufjc.core<a class="headerlink" href="#module-ufjc.core" title="Permalink to this heading"></a></h1>
 <p>The core module for the uFJC single-chain model.</p>
 <p>This module consist of the class <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> which, upon instantiation,
 becomes a uFJC single-chain model instance with methods for computing
@@ -110,7 +111,7 @@ single-chain quantities in either thermodynamic ensemble.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.core.uFJC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">uFJC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/core.html#uFJC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.core.uFJC" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="ufjc.potential.html#ufjc.potential.Potential" title="ufjc.potential.Potential"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.potential.Potential</span></code></a>, <a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric" title="ufjc.isometric.uFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.isometric.uFJCIsometric</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="ufjc.potential.html#ufjc.potential.Potential" title="ufjc.potential.Potential"><code class="xref py py-class docutils literal notranslate"><span class="pre">Potential</span></code></a>, <a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric" title="ufjc.isometric.uFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">uFJCIsometric</span></code></a></p>
 <p>The uFJC single-chain model class.</p>
 <p>This class represents the uFJC single-chain model, meaning that an
 instance of this class is a uFJC single-chain model instance.
@@ -128,7 +129,7 @@ through the documentation for more information.</p>
 <span class="sig-name descname"><span class="pre">N_b</span></span><a class="headerlink" href="#ufjc.core.uFJC.N_b" title="Permalink to this definition"></a></dt>
 <dd><p>The number of links in the chain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -139,7 +140,7 @@ through the documentation for more information.</p>
 <span class="sig-name descname"><span class="pre">init_config</span></span><a class="headerlink" href="#ufjc.core.uFJC.init_config" title="Permalink to this definition"></a></dt>
 <dd><p>The initial configuration for Monte Carlo.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
@@ -150,7 +151,7 @@ through the documentation for more information.</p>
 <span class="sig-name descname"><span class="pre">c_kappa</span></span><a class="headerlink" href="#ufjc.core.uFJC.c_kappa" title="Permalink to this definition"></a></dt>
 <dd><p>The constant used for ideal/Gaussian approximations.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -163,7 +164,7 @@ through the documentation for more information.</p>
 nondimensional equilibrium distribution <code class="docutils literal notranslate"><span class="pre">P_eq</span></code>
 for each approach.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
@@ -174,7 +175,7 @@ for each approach.</p>
 <span class="sig-name descname"><span class="pre">pot</span></span><a class="headerlink" href="#ufjc.core.uFJC.pot" title="Permalink to this definition"></a></dt>
 <dd><p>The link potential model instance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>object</p>
 </dd>
 </dl>
@@ -213,17 +214,17 @@ using a one-dimensional integral over <span class="math notranslate nohighlight"
 <p>The normalization for the distribution is computed for a given approach
 once the function is called using that approach.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gamma</strong> (<em>array_like</em>) – The nondimensional end-to-end length(s).</p></li>
 <li><p><strong>**kwargs</strong> – Arbitrary keyword arguments. Passed to <code class="docutils literal notranslate"><span class="pre">vartheta</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional equilibrium
 probability density(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -281,16 +282,16 @@ methods, such as Monte Carlo calculations, and accurate approximation
 methods, such as the Legendre transformation method which becomes
 valid relatively quickly as <span class="math notranslate nohighlight">\(N_b\)</span> increases.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gamma</strong> (<em>array_like</em>) – The nondimensional end-to-end length(s).</p></li>
 <li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional force(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -335,17 +336,17 @@ distribution of nondimensional end-to-end lengths at equilibrium,</p>
 4\pi\gamma^2 \mathscr{P}_\mathrm{eq}(\gamma)
 .\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gamma</strong> (<em>array_like</em>) – The nondimensional end-to-end length(s).</p></li>
 <li><p><strong>**kwargs</strong> – Arbitrary keyword arguments. Passed to <code class="docutils literal notranslate"><span class="pre">P_eq</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional equilibrium radial
 probability density(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -393,16 +394,16 @@ and for the EFJC model (harmonic link potentials), it is actually
 possible to exactly find <span class="math notranslate nohighlight">\(\gamma(\eta)\)</span> closed-form
 <span id="id6">[<a class="reference internal" href="#id21" title="NK Balabaev and TN Khazanovich. Extension of chains composed of freely joined elastic segments. Russian Journal of Physical Chemistry B, 3(2):242–246, 2009. doi:10.1134/S1990793109020109.">1</a>]</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>eta</strong> (<em>array_like</em>) – The nondimensional force(s).</p></li>
 <li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional end-to-end length(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -464,13 +465,13 @@ and is currently implemented to use the Legendre transformation method
 and the reduced asymptotic approach
 <span id="id8">[<a class="reference internal" href="#id12" title="Michael R. Buche and Meredith N. Silberstein. Chain breaking in the statistical mechanical constitutive theory of polymer networks. Journal of the Mechanics and Physics of Solids, 156:104593, 2021. doi:10.1016/j.jmps.2021.104593.">4</a>]</span>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gamma</strong> (<em>array_like</em>) – The nondimensional end-to-end length(s).</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional net forward reaction rate coefficient(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -496,18 +497,18 @@ in the isometric ensemble, which is generally given by</p>
 -\ln\left[\mathfrak{Q}(\boldsymbol{\gamma})\right]^{1/N_b}
 .\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>gamma</strong> (<em>array_like</em>) – The nondimensional end-to-end length(s).</p></li>
 <li><p><strong>**kwargs</strong> – Arbitrary keyword arguments.
 Passed to <code class="docutils literal notranslate"><span class="pre">vartheta_isometric</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional Helmholtz
 free energy(s) per link.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -539,32 +540,39 @@ nondimensional end-to-end lengths:</p>
 
   <hr><p><strong>References</strong></p>
 <div class="docutils container" id="id9">
-<dl class="citation">
-<dt class="label" id="id21"><span class="brackets"><a class="fn-backref" href="#id6">1</a></span></dt>
-<dd><p>NK Balabaev and TN Khazanovich. Extension of chains composed of freely joined elastic segments. <em>Russian Journal of Physical Chemistry B</em>, 3(2):242–246, 2009. <a class="reference external" href="https://doi.org/10.1134/S1990793109020109">doi:10.1134/S1990793109020109</a>.</p>
-</dd>
-<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
-<dd><p>Michael R. Buche. <em>Fundamental Theories for the Mechanics of Polymer Chains and Networks</em>. PhD thesis, Cornell University, 2021. URL: <a class="reference external" href="https://www.proquest.com/openview/620bd18d1bf93950b88a41aa62ebdb3c">https://www.proquest.com/openview/620bd18d1bf93950b88a41aa62ebdb3c</a>.</p>
-</dd>
-<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id1">3</a></span></dt>
-<dd><p>Michael R. Buche and Meredith N. Silberstein. Statistical mechanical constitutive theory of polymer networks: the inextricable links between distribution, behavior, and ensemble. <em>Physical Review E</em>, 102(012501):012501, 2020. <a class="reference external" href="https://doi.org/10.1103/PhysRevE.102.012501">doi:10.1103/PhysRevE.102.012501</a>.</p>
-</dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id8">4</a></span></dt>
-<dd><p>Michael R. Buche and Meredith N. Silberstein. Chain breaking in the statistical mechanical constitutive theory of polymer networks. <em>Journal of the Mechanics and Physics of Solids</em>, 156:104593, 2021. <a class="reference external" href="https://doi.org/10.1016/j.jmps.2021.104593">doi:10.1016/j.jmps.2021.104593</a>.</p>
-</dd>
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
-<dd><p>Michael R. Buche, Meredith N. Silberstein, and Scott J. Grutzik. On freely-jointed chain models with flexible links. 2022. <a class="reference external" href="https://arxiv.org/abs/2203.05421">arXiv:2203.05421</a>.</p>
-</dd>
-<dt class="label" id="id20"><span class="brackets"><a class="fn-backref" href="#id4">6</a></span></dt>
-<dd><p>Alessandro Fiasconaro and Fernando Falo. Analytical results of the extensible freely jointed chain model. <em>Physica A: Statistical Mechanics and its Applications</em>, 532:121929, 2019. <a class="reference external" href="https://doi.org/10.1016/j.physa.2019.121929">doi:10.1016/j.physa.2019.121929</a>.</p>
-</dd>
-<dt class="label" id="id19"><span class="brackets"><a class="fn-backref" href="#id2">7</a></span></dt>
-<dd><p>Fabio Manca, Stefano Giordano, Pier Luca Palla, Rinaldo Zucca, Fabrizio Cleri, and Luciano Colombo. Elasticity of flexible and semiflexible polymers with extensible bonds in the Gibbs and Helmholtz ensembles. <em>The Journal of Chemical Physics</em>, 136(15):154906, 2012. <a class="reference external" href="https://doi.org/10.1063/1.4704607">doi:10.1063/1.4704607</a>.</p>
-</dd>
-<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id7">8</a></span></dt>
-<dd><p>Robert W. Zwanzig. <em>Nonequilibrium Statistical Mechanics</em>. Oxford university press, 2001. URL: <a class="reference external" href="https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187">https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187</a>.</p>
-</dd>
-</dl>
+<div class="citation" id="id21" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">1</a><span class="fn-bracket">]</span></span>
+<p>NK Balabaev and TN Khazanovich. Extension of chains composed of freely joined elastic segments. <em>Russian Journal of Physical Chemistry B</em>, 3(2):242–246, 2009. <a class="reference external" href="https://doi.org/10.1134/S1990793109020109">doi:10.1134/S1990793109020109</a>.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>Michael R. Buche. <em>Fundamental Theories for the Mechanics of Polymer Chains and Networks</em>. PhD thesis, Cornell University, 2021. URL: <a class="reference external" href="https://www.proquest.com/openview/620bd18d1bf93950b88a41aa62ebdb3c">https://www.proquest.com/openview/620bd18d1bf93950b88a41aa62ebdb3c</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">3</a><span class="fn-bracket">]</span></span>
+<p>Michael R. Buche and Meredith N. Silberstein. Statistical mechanical constitutive theory of polymer networks: the inextricable links between distribution, behavior, and ensemble. <em>Physical Review E</em>, 102(012501):012501, 2020. <a class="reference external" href="https://doi.org/10.1103/PhysRevE.102.012501">doi:10.1103/PhysRevE.102.012501</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">4</a><span class="fn-bracket">]</span></span>
+<p>Michael R. Buche and Meredith N. Silberstein. Chain breaking in the statistical mechanical constitutive theory of polymer networks. <em>Journal of the Mechanics and Physics of Solids</em>, 156:104593, 2021. <a class="reference external" href="https://doi.org/10.1016/j.jmps.2021.104593">doi:10.1016/j.jmps.2021.104593</a>.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>Michael R. Buche, Meredith N. Silberstein, and Scott J. Grutzik. On freely-jointed chain models with flexible links. 2022. <a class="reference external" href="https://arxiv.org/abs/2203.05421">arXiv:2203.05421</a>.</p>
+</div>
+<div class="citation" id="id20" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">6</a><span class="fn-bracket">]</span></span>
+<p>Alessandro Fiasconaro and Fernando Falo. Analytical results of the extensible freely jointed chain model. <em>Physica A: Statistical Mechanics and its Applications</em>, 532:121929, 2019. <a class="reference external" href="https://doi.org/10.1016/j.physa.2019.121929">doi:10.1016/j.physa.2019.121929</a>.</p>
+</div>
+<div class="citation" id="id19" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">7</a><span class="fn-bracket">]</span></span>
+<p>Fabio Manca, Stefano Giordano, Pier Luca Palla, Rinaldo Zucca, Fabrizio Cleri, and Luciano Colombo. Elasticity of flexible and semiflexible polymers with extensible bonds in the Gibbs and Helmholtz ensembles. <em>The Journal of Chemical Physics</em>, 136(15):154906, 2012. <a class="reference external" href="https://doi.org/10.1063/1.4704607">doi:10.1063/1.4704607</a>.</p>
+</div>
+<div class="citation" id="id18" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">8</a><span class="fn-bracket">]</span></span>
+<p>Robert W. Zwanzig. <em>Nonequilibrium Statistical Mechanics</em>. Oxford university press, 2001. URL: <a class="reference external" href="https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187">https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187</a>.</p>
+</div>
+</div>
 </div>
 </section>
 

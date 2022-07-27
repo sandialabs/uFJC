@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.utility module &mdash; uFJC 1.3.1 documentation</title>
@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -96,7 +97,7 @@
            <div itemprop="articleBody">
              
   <section id="module-ufjc.utility">
-<span id="ufjc-utility-module"></span><h1>ufjc.utility<a class="headerlink" href="#module-ufjc.utility" title="Permalink to this headline"></a></h1>
+<span id="ufjc-utility-module"></span><h1>ufjc.utility<a class="headerlink" href="#module-ufjc.utility" title="Permalink to this heading"></a></h1>
 <p>A module for basic single-chain model utilities.</p>
 <p>This module consist of the class <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> which contains
 attributes and methods that are meant to be inherited and utilized as
@@ -149,14 +150,14 @@ basic utilities by an arbitrary single-chain model class.</p>
 <p>This function essentially serves as a wrapper for the algebraic inverse
 of <code class="docutils literal notranslate"><span class="pre">numpy.tanh</span></code> that avoids the singularity from evaluating at zero.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the
 hyperbolic cotangent function.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The hyperbolic cotangent(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -180,7 +181,7 @@ and y, the query value of the function, i.e. y = f(x).</p>
 <p>This function is only meant for bijective f(x).</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>y</strong> (<em>array_like</em>) – The value(s) of the function y.</p></li>
 <li><p><strong>f</strong> (<em>function</em>) – The function f(x).</p></li>
@@ -189,10 +190,10 @@ and y, the query value of the function, i.e. y = f(x).</p>
 Passed to <code class="docutils literal notranslate"><span class="pre">root_scalar</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The corresponding argument(s) x.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -213,13 +214,13 @@ Passed to <code class="docutils literal notranslate"><span class="pre">root_scal
 <p>This function computes the inverse of the Langevin function
 given its query value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>gamma</strong> (<em>array_like</em>) – The value(s) of the Langevin function.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The argument(s) of the Langevin function.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -247,13 +248,13 @@ of the argument eta, which is</p>
 \[\mathcal{L}(\eta) = \coth(\eta) - 1/\eta.\]</div>
 <p>It also avoids dividing by zero at zero argument.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the Langevin function.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The evaluated Langevin function(s).</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -276,13 +277,13 @@ of the ratio of the argument to the hyperbolic sine of the argument,</p>
 \[f(\eta) = \ln\left[\frac{\eta}{\sinh(\eta)}\right].\]</div>
 <p>It also returns zero for zero argument.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>eta</strong> (<em>array_like</em>) – The argument(s) of the function.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The value(s) of the function.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -303,13 +304,13 @@ of the ratio of the argument to the hyperbolic sine of the argument,</p>
 that returns non-array type inputs as shape (1,) numpy arrays
 rather than shape () numpy arrays, which is useful for indexing.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>input</strong> (<em>array_like</em>) – Anything passable to <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code>.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The input as an index-able numpy array.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>

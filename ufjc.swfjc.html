@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.swfjc module &mdash; uFJC 1.3.1 documentation</title>
@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -96,7 +97,7 @@
            <div itemprop="articleBody">
              
   <section id="module-ufjc.swfjc">
-<span id="ufjc-swfjc-module"></span><h1>ufjc.swfjc<a class="headerlink" href="#module-ufjc.swfjc" title="Permalink to this headline"></a></h1>
+<span id="ufjc-swfjc-module"></span><h1>ufjc.swfjc<a class="headerlink" href="#module-ufjc.swfjc" title="Permalink to this heading"></a></h1>
 <p>The core module for the SWFJC single-chain model.</p>
 <p>This module contains the core class <code class="docutils literal notranslate"><span class="pre">SWFJC</span></code> which, upon instantiation,
 becomes a SWFJC single-chain model instance with methods for computing
@@ -114,14 +115,14 @@ which is a special case that is efficiently treated separately.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJC</span></span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJC" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsotensional" title="ufjc.swfjc.SWFJCIsotensional"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.swfjc.SWFJCIsotensional</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsotensional" title="ufjc.swfjc.SWFJCIsotensional"><code class="xref py py-class docutils literal notranslate"><span class="pre">SWFJCIsotensional</span></code></a></p>
 <p>The SWFJC single-chain model class.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJC.N">
 <span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJC.N" title="Permalink to this definition"></a></dt>
 <dd><p>The number of links in the chain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -132,7 +133,7 @@ which is a special case that is efficiently treated separately.</p>
 <span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJC.varsigma" title="Permalink to this definition"></a></dt>
 <dd><p>The nondimensional well width.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -143,14 +144,14 @@ which is a special case that is efficiently treated separately.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsometric">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsometric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsometric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility" title="ufjc.utility.BasicUtility"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.utility.BasicUtility</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility" title="ufjc.utility.BasicUtility"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasicUtility</span></code></a></p>
 <p>The SWFJC model class for the isometric ensemble.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsometric.N">
 <span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric.N" title="Permalink to this definition"></a></dt>
 <dd><p>The number of links in the chain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -161,7 +162,7 @@ which is a special case that is efficiently treated separately.</p>
 <span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsometric.varsigma" title="Permalink to this definition"></a></dt>
 <dd><p>The nondimensional well width.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -172,14 +173,14 @@ which is a special case that is efficiently treated separately.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SWFJCIsotensional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N_b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varsigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/swfjc.html#SWFJCIsotensional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsometric" title="ufjc.swfjc.SWFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">ufjc.swfjc.SWFJCIsometric</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#ufjc.swfjc.SWFJCIsometric" title="ufjc.swfjc.SWFJCIsometric"><code class="xref py py-class docutils literal notranslate"><span class="pre">SWFJCIsometric</span></code></a></p>
 <p>The SWFJC model class for the isotensional ensemble.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.swfjc.SWFJCIsotensional.N">
 <span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.N" title="Permalink to this definition"></a></dt>
 <dd><p>The number of links in the chain.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -190,7 +191,7 @@ which is a special case that is efficiently treated separately.</p>
 <span class="sig-name descname"><span class="pre">varsigma</span></span><a class="headerlink" href="#ufjc.swfjc.SWFJCIsotensional.varsigma" title="Permalink to this definition"></a></dt>
 <dd><p>The nondimensional well width.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -210,13 +211,13 @@ of the FJC model as <span class="math notranslate nohighlight">\(\varsigma\)</sp
 \[\lim_{\varsigma\to 0}\beta\varphi(\eta) =
 \ln\left[\frac{\eta}{\sinh(\eta)}\right].\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional isotensional free energy.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -267,13 +268,13 @@ as <span class="math notranslate nohighlight">\(\varsigma\)</span> goes to zero,
 \coth(\eta) - \frac{1}{\eta} =
 \mathcal{L}(\eta).\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional end-to-end length.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>
@@ -316,13 +317,13 @@ as a function of the nondimensional force,</p>
     - \eta\cosh(\eta) + \sinh(\eta)
 \right].\]</div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>v</strong> (<em>array_like</em>) – The nondimensional force.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The nondimensional isotensional partition function.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy.ndarray</p>
 </dd>
 </dl>

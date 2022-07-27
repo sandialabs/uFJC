@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutorial &mdash; uFJC 1.3.1 documentation</title>
@@ -15,6 +15,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -95,10 +96,10 @@
            <div itemprop="articleBody">
              
   <section id="tutorial">
-<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h1>
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading"></a></h1>
 <p>This is a tutorial demonstrating the basics of the Python package <code class="docutils literal notranslate"><span class="pre">ufjc</span></code>.</p>
 <section id="model-creation">
-<h2>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this headline"></a></h2>
+<h2>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this heading"></a></h2>
 <p>The uFJC single-chain model is imported from the package as the <code class="docutils literal notranslate"><span class="pre">uFJC</span></code> class,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 </pre></div>
@@ -117,7 +118,7 @@
 </div>
 </section>
 <section id="model-functions">
-<h2>Model Functions<a class="headerlink" href="#model-functions" title="Permalink to this headline"></a></h2>
+<h2>Model Functions<a class="headerlink" href="#model-functions" title="Permalink to this heading"></a></h2>
 <p>The model instance has many single-chain functions attributed, such as <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, the nondimensional single-chain mechanical response function,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span>
 <span class="go">&lt;bound method uFJC.gamma of &lt;ufjc.core.uFJC object at 0x7f2ca1b53160&gt;&gt;</span>
@@ -144,7 +145,7 @@
 <img alt="_images/TUTORIAL-1.png" class="plot-directive" src="_images/TUTORIAL-1.png" />
 </figure>
 <section id="thermodynamic-ensembles">
-<h3>Thermodynamic Ensembles<a class="headerlink" href="#thermodynamic-ensembles" title="Permalink to this headline"></a></h3>
+<h3>Thermodynamic Ensembles<a class="headerlink" href="#thermodynamic-ensembles" title="Permalink to this heading"></a></h3>
 <p>Generally, the results differ whether a constant force or a constant end-to-end length is applied to the chain. These are the isotensional and isometric ensembles, respectively, also sometimes called the Gibbs and Helmholtz ensembles. Here, the <code class="docutils literal notranslate"><span class="pre">method</span></code> refers to the method of calculating results in the isometric ensemble. For example, we can use the <code class="docutils literal notranslate"><span class="pre">legendre</span></code> approximation <code class="docutils literal notranslate"><span class="pre">method</span></code> to compute <code class="docutils literal notranslate"><span class="pre">eta</span></code> in the <code class="docutils literal notranslate"><span class="pre">isometric</span></code> ensemble at a nondimensional end-to-end length of 0.23,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="mf">0.23</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="s1">&#39;isometric&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">)</span>
 <span class="go">array([0.70164801])</span>
@@ -152,7 +153,7 @@
 </div>
 </section>
 <section id="calculation-approaches">
-<h3>Calculation Approaches<a class="headerlink" href="#calculation-approaches" title="Permalink to this headline"></a></h3>
+<h3>Calculation Approaches<a class="headerlink" href="#calculation-approaches" title="Permalink to this heading"></a></h3>
 <p>For the isotensional ensemble, there are several calculation approaches available: exact closed-form (FJC, EFJC), numerical quadrature, Monte Carlo, and asymptotically-correct approximations. Here, the <code class="docutils literal notranslate"><span class="pre">approach</span></code> refers to the calculation approach for results in the isotensional ensemble. For example, we can use the <code class="docutils literal notranslate"><span class="pre">reduced</span></code> asymptotic approach to compute <code class="docutils literal notranslate"><span class="pre">gamma</span></code> in the <code class="docutils literal notranslate"><span class="pre">isotensional</span></code> ensemble (default) under a nondimensional force of 55,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
 <span class="go">array([1.0441542])</span>
@@ -160,14 +161,14 @@
 </div>
 </section>
 <section id="combinations">
-<h3>Combinations<a class="headerlink" href="#combinations" title="Permalink to this headline"></a></h3>
+<h3>Combinations<a class="headerlink" href="#combinations" title="Permalink to this heading"></a></h3>
 <p>Since neither ensemble is typically exactly analytically tractable, we often need to combine approximations methods and approaches when working with the isometric ensemble. The above example for the <code class="docutils literal notranslate"><span class="pre">isometric</span></code> ensemble actually used the <code class="docutils literal notranslate"><span class="pre">asymptotic</span></code> approach, since it is the default,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta</span><span class="p">(</span><span class="mf">0.23</span><span class="p">,</span> <span class="n">ensemble</span><span class="o">=</span><span class="s1">&#39;isometric&#39;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;asymptotic&#39;</span><span class="p">)</span>
 <span class="go">array([0.70164801])</span>
 </pre></div>
 </div>
 <section id="outside-applications">
-<h4>Outside Applications<a class="headerlink" href="#outside-applications" title="Permalink to this headline"></a></h4>
+<h4>Outside Applications<a class="headerlink" href="#outside-applications" title="Permalink to this heading"></a></h4>
 <p>Model is readily applicable outside the scope of this package, such as to network constitutive models.
 Here, we apply a few different uFJC models to the eight-chain model configuration:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
