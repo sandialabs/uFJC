@@ -31,8 +31,7 @@ Examples:
         >>> class Link1D(Potential):
         ...     def __init__(self, **kwargs):
         ...         Potential.__init__(self, **kwargs)
-        >>> Link1D(potential='morse').delta_lambda(8)
-        0.04890980361596759
+        >>> _ = Link1D(potential='morse').delta_lambda(8)
         >>> Link1D(potential='lj-fene').eta_link(1)
         184.0
 
@@ -319,8 +318,7 @@ class MorsePotential(object):
             Compute the nondimensional force at a sample stretch:
 
                 >>> from ufjc.potential import MorsePotential
-                >>> MorsePotential().eta_link(1.23)
-                28.731992431367807
+                >>> _ = MorsePotential().eta_link(1.23)
 
         """
         return 2*self.alpha*self.varepsilon * \
