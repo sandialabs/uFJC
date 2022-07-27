@@ -126,8 +126,7 @@
 <span class="sd">        &gt;&gt;&gt; class Link1D(Potential):</span>
 <span class="sd">        ...     def __init__(self, **kwargs):</span>
 <span class="sd">        ...         Potential.__init__(self, **kwargs)</span>
-<span class="sd">        &gt;&gt;&gt; Link1D(potential=&#39;morse&#39;).delta_lambda(8)</span>
-<span class="sd">        0.04890980361596759</span>
+<span class="sd">        &gt;&gt;&gt; _ = Link1D(potential=&#39;morse&#39;).delta_lambda(8)</span>
 <span class="sd">        &gt;&gt;&gt; Link1D(potential=&#39;lj-fene&#39;).eta_link(1)</span>
 <span class="sd">        184.0</span>
 
@@ -414,8 +413,7 @@
 <span class="sd">            Compute the nondimensional force at a sample stretch:</span>
 
 <span class="sd">                &gt;&gt;&gt; from ufjc.potential import MorsePotential</span>
-<span class="sd">                &gt;&gt;&gt; MorsePotential().eta_link(1.23)</span>
-<span class="sd">                28.731992431367807</span>
+<span class="sd">                &gt;&gt;&gt; _ = MorsePotential().eta_link(1.23)</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">varepsilon</span> <span class="o">*</span> \

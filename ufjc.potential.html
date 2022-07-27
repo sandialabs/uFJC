@@ -128,8 +128,7 @@ a nondimensional force of 8:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Link1D</span><span class="p">(</span><span class="n">Potential</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">Potential</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-<span class="go">0.04890980361596759</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lj-fene&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">184.0</span>
 </pre></div>
@@ -1117,8 +1116,7 @@ nondimensional force (optional).</p>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">MorsePotential</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">MorsePotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
-<span class="go">28.731992431367807</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">MorsePotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
