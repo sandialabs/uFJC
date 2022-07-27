@@ -1,8 +1,24 @@
-import os
+import re
 import sys
-sys.path.insert(0, os.path.abspath("../../"))
+from os.path import join, abspath
+sys.path.insert(0, abspath("../../"))
+
+
+def get_version():
+    VERSIONFILE = join('..', '..', 'ufjc', '__init__.py')
+    with open(VERSIONFILE, 'rt') as f:
+        lines = f.readlines()
+    vgx = '^__version__ = \"[0-9+.0-9+.0-9+]*[a-zA-Z0-9]*\"'
+    for line in lines:
+        mo = re.search(vgx, line, re.M)
+        if mo:
+            return mo.group().split('"')[1]
+    raise RuntimeError('Unable to find version in %s.' % (VERSIONFILE,))
+
 
 project = 'uFJC'
+version = get_version()
+release = version
 author = 'Michael R. Buche, Scott J. Grutzik'
 copyright = '2022 National Technology & Engineering Solutions of Sandia, \
     LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, \

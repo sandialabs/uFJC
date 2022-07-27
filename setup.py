@@ -1,3 +1,5 @@
+import re
+from os.path import join
 from distutils.core import setup
 from setuptools import find_packages
 
@@ -8,9 +10,21 @@ def read(fname):
     return content
 
 
+def get_version():
+    VERSIONFILE = join('ufjc', '__init__.py')
+    with open(VERSIONFILE, 'rt') as f:
+        lines = f.readlines()
+    vgx = '^__version__ = \"[0-9+.0-9+.0-9+]*[a-zA-Z0-9]*\"'
+    for line in lines:
+        mo = re.search(vgx, line, re.M)
+        if mo:
+            return mo.group().split('"')[1]
+    raise RuntimeError('Unable to find version in %s.' % (VERSIONFILE,))
+
+
 setup(
     name='ufjc',
-    version='1.3.1',
+    version=get_version(),
     package_dir={'ufjc': 'ufjc'},
     packages=find_packages(),
     description='The Python package for the uFJC single-chain model.',

@@ -3,13 +3,11 @@
 mkdir docs-temp/
 mv docs/* docs-temp/
 cd docs/
-export VERSION=$(grep version ../setup.py | cut -f2 -d "'")
+export VERSION=$(grep __version__ ../ufjc/__init__.py | cut -f2 -d '"')
 sphinx-quickstart --sep -p ufjc -l en -a 'Michael R. Buche, Scott J. Grutzik' -r ${VERSION} -v ${VERSION}
 sphinx-apidoc -e -P -o source ../ ../*setup*
 mv ../docs-temp/* source/
 rm -r ../docs-temp/
-echo "release = '${VERSION}'" >> source/conf.py
-echo "version = '${VERSION}'" >> source/conf.py
 for file in ../ufjc/*.py; do 
     export file_basename=$(basename ${file%.*})
     export rst_file=$(echo "source/*`basename ${file%.*}`.rst")
