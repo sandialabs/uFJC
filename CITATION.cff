@@ -1,25 +1,31 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: If you use this software, please cite it as below.
 authors:
-- family-names: "Buche"
-  given-names: "Michael R."
-  orcid: "https://orcid.org/0000-0003-1892-0502"
-- family-names: "Grutzik"
-  given-names: "Scott J."
-  orcid: "https://orcid.org/0000-0002-6490-3941"
+- family-names: Buche
+  given-names: Michael R.
+  orcid: https://orcid.org/0000-0003-1892-0502
+- family-names: Grutzik
+  given-names: Scott J.
+  orcid: https://orcid.org/0000-0002-6490-3941
 title: "ufjc: the Python package for the uFJC single-chain model"
 doi: 10.5281/zenodo.6114263
-url: "https://github.com/sandialabs/ufjc"
-preferred-citation:
-  type: article
-  authors:
-  - family-names: "Buche"
-    given-names: "Michael R."
-    orcid: "https://orcid.org/0000-0003-1892-0502"
-  - family-names: "Grutzik"
-    given-names: "Scott J."
-    orcid: "https://orcid.org/0000-0002-6490-3941"
-  doi: 10.5281/zenodo.6114263
-  journal: "Zenodo"
-  title: "ufjc: the Python package for the uFJC single-chain model"
-  year: 2022
+url: https://github.com/sandialabs/ufjc
+references:
+  - type: article
+    scope: Cite this paper to reference the theoretical/mathematical concepts.
+    authors:
+      - family-names: Buche
+        given-names: Michael R.
+        orcid: https://orcid.org/0000-0003-1892-0502
+      - family-names: Silberstein
+        given-names: Meredith N.
+        orcid: https://orcid.org/0000-0002-6853-9796
+      - family-names: Grutzik
+        given-names: Scott J.
+        orcid: https://orcid.org/0000-0002-6490-3941
+    title: "Freely jointed chain models with extensible links"
+    year: 2021
+    journal: Physical Review E
+    volume: 106
+    issue: 2
+    doi: 10.1103/PhysRevE.106.024502
