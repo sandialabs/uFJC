@@ -53,6 +53,8 @@ Citation
 
 \M. R. Buche and S. J. Grutzik, ``ufjc``: the Python package for the uFJC single-chain model, `Zenodo (2022) <https://doi.org/10.5281/zenodo.6114263>`_.
 
+\M. R. Buche, M. N. Silberstein, and S. J. Grutzik, Freely jointed chain models with extensible links, `Physical Review E 106, 024502 (2022) <https://doi.org/10.1103/PhysRevE.106.024502>`_.
+
 *********
 Copyright
 *********
