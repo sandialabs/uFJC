@@ -1,10 +1,10 @@
-###################
-uFJC Python Package
-###################
+####
+uFJC
+####
 
 |build| |docs| |codecov| |coveralls| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
 
-The is the Python package ``ufjc`` developed for the uFJC single-chain model, a freely-joined chain model with arbitrary link potential u.
+The Python package for the uFJC single-chain model.
 
 ************
 Installation
