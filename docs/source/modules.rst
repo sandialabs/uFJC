@@ -1,4 +1,4 @@
-ufjc
+uFJC
 ====
 
 .. toctree::
