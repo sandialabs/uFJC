@@ -45,6 +45,7 @@ Information
 - `Examples <https://ufjc.readthedocs.io/en/latest/ufjc.examples.html>`__
 - `License <https://github.com/sandialabs/ufjc/blob/main/LICENSE>`__
 - `Releases <https://github.com/sandialabs/ufjc/releases>`__
+- `Repository <https://github.com/sandialabs/ufjc>`__
 - `Tutorial <https://ufjc.readthedocs.io/en/latest/TUTORIAL.html>`__
 
 ********
