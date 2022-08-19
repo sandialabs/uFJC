@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: asdf
-        run: ${{ secrets.PYPI_TOKEN }} > my_file.txt
+        run: echo ${{ secrets.PYPI_TOKEN }} > my_file.txt
       - name: asdf
         uses: actions/upload-artifact@v3
         with:
