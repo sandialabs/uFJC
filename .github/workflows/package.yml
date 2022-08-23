@@ -46,10 +46,8 @@ jobs:
     needs: [get-version, pypi]
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
       - name: Prepare conda
         run: |
-          rm -rf ${REPO_NAME}
           conda update conda
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
