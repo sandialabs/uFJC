@@ -6,7 +6,8 @@ single-chain quantities in either thermodynamic ensemble.
 The ``SWFJCIsometric`` and ``SWFJCIsotensional`` classes are also
 contained within this module.
 The SWFJC is the uFJC model with a square-well link potential,
-which is a special case that is efficiently treated separately.
+which is a special case that is efficiently treated separately
+as it can be solved exactly :cite:`buche2022freely`.
 
 Example:
     Import and create an instance of the model:

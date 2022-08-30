@@ -139,7 +139,7 @@ class uFJC(Potential, uFJCIsometric):
         where the single-link (since :math:`\gamma(\eta)` is independent of
         :math:`N_b` in the isotensional ensemble for the uFJC model)
         nondimensional isotensional partition function is given by
-        :cite:`buche2022on`
+        :cite:`buche2022freely`
 
         .. math::
             \mathfrak{z}(\eta) =

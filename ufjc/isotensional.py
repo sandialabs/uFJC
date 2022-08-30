@@ -95,7 +95,7 @@ class uFJCIsotensional(BasicUtility):
 
         This function provides the asymptotic approach for
         obtaining :math:`\gamma(\eta)` in the isotensional ensemble
-        :cite:`buche2022on`,
+        :cite:`buche2022freely`,
         a composite approximation for all :math:`\eta`
         that is valid for :math:`\varepsilon\gg 1`,
 
@@ -225,7 +225,7 @@ class uFJCIsotensional(BasicUtility):
             + \frac{\partial}{\partial\eta}\,\ln\left[1+g(\eta)\right]
             ,
 
-        where the function :math:`g(\eta)` is given by :cite:`buche2022on`
+        where the function :math:`g(\eta)` is given by :cite:`buche2022freely`
 
         .. math::
             g(\eta) =
