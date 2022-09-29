@@ -36,12 +36,13 @@ setup(
     keywords=['ufjc', 'polymers', 'statistical mechanics', 'thermodynamics'],
     install_requires=['numpy', 'pycodestyle', 'scipy'],
     extras_require={
-      'docs': ['matplotlib',
-               'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
+      'docs': ['matplotlib', 'sphinx', 'sphinx-copybutton',
+               'sphinx-rtd-theme', 'sphinxcontrib-bibtex'],
       'plotting': ['matplotlib'],
       'testing': ['matplotlib', 'pytest', 'pytest-cov'],
       'all': ['matplotlib', 'pytest', 'pytest-cov',
-              'sphinx', 'sphinx-rtd-theme', 'sphinxcontrib-bibtex']
+              'sphinx', 'sphinx-copybutton',
+              'sphinx-rtd-theme', 'sphinxcontrib-bibtex']
     },
     classifiers=[
         'License :: OSI Approved :: BSD License',

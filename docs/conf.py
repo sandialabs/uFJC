@@ -29,6 +29,7 @@ html_static_path = ['_static']
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {'navigation_depth': 8}
 extensions = [
+    'sphinx_copybutton',
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
