@@ -7,6 +7,7 @@
   <title>ufjc.utility module &mdash; uFJC 1.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -17,6 +18,9 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -54,7 +58,20 @@
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.utility</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.utility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.utility.BasicUtility"><code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.maximum_float"><code class="docutils literal notranslate"><span class="pre">BasicUtility.maximum_float</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.maximum_exponent"><code class="docutils literal notranslate"><span class="pre">BasicUtility.maximum_exponent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.coth"><code class="docutils literal notranslate"><span class="pre">BasicUtility.coth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.inv_fun_1D"><code class="docutils literal notranslate"><span class="pre">BasicUtility.inv_fun_1D()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.inv_langevin"><code class="docutils literal notranslate"><span class="pre">BasicUtility.inv_langevin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.langevin"><code class="docutils literal notranslate"><span class="pre">BasicUtility.langevin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.log_over_sinh"><code class="docutils literal notranslate"><span class="pre">BasicUtility.log_over_sinh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.utility.BasicUtility.np_array"><code class="docutils literal notranslate"><span class="pre">BasicUtility.np_array()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
 <ul>
@@ -106,9 +123,9 @@ basic utilities by an arbitrary single-chain model class.</p>
 <p>Create a freely-jointed chain single-chain model class <code class="docutils literal notranslate"><span class="pre">FJC</span></code> that
 inherits the <code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code> class in order to utilize the
 Langevin function for the nondimensional isotensional mechanical response:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">FJC</span><span class="p">(</span><span class="n">BasicUtility</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="gp">... </span>       <span class="n">BasicUtility</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">gamma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span>
@@ -163,7 +180,7 @@ hyperbolic cotangent function.</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the hyperbolic cotangent for several argument values:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">coth</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
 <span class="go">array([4.49423284e+307, 4.42422373e+000, 1.00000000e+000])</span>
 </pre></div>
@@ -199,7 +216,7 @@ Passed to <code class="docutils literal notranslate"><span class="pre">root_scal
 </dl>
 <p class="rubric">Example</p>
 <p>Invert a polynomial function:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">8</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">23</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">([</span><span class="mi">55</span><span class="p">,</span> <span class="mi">88</span><span class="p">],</span> <span class="n">f</span><span class="p">)</span>
 <span class="go">array([ 9.8712079, 11.7121826])</span>
@@ -227,7 +244,7 @@ given its query value.</p>
 <p class="rubric">Example</p>
 <p>Check that <span class="math notranslate nohighlight">\(\mathcal{L}^{-1}[\mathcal{L}(\eta)] = \eta\,\)</span>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">check_langevin</span><span class="p">(</span><span class="n">eta</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">langevin</span> <span class="o">=</span> <span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">langevin</span>
 <span class="gp">... </span>    <span class="n">inv_langevin</span> <span class="o">=</span> <span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">inv_langevin</span>
@@ -260,7 +277,7 @@ of the argument eta, which is</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the Langevin function for several argument values:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">langevin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
 <span class="go">array([0.        , 0.31303529, 0.87500023, 1.        ])</span>
 </pre></div>
@@ -289,7 +306,7 @@ of the ratio of the argument to the hyperbolic sine of the argument,</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the function for several argument values:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">BasicUtility</span><span class="p">()</span><span class="o">.</span><span class="n">log_over_sinh</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mi">888</span><span class="p">])</span>
 <span class="go">array([ 0.00000000e+00, -8.80117196e-03, -8.80517881e+02])</span>
 </pre></div>
@@ -317,7 +334,7 @@ rather than shape () numpy arrays, which is useful for indexing.</p>
 <p class="rubric">Example</p>
 <p>Compare attempts to index the numpy array of an integer:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="k">import</span> <span class="n">BasicUtility</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.utility</span> <span class="kn">import</span> <span class="n">BasicUtility</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">8</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gp">... </span><span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>

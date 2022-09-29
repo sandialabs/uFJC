@@ -7,6 +7,7 @@
   <title>ufjc.potential module &mdash; uFJC 1.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -17,6 +18,9 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -53,7 +57,105 @@
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.potential</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.potential</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.CustomPotential"><code class="docutils literal notranslate"><span class="pre">CustomPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.potential"><code class="docutils literal notranslate"><span class="pre">CustomPotential.potential</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">CustomPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.phi"><code class="docutils literal notranslate"><span class="pre">CustomPotential.phi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">CustomPotential.eta_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">CustomPotential.delta_lambda</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.kappa"><code class="docutils literal notranslate"><span class="pre">CustomPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.c"><code class="docutils literal notranslate"><span class="pre">CustomPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.CustomPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">CustomPotential.beta_u()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.HarmonicPotential"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.kappa"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.c"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.HarmonicPotential.phi"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.LJFENEPotential"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.c"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.eta_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.lambda_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LJFENEPotential.phi"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.c"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.eta_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.lambda_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LennardJonesPotential.phi"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.c"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.eta_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.lambda_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.LogSquaredPotential.phi"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.MiePotential"><code class="docutils literal notranslate"><span class="pre">MiePotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">MiePotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.n"><code class="docutils literal notranslate"><span class="pre">MiePotential.n</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.m"><code class="docutils literal notranslate"><span class="pre">MiePotential.m</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.kappa"><code class="docutils literal notranslate"><span class="pre">MiePotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.c"><code class="docutils literal notranslate"><span class="pre">MiePotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.eta_max"><code class="docutils literal notranslate"><span class="pre">MiePotential.eta_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">MiePotential.lambda_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.beta_u"><code class="docutils literal notranslate"><span class="pre">MiePotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.eta_link"><code class="docutils literal notranslate"><span class="pre">MiePotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MiePotential.phi"><code class="docutils literal notranslate"><span class="pre">MiePotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.MorsePotential"><code class="docutils literal notranslate"><span class="pre">MorsePotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">MorsePotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.alpha"><code class="docutils literal notranslate"><span class="pre">MorsePotential.alpha</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.kappa"><code class="docutils literal notranslate"><span class="pre">MorsePotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.c"><code class="docutils literal notranslate"><span class="pre">MorsePotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.eta_max"><code class="docutils literal notranslate"><span class="pre">MorsePotential.eta_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">MorsePotential.lambda_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.beta_u"><code class="docutils literal notranslate"><span class="pre">MorsePotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">MorsePotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.eta_link"><code class="docutils literal notranslate"><span class="pre">MorsePotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.MorsePotential.phi"><code class="docutils literal notranslate"><span class="pre">MorsePotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.PolynomialPotential"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.varepsilon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.coefficients"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.coefficients</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.kappa"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.c"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.c</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.beta_u()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.eta_link()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.PolynomialPotential.phi"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.potential.Potential"><code class="docutils literal notranslate"><span class="pre">Potential</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.Potential.potential"><code class="docutils literal notranslate"><span class="pre">Potential.potential</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.potential.Potential.pot"><code class="docutils literal notranslate"><span class="pre">Potential.pot</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
@@ -108,14 +210,14 @@ assign a potential to a given model using keyword arguments.</p>
 <p>Create a Lennard-Jones potential model with
 a nondimensional potential energy scale of 8 and evaluate
 the nondimensional potential energy at a stretch of 1.23:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LennardJonesPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LennardJonesPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LennardJonesPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 <span class="go">4.046654314368616</span>
 </pre></div>
 </div>
 <p>Do the same with the Lenard-Jones-FENE potential:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LJFENEPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LJFENEPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LJFENEPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 <span class="go">8.510502022381505</span>
@@ -124,9 +226,9 @@ the nondimensional potential energy at a stretch of 1.23:</p>
 <p>Create a single-link model in one dimension, instantiate it with
 the Morse potential, and compute the incremental link stretch under
 a nondimensional force of 8:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">Potential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">Potential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Link1D</span><span class="p">(</span><span class="n">Potential</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">Potential</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lj-fene&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -344,7 +446,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">HarmonicPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">HarmonicPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">HarmonicPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
 <span class="go">70.4</span>
 </pre></div>
@@ -781,7 +883,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">LogSquaredPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LogSquaredPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">LogSquaredPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
 <span class="go">28.736236950770266</span>
 </pre></div>
@@ -1115,7 +1217,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="k">import</span> <span class="n">MorsePotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">MorsePotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">MorsePotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 </pre></div>
 </div>

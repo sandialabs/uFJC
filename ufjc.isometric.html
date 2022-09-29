@@ -7,6 +7,7 @@
   <title>ufjc.isometric module &mdash; uFJC 1.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -17,6 +18,9 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -50,7 +54,18 @@
 <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.isometric</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.isometric</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.beta_U_config"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.beta_U_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.eta_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.eta_isometric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.eta_isometric_legendre"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.eta_isometric_legendre()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.gamma_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.gamma_isometric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.vartheta_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.vartheta_isometric()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.isometric.uFJCIsometric.vartheta_isometric_legendre"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.vartheta_isometric_legendre()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
@@ -104,7 +119,7 @@ methods for computing single-chain quantities
 in the isometric (constant end-to-end vector) thermodynamic ensemble.</p>
 <p class="rubric">Example</p>
 <p>Import and instantiate the class:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.isometric</span> <span class="k">import</span> <span class="n">uFJCIsometric</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.isometric</span> <span class="kn">import</span> <span class="n">uFJCIsometric</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">class_instance</span> <span class="o">=</span> <span class="n">uFJCIsometric</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -140,7 +155,7 @@ a <span class="math notranslate nohighlight">\((N_b+1)\)</span>-by-3 numpy array
 <p class="rubric">Example</p>
 <p>Compute the potential energy of the uniformly-stretched
 default initial configuration:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lennard-jones&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_U_config</span><span class="p">(</span><span class="mf">1.1</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">init_config</span><span class="p">)</span>
 <span class="go">133.5368021523727</span>
@@ -176,7 +191,7 @@ nondimensional end-to-end length of 0.8 in the isometric ensemble,
 using the Legendre transformation method from the isotensional
 ensemble, and using the reduced asymptotic approach to compute
 quantities in the isotensional ensemble:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta_isometric</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> \
 <span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
@@ -186,7 +201,7 @@ quantities in the isotensional ensemble:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Only the Legendre transformation method is currently unavailable:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uFJC</span><span class="p">()</span><span class="o">.</span><span class="n">eta_isometric</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
 <span class="go">array([nan])</span>
 </pre></div>
@@ -222,7 +237,7 @@ Passed to <code class="docutils literal notranslate"><span class="pre">_eta_isot
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a large nondimensional
 end-to-end length using the Legendre transformation method:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">eta_isometric_legendre</span><span class="p">(</span><span class="mf">1.3</span><span class="p">)</span>
 <span class="go">array([28.71102552])</span>
@@ -255,7 +270,7 @@ Passed to <code class="docutils literal notranslate"><span class="pre">_eta_isom
 <p class="rubric">Example</p>
 <p>Check that <span class="math notranslate nohighlight">\(\gamma[\eta(\gamma)] = \gamma\,\)</span>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">check_eta</span><span class="p">(</span><span class="n">gamma</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="n">eta_fun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">gamma</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">eta_isometric</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
@@ -296,7 +311,7 @@ nondimensional end-to-end length of 0.8 in the isometric ensemble,
 using the Legendre transformation method from the isotensional
 ensemble, and using the reduced asymptotic approach to compute
 quantities in the isotensional ensemble:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> \
 <span class="gp">... </span>    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;legendre&#39;</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;reduced&#39;</span><span class="p">)</span>
@@ -306,7 +321,7 @@ quantities in the isotensional ensemble:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The exact method is currently unavailable:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uFJC</span><span class="p">()</span><span class="o">.</span><span class="n">vartheta_isometric</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
 <span class="go">nan</span>
 </pre></div>
@@ -353,7 +368,7 @@ Passed to the chosen method.</p></li>
 <p class="rubric">Example</p>
 <p>Approximate the nondimensional Helmholtz free energy per link
 using the Legendre method and both asymptotic approaches:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;log-squared&#39;</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 <span class="go">array([1.90431381])</span>
@@ -364,7 +379,7 @@ using the Legendre method and both asymptotic approaches:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Only the asymptotic approaches are currently unavailable:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;log-squared&#39;</span><span class="p">,</span> <span class="n">varepsilon</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
 <span class="go">nan</span>

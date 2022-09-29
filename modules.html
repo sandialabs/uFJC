@@ -7,6 +7,7 @@
   <title>uFJC &mdash; uFJC 1.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -17,6 +18,9 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -98,7 +102,23 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.html">ufjc</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.core.html">ufjc.core</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC"><code class="docutils literal notranslate"><span class="pre">uFJC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.N_b"><code class="docutils literal notranslate"><span class="pre">uFJC.N_b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.init_config"><code class="docutils literal notranslate"><span class="pre">uFJC.init_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.c_kappa"><code class="docutils literal notranslate"><span class="pre">uFJC.c_kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.P_eq_normalizations"><code class="docutils literal notranslate"><span class="pre">uFJC.P_eq_normalizations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.pot"><code class="docutils literal notranslate"><span class="pre">uFJC.pot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.P_eq"><code class="docutils literal notranslate"><span class="pre">uFJC.P_eq()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.eta"><code class="docutils literal notranslate"><span class="pre">uFJC.eta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.g_eq"><code class="docutils literal notranslate"><span class="pre">uFJC.g_eq()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.gamma"><code class="docutils literal notranslate"><span class="pre">uFJC.gamma()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.k"><code class="docutils literal notranslate"><span class="pre">uFJC.k()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.core.html#ufjc.core.uFJC.vartheta"><code class="docutils literal notranslate"><span class="pre">uFJC.vartheta()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ufjc.examples.html">ufjc.examples package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ufjc.examples.html#submodules">Submodules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ufjc.examples.__main__.html">ufjc.examples.__main__</a></li>
@@ -111,14 +131,182 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ufjc.examples.__main__.html">ufjc.examples.__main__</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.approaches.html">ufjc.examples.approaches</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.asymptotics.html">ufjc.examples.asymptotics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.error.html">ufjc.examples.error</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.swfjc.html">ufjc.swfjc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.approaches.html">ufjc.examples.approaches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.examples.approaches.html#ufjc.examples.approaches.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.asymptotics.html">ufjc.examples.asymptotics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.examples.asymptotics.html#ufjc.examples.asymptotics.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.examples.error.html">ufjc.examples.error</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.examples.error.html#ufjc.examples.error.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.beta_U_config"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.beta_U_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.eta_isometric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric_legendre"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.eta_isometric_legendre()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.gamma_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.gamma_isometric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.vartheta_isometric()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric_legendre"><code class="docutils literal notranslate"><span class="pre">uFJCIsometric.vartheta_isometric_legendre()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.beta_Pi_config"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.beta_Pi_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.efjc_gamma_isotensional_exact"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.efjc_gamma_isotensional_exact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.eta_isotensional"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.eta_isotensional()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_MHMCMC"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional_MHMCMC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional_asymptotic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_asymptotic_reduced"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional_asymptotic_reduced()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_exact"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional_exact()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.isotensional.html#ufjc.isotensional.uFJCIsotensional.gamma_isotensional_quadrature"><code class="docutils literal notranslate"><span class="pre">uFJCIsotensional.gamma_isotensional_quadrature()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.monte_carlo.html">ufjc.monte_carlo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC"><code class="docutils literal notranslate"><span class="pre">MHMCMC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.N_b"><code class="docutils literal notranslate"><span class="pre">MHMCMC.N_b</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.beta_U_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.beta_U_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.beta_Pi_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.beta_Pi_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.init_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.init_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.burn_in"><code class="docutils literal notranslate"><span class="pre">MHMCMC.burn_in()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.gamma_isotensional_MHMCMC"><code class="docutils literal notranslate"><span class="pre">MHMCMC.gamma_isotensional_MHMCMC()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.gamma_isotensional_MHMCMC_serial"><code class="docutils literal notranslate"><span class="pre">MHMCMC.gamma_isotensional_MHMCMC_serial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.mh_next_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.mh_next_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.mh_next_config_append"><code class="docutils literal notranslate"><span class="pre">MHMCMC.mh_next_config_append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.parallel_calculation"><code class="docutils literal notranslate"><span class="pre">MHMCMC.parallel_calculation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.monte_carlo.html#ufjc.monte_carlo.MHMCMC.trial_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.trial_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential"><code class="docutils literal notranslate"><span class="pre">CustomPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.potential"><code class="docutils literal notranslate"><span class="pre">CustomPotential.potential</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">CustomPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.phi"><code class="docutils literal notranslate"><span class="pre">CustomPotential.phi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">CustomPotential.eta_link</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">CustomPotential.delta_lambda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.kappa"><code class="docutils literal notranslate"><span class="pre">CustomPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.c"><code class="docutils literal notranslate"><span class="pre">CustomPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.CustomPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">CustomPotential.beta_u()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.kappa"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.c"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.HarmonicPotential.phi"><code class="docutils literal notranslate"><span class="pre">HarmonicPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.c"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.eta_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.lambda_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LJFENEPotential.phi"><code class="docutils literal notranslate"><span class="pre">LJFENEPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.c"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.eta_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.lambda_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LennardJonesPotential.phi"><code class="docutils literal notranslate"><span class="pre">LennardJonesPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.kappa"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.c"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.eta_max"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.eta_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.lambda_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.LogSquaredPotential.phi"><code class="docutils literal notranslate"><span class="pre">LogSquaredPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential"><code class="docutils literal notranslate"><span class="pre">MiePotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">MiePotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.n"><code class="docutils literal notranslate"><span class="pre">MiePotential.n</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.m"><code class="docutils literal notranslate"><span class="pre">MiePotential.m</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.kappa"><code class="docutils literal notranslate"><span class="pre">MiePotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.c"><code class="docutils literal notranslate"><span class="pre">MiePotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.eta_max"><code class="docutils literal notranslate"><span class="pre">MiePotential.eta_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">MiePotential.lambda_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.beta_u"><code class="docutils literal notranslate"><span class="pre">MiePotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.eta_link"><code class="docutils literal notranslate"><span class="pre">MiePotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MiePotential.phi"><code class="docutils literal notranslate"><span class="pre">MiePotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential"><code class="docutils literal notranslate"><span class="pre">MorsePotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">MorsePotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.alpha"><code class="docutils literal notranslate"><span class="pre">MorsePotential.alpha</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.kappa"><code class="docutils literal notranslate"><span class="pre">MorsePotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.c"><code class="docutils literal notranslate"><span class="pre">MorsePotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.eta_max"><code class="docutils literal notranslate"><span class="pre">MorsePotential.eta_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.lambda_max"><code class="docutils literal notranslate"><span class="pre">MorsePotential.lambda_max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.beta_u"><code class="docutils literal notranslate"><span class="pre">MorsePotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.delta_lambda"><code class="docutils literal notranslate"><span class="pre">MorsePotential.delta_lambda()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.eta_link"><code class="docutils literal notranslate"><span class="pre">MorsePotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.MorsePotential.phi"><code class="docutils literal notranslate"><span class="pre">MorsePotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.varepsilon"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.varepsilon</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.coefficients"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.coefficients</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.kappa"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.kappa</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.c"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.c</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.beta_u"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.beta_u()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.eta_link"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.eta_link()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.PolynomialPotential.phi"><code class="docutils literal notranslate"><span class="pre">PolynomialPotential.phi()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.Potential"><code class="docutils literal notranslate"><span class="pre">Potential</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.Potential.potential"><code class="docutils literal notranslate"><span class="pre">Potential.potential</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.potential.html#ufjc.potential.Potential.pot"><code class="docutils literal notranslate"><span class="pre">Potential.pot</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.swfjc.html">ufjc.swfjc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJC"><code class="docutils literal notranslate"><span class="pre">SWFJC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJC.N"><code class="docutils literal notranslate"><span class="pre">SWFJC.N</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJC.varsigma"><code class="docutils literal notranslate"><span class="pre">SWFJC.varsigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric"><code class="docutils literal notranslate"><span class="pre">SWFJCIsometric</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric.N"><code class="docutils literal notranslate"><span class="pre">SWFJCIsometric.N</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric.varsigma"><code class="docutils literal notranslate"><span class="pre">SWFJCIsometric.varsigma</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.N"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional.N</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.varsigma"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional.varsigma</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.beta_varphi"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional.beta_varphi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.gamma_isotensional"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional.gamma_isotensional()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.z"><code class="docutils literal notranslate"><span class="pre">SWFJCIsotensional.z()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ufjc.tests.html">ufjc.tests package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ufjc.tests.html#submodules">Submodules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="ufjc.tests.__main__.html">ufjc.tests.__main__</a></li>
@@ -130,9 +318,34 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ufjc.tests.__main__.html">ufjc.tests.__main__</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.tests.test_examples.html">ufjc.tests.test_examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.tests.test_style.html">ufjc.tests.test_style</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.tests.test_examples.html">ufjc.tests.test_examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.tests.test_examples.html#ufjc.tests.test_examples.TestDocstringExamples"><code class="docutils literal notranslate"><span class="pre">TestDocstringExamples</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.tests.test_examples.html#ufjc.tests.test_examples.TestDocstringExamples.test_docstring_python_examples"><code class="docutils literal notranslate"><span class="pre">TestDocstringExamples.test_docstring_python_examples()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.tests.test_style.html">ufjc.tests.test_style</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.tests.test_style.html#ufjc.tests.test_style.TestCodeStyle"><code class="docutils literal notranslate"><span class="pre">TestCodeStyle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.tests.test_style.html#ufjc.tests.test_style.TestCodeStyle.test_pep8_conformance"><code class="docutils literal notranslate"><span class="pre">TestCodeStyle.test_pep8_conformance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility"><code class="docutils literal notranslate"><span class="pre">BasicUtility</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.maximum_float"><code class="docutils literal notranslate"><span class="pre">BasicUtility.maximum_float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.maximum_exponent"><code class="docutils literal notranslate"><span class="pre">BasicUtility.maximum_exponent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.coth"><code class="docutils literal notranslate"><span class="pre">BasicUtility.coth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.inv_fun_1D"><code class="docutils literal notranslate"><span class="pre">BasicUtility.inv_fun_1D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.inv_langevin"><code class="docutils literal notranslate"><span class="pre">BasicUtility.inv_langevin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.langevin"><code class="docutils literal notranslate"><span class="pre">BasicUtility.langevin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.log_over_sinh"><code class="docutils literal notranslate"><span class="pre">BasicUtility.log_over_sinh()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ufjc.utility.html#ufjc.utility.BasicUtility.np_array"><code class="docutils literal notranslate"><span class="pre">BasicUtility.np_array()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

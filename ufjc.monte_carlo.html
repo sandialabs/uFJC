@@ -7,6 +7,7 @@
   <title>ufjc.monte_carlo module &mdash; uFJC 1.3.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
       <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -17,6 +18,9 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -52,7 +56,23 @@
 <li class="toctree-l1"><a class="reference internal" href="ufjc.core.html">ufjc.core</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isometric.html">ufjc.isometric</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.isotensional.html">ufjc.isotensional</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.monte_carlo</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ufjc.monte_carlo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC"><code class="docutils literal notranslate"><span class="pre">MHMCMC</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.N_b"><code class="docutils literal notranslate"><span class="pre">MHMCMC.N_b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.beta_U_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.beta_U_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.beta_Pi_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.beta_Pi_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.init_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.init_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.burn_in"><code class="docutils literal notranslate"><span class="pre">MHMCMC.burn_in()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.gamma_isotensional_MHMCMC"><code class="docutils literal notranslate"><span class="pre">MHMCMC.gamma_isotensional_MHMCMC()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.gamma_isotensional_MHMCMC_serial"><code class="docutils literal notranslate"><span class="pre">MHMCMC.gamma_isotensional_MHMCMC_serial()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.mh_next_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.mh_next_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.mh_next_config_append"><code class="docutils literal notranslate"><span class="pre">MHMCMC.mh_next_config_append()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.parallel_calculation"><code class="docutils literal notranslate"><span class="pre">MHMCMC.parallel_calculation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufjc.monte_carlo.MHMCMC.trial_config"><code class="docutils literal notranslate"><span class="pre">MHMCMC.trial_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.potential.html">ufjc.potential</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ufjc.utility.html">ufjc.utility</a></li>
 </ul>
@@ -104,8 +124,8 @@ attributes and methods that allow single-chain quantities
 to be computed using the Metropolis-Hastings Markov chain Monte Carlo method.</p>
 <p class="rubric">Example</p>
 <p>Import and instantiate the class with a single-chain model:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="k">import</span> <span class="n">MHMCMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="kn">import</span> <span class="n">MHMCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">class_instance</span> <span class="o">=</span> <span class="n">MHMCMC</span><span class="p">(</span><span class="n">uFJC</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -201,8 +221,8 @@ Passed to <code class="docutils literal notranslate"><span class="pre">parallel_
 <p>Calculate the nondimensional end-to-end length under a
 nondimensional force of 23 and ensure that it is within
 one percent of the exact result:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="k">import</span> <span class="n">MHMCMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="kn">import</span> <span class="n">MHMCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_MHMCMC</span> <span class="o">=</span> <span class="n">MHMCMC</span><span class="p">(</span><span class="n">uFJC</span><span class="p">())</span><span class="o">.</span><span class="n">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_exact</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gamma_exact</span> <span class="o">-</span> <span class="n">gamma_MHMCMC</span><span class="p">)</span><span class="o">/</span><span class="n">gamma_exact</span> <span class="o">&lt;</span> <span class="mf">1e-2</span>
@@ -238,8 +258,8 @@ Passed to <code class="docutils literal notranslate"><span class="pre">mh_next_c
 nondimensional force of 23 and ensure that it is within
 one percent of the exact result:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="k">import</span> <span class="n">MHMCMC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="kn">import</span> <span class="n">MHMCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_MHMCMC</span> <span class="o">=</span> <span class="n">MHMCMC</span><span class="p">(</span><span class="n">uFJC</span><span class="p">())</span><span class="o">.</span> \
 <span class="gp">... </span>    <span class="n">gamma_isotensional_MHMCMC</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="n">num_processes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_exact</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">()</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="n">approach</span><span class="o">=</span><span class="s1">&#39;exact&#39;</span><span class="p">)</span>
@@ -355,8 +375,8 @@ in order to keep the end-to-end vector fixed.</p>
 <p class="rubric">Example</p>
 <p>Generate a trial configuration in the isometric ensemble and
 ensure that the end-to-end remains unchanged:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="k">import</span> <span class="n">uFJC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="k">import</span> <span class="n">MHMCMC</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc</span> <span class="kn">import</span> <span class="n">uFJC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.monte_carlo</span> <span class="kn">import</span> <span class="n">MHMCMC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">uFJC</span><span class="p">(</span><span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">prev_config</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">init_config</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trial_config</span> <span class="o">=</span> <span class="n">MHMCMC</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">trial_config</span><span class="p">(</span><span class="n">prev_config</span><span class="p">,</span>
