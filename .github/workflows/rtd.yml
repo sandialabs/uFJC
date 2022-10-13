@@ -58,6 +58,7 @@ jobs:
           git config user.email "<>"
           git add README.rst
           git add .readthedocs.yaml
+          git add setup.py
           git add docs/
           git add ufjc/
           git commit --allow-empty -m 'update from main branch'
