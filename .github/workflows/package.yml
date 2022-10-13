@@ -40,42 +40,44 @@ jobs:
       - name: Install and test the package
         run: |
           python -m pip install --upgrade pip
-          pip install ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
-          python -m ${REPO_NAME}.tests
+          pip install ufjc==${{ needs.get-version.outputs.VERSION }}
+          python -m ufjc.tests
   anaconda:
     needs: [get-version, pypi]
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v2
       - name: Prepare conda
         run: |
+          rm -rf ufjc
           conda update conda
           conda install anaconda-client conda-build
       - name: Create conda recipe from PyPI
-        run: conda skeleton pypi --noarch-python --version ${{ needs.get-version.outputs.VERSION }} ${REPO_NAME}
+        run: conda skeleton pypi --noarch-python --version ${{ needs.get-version.outputs.VERSION }} ufjc
       - name: Edit meta.yml
         run: |
-          sed -i 's@dev_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'\"@' ${REPO_NAME}/meta.yaml
-          sed -i 's@doc_url:@& \"https://'${REPO_NAME}'.readthedocs.io\"@' ${REPO_NAME}/meta.yaml
-          cp LICENSE ${REPO_NAME}/LICENSE
-          sed -i 's@license_file:@& LICENSE@' ${REPO_NAME}/meta.yaml
-          sed -i '/license_file/a \ \ license_url:' ${REPO_NAME}/meta.yaml
-          sed -i 's@license_url:@& \"https://github.com/sandialabs/'${REPO_NAME}'/blob/main/LICENSE\"@' ${REPO_NAME}/meta.yaml
-          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ${REPO_NAME}/meta.yaml
-          sed -i "s@license: BSD@license: BSD-3-Clause@" ${REPO_NAME}/meta.yaml
+          sed -i 's@dev_url:@& \"https://github.com/sandialabs/'ufjc'\"@' ufjc/meta.yaml
+          sed -i 's@doc_url:@& \"https://'ufjc'.readthedocs.io\"@' ufjc/meta.yaml
+          cp LICENSE ufjc/LICENSE
+          sed -i 's@license_file:@& LICENSE@' ufjc/meta.yaml
+          sed -i '/license_file/a \ \ license_url:' ufjc/meta.yaml
+          sed -i 's@license_url:@& \"https://github.com/sandialabs/'ufjc'/blob/main/LICENSE\"@' ufjc/meta.yaml
+          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ufjc/meta.yaml
+          sed -i "s@license: BSD@license: BSD-3-Clause@" ufjc/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
           sed -e 's/title: //g' -i README.md
           sed -i 's/^/    /' README.md
-          sed -i '/summary/a \ \ description: |' ${REPO_NAME}/meta.yaml
-          sed -i '/doc_url/e cat README.md' ${REPO_NAME}/meta.yaml
-          cat ${REPO_NAME}/meta.yaml
+          sed -i '/summary/a \ \ description: |' ufjc/meta.yaml
+          sed -i '/doc_url/e cat README.md' ufjc/meta.yaml
+          cat ufjc/meta.yaml
       - name: Build conda packages
-        run: conda build --python 3.9 ${REPO_NAME}
+        run: conda build --python 3.9 ufjc
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
           anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
-          anaconda upload --force /usr/share/miniconda/conda-bld/noarch/${REPO_NAME}*.tar.bz2
+          anaconda upload --force /usr/share/miniconda/conda-bld/noarch/ufjc*.tar.bz2
           anaconda logout
       - name: Give upload time before downloading
         run: sleep 234s
@@ -84,14 +86,14 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Install the package
-        run: conda install --channel mrbuche ${REPO_NAME}==${{ needs.get-version.outputs.VERSION }}
+        run: conda install --channel mrbuche ufjc==${{ needs.get-version.outputs.VERSION }}
       - name: Test the package
         run: |
           conda init
           conda list
           PATH="/usr/share/miniconda/bin/:$PATH"
           python -c 'import ufjc'
-          # python -m ${REPO_NAME}.tests
+          # python -m ufjc.tests
   docker:
     needs: [get-version, pypi]
     runs-on: ubuntu-20.04
@@ -122,18 +124,4 @@ jobs:
     steps:
       - name: Test the package
         run: |
-          python -m ${REPO_NAME}.tests
-  test-zenodo:
-    needs: get-version
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Give upload time before downloading
-        run: sleep 234s
-      - uses: actions/checkout@v3
-      - name: test zenodo
-        run: |
-          curl https://zenodo.org/record/6428433/files/sandialabs/ufjc-v${{ needs.get-version.outputs.VERSION }}.zip?download=1 -o clone.zip
-          unzip -d clone/ clone.zip
-          cd clone/$(ls clone/)
-          pip install numpy scipy
-          python -m ${REPO_NAME}.tests
+          python -m ufjc.tests
