@@ -9,6 +9,6 @@ Example:
 
 """
 
-from .test_doc import TestDocstringExamples  # pragma: no cover
+from .test_examples import TestDocstringExamples  # pragma: no cover
 inst = TestDocstringExamples()  # pragma: no cover
 inst.test_docstring_python_examples(examples=False)  # pragma: no cover
