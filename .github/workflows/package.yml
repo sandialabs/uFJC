@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: version
         run: |
-          export VERSION=$(grep __version__ statmechcrack/__init__.py | cut -f2 -d '"')
+          export VERSION=$(grep __version__ ufjc/__init__.py | cut -f2 -d '"')
           echo "::set-output name=VERSION::${VERSION}"
     outputs:
       VERSION: ${{ steps.version.outputs.VERSION }}
@@ -60,7 +60,7 @@ jobs:
           sed -i 's@license_file:@& LICENSE@' ufjc/meta.yaml
           sed -i '/license_file/a \ \ license_url:' ufjc/meta.yaml
           sed -i 's@license_url:@& \"https://github.com/sandialabs/'ufjc'/blob/main/LICENSE\"@' ufjc/meta.yaml
-          sed -i 's@your-github-id-here@'"${{ secrets.ANACONDA_USERNAME }}"'@' ufjc/meta.yaml
+          sed -i 's@your-github-id-here@mrbuche@' ufjc/meta.yaml
           sed -i "s@license: BSD@license: BSD-3-Clause@" ufjc/meta.yaml
           sudo apt install -y pandoc
           pandoc -s -o README.md README.rst
@@ -74,7 +74,7 @@ jobs:
       - name: Upload to Anaconda.org
         run: |
           PATH="/usr/share/miniconda/bin/:$PATH"
-          anaconda login --username ${{ secrets.ANACONDA_USERNAME }} --password ${{ secrets.ANACONDA_PASSWORD }}
+          anaconda login --username mrbuche --password ${{ secrets.ANACONDA_PASSWORD }}
           anaconda upload --force /usr/share/miniconda/conda-bld/noarch/ufjc*.tar.bz2
           anaconda logout
       - name: Give upload time before downloading
@@ -104,15 +104,15 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1.12.0
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: mrbuche
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build Docker and push to Dockerhub
         uses: docker/build-push-action@v2.8.0
         with:
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/ufjc:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/ufjc:${{ needs.get-version.outputs.VERSION }}
+            mrbuche/ufjc:latest
+            mrbuche/ufjc:${{ needs.get-version.outputs.VERSION }}
       - name: Give upload time before downloading
         run: sleep 234s
   test-docker:
