@@ -2,7 +2,7 @@
 uFJC
 ####
 
-|build| |docs| |codecov| |coveralls| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
+|build| |docs| |codecov| |coveralls| |codefactor| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
 
 The Python package for the uFJC single-chain model.
 
@@ -65,17 +65,20 @@ Copyright 2022 National Technology & Engineering Solutions of Sandia, LLC (NTESS
 ..
     Badges ========================================================================
 
+.. |build| image:: https://img.shields.io/github/actions/workflow/status/sandialabs/ufjc/main.yml?branch=main&label=GitHub&logo=github
+    :target: https://github.com/sandialabs/ufjc
+
 .. |docs| image:: https://img.shields.io/readthedocs/ufjc?logo=readthedocs&label=Read%20the%20Docs
     :target: https://ufjc.readthedocs.io/en/latest/
 
-.. |build| image:: https://img.shields.io/github/workflow/status/sandialabs/ufjc/main?label=GitHub&logo=github
-    :target: https://github.com/sandialabs/ufjc
+.. |codecov| image:: https://img.shields.io/codecov/c/github/sandialabs/ufjc?label=Codecov&logo=codecov
+    :target: https://codecov.io/gh/sandialabs/ufjc
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/sandialabs/ufjc?logo=coveralls&label=Coveralls
     :target: https://coveralls.io/github/sandialabs/ufjc?branch=main
 
-.. |codecov| image:: https://img.shields.io/codecov/c/github/sandialabs/ufjc?label=Codecov&logo=codecov
-    :target: https://codecov.io/gh/sandialabs/ufjc
+.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/sandialabs/ufjc?label=Codefactor&logo=codefactor
+   :target: https://www.codefactor.io/repository/github/sandialabs/ufjc
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&logoColor=FBE072&color=4B8BBE&label=Python
     :target: https://pypi.org/project/ufjc/
