@@ -10,7 +10,7 @@ mv ../docs-temp/* source/
 rm -r ../docs-temp/
 for file in ../ufjc/*.py; do 
     export file_basename=$(basename ${file%.*})
-    export rst_file=$(echo "source/*$(basename ${file%.*}).rst")
+    export rst_file="source/*$(basename ${file%.*}).rst"
     if [ -f $rst_file ]; then 
         if grep -q :cite $file; then 
             echo "citations in $file"
