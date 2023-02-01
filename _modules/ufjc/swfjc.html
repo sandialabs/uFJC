@@ -13,9 +13,6 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
@@ -124,7 +121,7 @@
 
 
 <div class="viewcode-block" id="SWFJCIsometric"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJCIsometric">[docs]</a><span class="k">class</span> <span class="nc">SWFJCIsometric</span><span class="p">(</span><span class="n">BasicUtility</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The SWFJC model class for the isometric ensemble.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The SWFJC model class for the isometric ensemble.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        N (int): The number of links in the chain.</span>
@@ -132,7 +129,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">varsigma</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the ``SWFJCIsometric`` class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``SWFJCIsometric`` class.</span>
 
 <span class="sd">        Initialize and inherit all attributes and methods</span>
 <span class="sd">        from a ``BasicUtility`` class instance.</span>
@@ -150,7 +147,7 @@
 
 
 <div class="viewcode-block" id="SWFJCIsotensional"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional">[docs]</a><span class="k">class</span> <span class="nc">SWFJCIsotensional</span><span class="p">(</span><span class="n">SWFJCIsometric</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The SWFJC model class for the isotensional ensemble.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The SWFJC model class for the isotensional ensemble.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        N (int): The number of links in the chain.</span>
@@ -158,7 +155,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N_b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">varsigma</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the ``SWFJCIsotensional`` class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``SWFJCIsotensional`` class.</span>
 
 <span class="sd">        Initialize and inherit all attributes and methods</span>
 <span class="sd">        from a ``SWFJCIsometric`` class instance.</span>
@@ -175,7 +172,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">varsigma</span> <span class="o">=</span> <span class="n">varsigma</span>
 
 <div class="viewcode-block" id="SWFJCIsotensional.z"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.z">[docs]</a>    <span class="k">def</span> <span class="nf">z</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional single-link isotensional partition function</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional single-link isotensional partition function</span>
 <span class="sd">        as a function of the nondimensional force,</span>
 
 <span class="sd">        .. math::</span>
@@ -205,7 +202,7 @@
         <span class="k">return</span> <span class="n">z</span></div>
 
 <div class="viewcode-block" id="SWFJCIsotensional.beta_varphi"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.beta_varphi">[docs]</a>    <span class="k">def</span> <span class="nf">beta_varphi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional isotensional free energy as a function of</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional isotensional free energy as a function of</span>
 <span class="sd">        the nondimensional force,</span>
 
 <span class="sd">        .. math::</span>
@@ -251,7 +248,7 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="n">eta</span><span class="p">)))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">varsigma</span></div>
 
 <div class="viewcode-block" id="SWFJCIsotensional.gamma_isotensional"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJCIsotensional.gamma_isotensional">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isotensional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional end-to-end length as a function of</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional end-to-end length as a function of</span>
 <span class="sd">        the nondimensional force in the isotensional ensemble,</span>
 
 <span class="sd">        .. math::</span>
@@ -314,7 +311,7 @@
 
 
 <div class="viewcode-block" id="SWFJC"><a class="viewcode-back" href="../../ufjc.swfjc.html#ufjc.swfjc.SWFJC">[docs]</a><span class="k">class</span> <span class="nc">SWFJC</span><span class="p">(</span><span class="n">SWFJCIsotensional</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The SWFJC single-chain model class.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The SWFJC single-chain model class.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        N (int): The number of links in the chain.</span>
@@ -322,7 +319,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the ``SWFJC`` class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``SWFJC`` class.</span>
 
 <span class="sd">        Initialize and inherit all attributes and methods</span>
 <span class="sd">        from a ``SWFJCIsotensional`` class instance.</span>

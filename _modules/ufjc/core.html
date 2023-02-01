@@ -13,9 +13,6 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
@@ -121,7 +118,7 @@
 
 
 <div class="viewcode-block" id="uFJC"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC">[docs]</a><span class="k">class</span> <span class="nc">uFJC</span><span class="p">(</span><span class="n">Potential</span><span class="p">,</span> <span class="n">uFJCIsometric</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The uFJC single-chain model class.</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The uFJC single-chain model class.</span>
 
 <span class="sd">    This class represents the uFJC single-chain model, meaning that an</span>
 <span class="sd">    instance of this class is a uFJC single-chain model instance.</span>
@@ -151,7 +148,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initializes the ``uFJC`` class,</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``uFJC`` class,</span>
 <span class="sd">        producing a uFJC single-chain model instance.</span>
 
 <span class="sd">        First, initialize and inherit all attributes and methods</span>
@@ -224,7 +221,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">beta_u</span> <span class="o">=</span> <span class="n">beta_u_safe</span>
 
 <div class="viewcode-block" id="uFJC.gamma"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.gamma">[docs]</a>    <span class="k">def</span> <span class="nf">gamma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional end-to-end length.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional end-to-end length.</span>
 
 <span class="sd">        This function computes the scalar nondimensional end-to-end length as a</span>
 <span class="sd">        function of the scalar nondimensional force, :math:`\gamma(\eta)`.</span>
@@ -314,7 +311,7 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma_isotensional</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="uFJC.eta"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.eta">[docs]</a>    <span class="k">def</span> <span class="nf">eta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional force.</span>
 
 <span class="sd">        This function computes the scalar nondimensional force as a function of</span>
 <span class="sd">        the scalar nondimensional end-to-end length, :math:`\eta(\gamma)`.</span>
@@ -390,7 +387,7 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_isotensional</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="uFJC.vartheta"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.vartheta">[docs]</a>    <span class="k">def</span> <span class="nf">vartheta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional Helmholtz free energy per link.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional Helmholtz free energy per link.</span>
 
 <span class="sd">        This function compute the nondimensional Helmholtz free energy per link</span>
 <span class="sd">        in the isometric ensemble, which is generally given by</span>
@@ -438,7 +435,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vartheta_isometric</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="uFJC.P_eq"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.P_eq">[docs]</a>    <span class="k">def</span> <span class="nf">P_eq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional equilibrium distribution function.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional equilibrium distribution function.</span>
 
 <span class="sd">        This function computes the nondimensional probability density</span>
 <span class="sd">        distribution of nondimensional end-to-end vectors at equilibrium,</span>
@@ -530,7 +527,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">P_eq_normalizations</span><span class="p">[</span><span class="n">var_str</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="uFJC.g_eq"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.g_eq">[docs]</a>    <span class="k">def</span> <span class="nf">g_eq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional equilibrium radial distribution function.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional equilibrium radial distribution function.</span>
 
 <span class="sd">        This function computes the nondimensional radial probability density</span>
 <span class="sd">        distribution of nondimensional end-to-end lengths at equilibrium,</span>
@@ -566,7 +563,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">P_eq</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="uFJC.k"><a class="viewcode-back" href="../../ufjc.core.html#ufjc.core.uFJC.k">[docs]</a>    <span class="k">def</span> <span class="nf">k</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional net forward reaction rate coefficient function.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional net forward reaction rate coefficient function.</span>
 
 <span class="sd">        This function computes the net forward reaction rate coefficient</span>
 <span class="sd">        as a function of the nondimensional end-to-end length,</span>
