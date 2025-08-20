@@ -1,23 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>uFJC &mdash; uFJC 1.3.6 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=70d8fd07"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,9 +38,6 @@
           <a href="#" class="icon icon-home">
             uFJC
           </a>
-              <div class="version">
-                1.3.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -100,14 +100,11 @@
            <div itemprop="articleBody">
              
   <section id="ufjc">
-<h1>uFJC<a class="headerlink" href="#ufjc" title="Permalink to this heading"></a></h1>
-<section id="this-package-is-deprecated-please-use-the-polymers-modeling-library">
-<h2>THIS PACKAGE IS DEPRECATED. PLEASE USE THE <a class="reference external" href="https://sandialabs.github.io/Polymers">POLYMERS MODELING LIBRARY</a>.<a class="headerlink" href="#this-package-is-deprecated-please-use-the-polymers-modeling-library" title="Permalink to this heading"></a></h2>
+<h1>uFJC<a class="headerlink" href="#ufjc" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/sandialabs/ufjc"><img alt="build" src="https://img.shields.io/github/actions/workflow/status/sandialabs/ufjc/main.yml?branch=main&amp;label=GitHub&amp;logo=github" /></a> <a class="reference external" href="https://ufjc.readthedocs.io/en/latest/"><img alt="docs" src="https://img.shields.io/readthedocs/ufjc?logo=readthedocs&amp;label=Read%20the%20Docs" /></a> <a class="reference external" href="https://codecov.io/gh/sandialabs/ufjc"><img alt="codecov" src="https://img.shields.io/codecov/c/github/sandialabs/ufjc?label=Codecov&amp;logo=codecov" /></a> <a class="reference external" href="https://coveralls.io/github/sandialabs/ufjc?branch=main"><img alt="coveralls" src="https://img.shields.io/coveralls/github/sandialabs/ufjc?logo=coveralls&amp;label=Coveralls" /></a> <a class="reference external" href="https://www.codefactor.io/repository/github/sandialabs/ufjc"><img alt="codefactor" src="https://img.shields.io/codefactor/grade/github/sandialabs/ufjc?label=Codefactor&amp;logo=codefactor" /></a> <a class="reference external" href="https://pypi.org/project/ufjc/"><img alt="pyversions" src="https://img.shields.io/pypi/pyversions/ufjc.svg?logo=python&amp;logoColor=FBE072&amp;color=4B8BBE&amp;label=Python" /></a> <a class="reference external" href="https://pypi.org/project/ufjc/"><img alt="pypi" src="https://img.shields.io/pypi/v/ufjc?logo=pypi&amp;logoColor=FBE072&amp;label=PyPI&amp;color=4B8BBE" /></a> <a class="reference external" href="https://anaconda.org/mrbuche/ufjc/"><img alt="conda" src="https://img.shields.io/conda/v/mrbuche/ufjc.svg?logo=anaconda&amp;color=3EB049&amp;label=Anaconda" /></a> <a class="reference external" href="https://hub.docker.com/r/mrbuche/ufjc"><img alt="docker" src="https://img.shields.io/docker/v/mrbuche/ufjc?color=0db7ed&amp;label=Docker%20Hub&amp;logo=docker&amp;logoColor=0db7ed" /></a> <a class="reference external" href="https://github.com/sandialabs/ufjc/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/github/license/sandialabs/ufjc?label=License" /></a> <a class="reference external" href="https://doi.org/10.5281/zenodo.6114263"><img alt="zenodo" src="https://zenodo.org/badge/DOI/10.5281/zenodo.6114263.svg" /></a></p>
 <p>The Python package for the uFJC single-chain model.</p>
-</section>
 <section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <p>The package can be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> via the <a class="reference external" href="https://pypi.org/project/ufjc/">Python Package Index</a> (PyPI),</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ufjc</span>
 </pre></div>
@@ -128,7 +125,7 @@ In all of these cases, a valid installation can be tested by running</p>
 </div>
 </section>
 <section id="information">
-<h2>Information<a class="headerlink" href="#information" title="Permalink to this heading"></a></h2>
+<h2>Information<a class="headerlink" href="#information" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://ufjc.readthedocs.io/en/latest/CONTRIBUTING.html">Contributing</a></p></li>
 <li><p><a class="reference external" href="https://ufjc.readthedocs.io/en/latest/">Documentation</a></p></li>
@@ -140,12 +137,12 @@ In all of these cases, a valid installation can be tested by running</p>
 </ul>
 </section>
 <section id="citation">
-<h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading"></a></h2>
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
 <p>M. R. Buche and S. J. Grutzik, <code class="docutils literal notranslate"><span class="pre">uFJC</span></code>: the Python package for the uFJC single-chain model, <a class="reference external" href="https://doi.org/10.5281/zenodo.6114263">Zenodo (2022)</a>.</p>
 <p>M. R. Buche, M. N. Silberstein, and S. J. Grutzik, Freely jointed chain models with extensible links, <a class="reference external" href="https://doi.org/10.1103/PhysRevE.106.024502">Physical Review E 106, 024502 (2022)</a>.</p>
 </section>
 <section id="copyright">
-<h2>Copyright<a class="headerlink" href="#copyright" title="Permalink to this heading"></a></h2>
+<h2>Copyright<a class="headerlink" href="#copyright" title="Link to this heading"></a></h2>
 <p>Copyright 2022 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.</p>
 <div class="toctree-wrapper compound">
 </div>

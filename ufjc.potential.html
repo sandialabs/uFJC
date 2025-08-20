@@ -1,24 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.potential module &mdash; uFJC 1.3.6 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=70d8fd07"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,9 +39,6 @@
           <a href="index.html" class="icon icon-home">
             uFJC
           </a>
-              <div class="version">
-                1.3.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -200,7 +199,7 @@
            <div itemprop="articleBody">
              
   <section id="module-ufjc.potential">
-<span id="ufjc-potential-module"></span><h1>ufjc.potential<a class="headerlink" href="#module-ufjc.potential" title="Permalink to this heading"></a></h1>
+<span id="ufjc-potential-module"></span><h1>ufjc.potential<a class="headerlink" href="#module-ufjc.potential" title="Link to this heading"></a></h1>
 <p>A module for handling potentials.</p>
 <p>This module contains several different classes representing potentials,
 each having methods to compute relevant nondimensional quantities as
@@ -211,14 +210,14 @@ assign a potential to a given model using keyword arguments.</p>
 <p>Create a Lennard-Jones potential model with
 a nondimensional potential energy scale of 8 and evaluate
 the nondimensional potential energy at a stretch of 1.23:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LennardJonesPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">LennardJonesPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LennardJonesPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 <span class="go">4.046654314368616</span>
 </pre></div>
 </div>
 <p>Do the same with the Lenard-Jones-FENE potential:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LJFENEPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">LJFENEPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LJFENEPotential</span><span class="p">(</span><span class="n">varepsilon</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 <span class="go">8.510502022381505</span>
@@ -227,9 +226,9 @@ the nondimensional potential energy at a stretch of 1.23:</p>
 <p>Create a single-link model in one dimension, instantiate it with
 the Morse potential, and compute the incremental link stretch under
 a nondimensional force of 8:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">Potential</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Link1D</span><span class="p">(</span><span class="n">Potential</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">Potential</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">Link1D</span><span class="p">(</span><span class="n">Potential</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="n">Potential</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;morse&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">delta_lambda</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Link1D</span><span class="p">(</span><span class="n">potential</span><span class="o">=</span><span class="s1">&#39;lj-fene&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -238,12 +237,12 @@ a nondimensional force of 8:</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CustomPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#CustomPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.CustomPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CustomPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#CustomPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.CustomPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A custom user-defined potential.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.potential">
-<span class="sig-name descname"><span class="pre">potential</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.potential" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">potential</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.potential" title="Link to this definition"></a></dt>
 <dd><p>The potential name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -254,7 +253,7 @@ a nondimensional force of 8:</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -265,7 +264,7 @@ a nondimensional force of 8:</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional energy function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -276,7 +275,7 @@ a nondimensional force of 8:</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -287,7 +286,7 @@ a nondimensional force of 8:</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.delta_lambda">
-<span class="sig-name descname"><span class="pre">delta_lambda</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.delta_lambda" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delta_lambda</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.delta_lambda" title="Link to this definition"></a></dt>
 <dd><p>The incremental stretch as a function of the
 nondimensional force (optional).</p>
 <dl class="field-list simple">
@@ -299,7 +298,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -310,7 +309,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.CustomPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -321,7 +320,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.CustomPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#CustomPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.CustomPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#CustomPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.CustomPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -345,12 +344,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HarmonicPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">HarmonicPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The harmonic potential.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -361,7 +360,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness <span class="math notranslate nohighlight">\(\kappa=\varepsilon\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -372,7 +371,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.HarmonicPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter <span class="math notranslate nohighlight">\(c=1\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -383,7 +382,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -405,7 +404,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.delta_lambda">
-<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.delta_lambda" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.delta_lambda" title="Link to this definition"></a></dt>
 <dd><p>The incremental stretch as a function of nondimensional force,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -427,7 +426,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -447,7 +446,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">HarmonicPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">HarmonicPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">HarmonicPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
 <span class="go">70.4</span>
 </pre></div>
@@ -456,7 +455,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.HarmonicPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#HarmonicPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.HarmonicPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -480,12 +479,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJFENEPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJFENEPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The Lennard-Jones-FENE potential <span id="id1">[<a class="reference internal" href="#id23" title="Kurt Kremer and Gary S Grest. Dynamics of entangled linear polymer melts: A molecular-dynamics simulation. The Journal of Chemical Physics, 92(8):5057–5086, 1990. doi:10.1063/1.458541.">2</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -496,7 +495,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -507,7 +506,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -518,7 +517,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.eta_max">
-<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_max" title="Link to this definition"></a></dt>
 <dd><p>The maximum nondimensional force
 <span class="math notranslate nohighlight">\(\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})\)</span>.</p>
 <dl class="field-list simple">
@@ -530,7 +529,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.lambda_max">
-<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.lambda_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LJFENEPotential.lambda_max" title="Link to this definition"></a></dt>
 <dd><p>The stretch at the maximum nondimensional force.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -541,7 +540,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -569,7 +568,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -594,7 +593,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LJFENEPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LJFENEPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LJFENEPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -623,12 +622,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LennardJonesPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LennardJonesPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The Lennard-Jones potential <span id="id2">[<a class="reference internal" href="#id22" title="John Edward Jones. On the determination of molecular fields. II. From the equation of state of a gas. Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character, 106(738):463–477, 1924. doi:10.1098/rspa.1924.0082.">1</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -639,7 +638,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness
 <span class="math notranslate nohighlight">\(\kappa=72\varepsilon\)</span>.</p>
 <dl class="field-list simple">
@@ -651,7 +650,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter
 <span class="math notranslate nohighlight">\(c=2/23\)</span>.</p>
 <dl class="field-list simple">
@@ -663,7 +662,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.eta_max">
-<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.eta_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.eta_max" title="Link to this definition"></a></dt>
 <dd><p>The maximum nondimensional force
 <span class="math notranslate nohighlight">\(\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})\)</span>.</p>
 <dl class="field-list simple">
@@ -675,7 +674,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.lambda_max">
-<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.lambda_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.lambda_max" title="Link to this definition"></a></dt>
 <dd><p>The stretch at the maximum nondimensional force,
 <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} = (13/7)^{1/6}\)</span>.</p>
 <dl class="field-list simple">
@@ -687,7 +686,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -709,7 +708,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -732,7 +731,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LennardJonesPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LennardJonesPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LennardJonesPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -757,12 +756,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LogSquaredPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LogSquaredPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The log-squared potential <span id="id3">[<a class="reference internal" href="#id20" title="Yunwei Mao, Brandon Talamini, and Lallit Anand. Rupture of polymers by chain scission. Extreme Mechanics Letters, 13:17–24, 2017. doi:10.1016/j.eml.2017.01.003.">3</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -773,7 +772,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness <span class="math notranslate nohighlight">\(\kappa=\varepsilon\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -784,7 +783,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter <span class="math notranslate nohighlight">\(c=2/5\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -795,7 +794,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.eta_max">
-<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.eta_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.eta_max" title="Link to this definition"></a></dt>
 <dd><p>The maximum nondimensional force
 <span class="math notranslate nohighlight">\(\eta_\mathrm{max} = e^{-1}\varepsilon\)</span>.</p>
 <dl class="field-list simple">
@@ -807,7 +806,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.lambda_max">
-<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.lambda_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.lambda_max" title="Link to this definition"></a></dt>
 <dd><p>The stretch at the maximum nondimensional force,
 <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} = e^{1}\)</span>.</p>
 <dl class="field-list simple">
@@ -819,7 +818,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -841,7 +840,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.delta_lambda">
-<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.delta_lambda" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.delta_lambda" title="Link to this definition"></a></dt>
 <dd><p>The incremental stretch as a function of nondimensional force,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -864,7 +863,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -884,7 +883,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">LogSquaredPotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogSquaredPotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">LogSquaredPotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.8</span><span class="p">)</span>
 <span class="go">28.736236950770266</span>
 </pre></div>
@@ -893,7 +892,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.LogSquaredPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#LogSquaredPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.LogSquaredPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -917,12 +916,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MiePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MiePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The Mie potential <span id="id4">[<a class="reference internal" href="#id24" title="Gustav Mie. Zur kinetischen theorie der einatomigen körper. Annalen der Physik, 316(8):657–697, 1903. doi:10.1002/andp.19033160802.">4</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -933,7 +932,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.n">
-<span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.n" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.n" title="Link to this definition"></a></dt>
 <dd><p>The repulsive exponent.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -944,7 +943,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.m">
-<span class="sig-name descname"><span class="pre">m</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.m" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">m</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.m" title="Link to this definition"></a></dt>
 <dd><p>The attractive exponent.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -955,7 +954,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness
 <span class="math notranslate nohighlight">\(\kappa=nm\varepsilon\)</span>.</p>
 <dl class="field-list simple">
@@ -967,7 +966,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter
 <span class="math notranslate nohighlight">\(c=\frac{4m(m+1)-2n(n+1)}{2m(m^2+5m+4)-n(n^2+5n+4)}\)</span>.</p>
 <dl class="field-list simple">
@@ -979,7 +978,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.eta_max">
-<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.eta_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.eta_max" title="Link to this definition"></a></dt>
 <dd><p>The maximum nondimensional force
 <span class="math notranslate nohighlight">\(\eta_\mathrm{max} = \eta(\lambda_\mathrm{max})\)</span>.</p>
 <dl class="field-list simple">
@@ -991,7 +990,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.lambda_max">
-<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.lambda_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.MiePotential.lambda_max" title="Link to this definition"></a></dt>
 <dd><p>The stretch at the maximum nondimensional force,
 <span class="math notranslate nohighlight">\(\lambda_\mathrm{max}=\left[\frac{n+1}{m+1}\right]^{1/(n-m)}\)</span>
 .</p>
@@ -1004,7 +1003,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1026,7 +1025,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1050,7 +1049,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MiePotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MiePotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MiePotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1075,12 +1074,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MorsePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MorsePotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The Morse potential <span id="id5">[<a class="reference internal" href="#id21" title="Philip M Morse. Diatomic molecules according to the wave mechanics. II. Vibrational levels. Physical Review, 34(1):57, 1929. doi:10.1103/PhysRev.34.57.">5</a>]</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1091,7 +1090,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.alpha">
-<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.alpha" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.alpha" title="Link to this definition"></a></dt>
 <dd><p>The Morse parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1102,7 +1101,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness
 <span class="math notranslate nohighlight">\(\kappa=2\varepsilon\alpha^2\)</span>.</p>
 <dl class="field-list simple">
@@ -1114,7 +1113,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter
 <span class="math notranslate nohighlight">\(c=1/(1+3\alpha/2)\)</span>.</p>
 <dl class="field-list simple">
@@ -1126,7 +1125,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.eta_max">
-<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.eta_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_max</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.eta_max" title="Link to this definition"></a></dt>
 <dd><p>The maximum nondimensional force
 <span class="math notranslate nohighlight">\(\eta_\mathrm{max} = \sqrt{\kappa\varepsilon/8}\)</span>.</p>
 <dl class="field-list simple">
@@ -1138,7 +1137,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.lambda_max">
-<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.lambda_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">lambda_max</span></span><a class="headerlink" href="#ufjc.potential.MorsePotential.lambda_max" title="Link to this definition"></a></dt>
 <dd><p>The stretch at the maximum nondimensional force,
 <span class="math notranslate nohighlight">\(\lambda_\mathrm{max} = 1+\ln(2)/\alpha\)</span>.</p>
 <dl class="field-list simple">
@@ -1150,7 +1149,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1172,7 +1171,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.delta_lambda">
-<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.delta_lambda" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">delta_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.delta_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.delta_lambda" title="Link to this definition"></a></dt>
 <dd><p>The incremental stretch as a function of nondimensional force,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1197,7 +1196,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1218,7 +1217,7 @@ nondimensional force (optional).</p>
 </dl>
 <p class="rubric">Example</p>
 <p>Compute the nondimensional force at a sample stretch:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ufjc.potential</span> <span class="kn">import</span> <span class="n">MorsePotential</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ufjc.potential</span><span class="w"> </span><span class="kn">import</span> <span class="n">MorsePotential</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">MorsePotential</span><span class="p">()</span><span class="o">.</span><span class="n">eta_link</span><span class="p">(</span><span class="mf">1.23</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1226,7 +1225,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.MorsePotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#MorsePotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.MorsePotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1251,12 +1250,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PolynomialPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PolynomialPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A polynomial potential.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.varepsilon">
-<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.varepsilon" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">varepsilon</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.varepsilon" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional energy scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1267,7 +1266,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.coefficients">
-<span class="sig-name descname"><span class="pre">coefficients</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.coefficients" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">coefficients</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.coefficients" title="Link to this definition"></a></dt>
 <dd><p>The coefficients <span class="math notranslate nohighlight">\(a_k\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1278,7 +1277,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.kappa">
-<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.kappa" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">kappa</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.kappa" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional stiffness
 <span class="math notranslate nohighlight">\(\kappa=a_1\varepsilon\)</span>.</p>
 <dl class="field-list simple">
@@ -1290,7 +1289,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.c">
-<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.c" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c</span></span><a class="headerlink" href="#ufjc.potential.PolynomialPotential.c" title="Link to this definition"></a></dt>
 <dd><p>The correction parameter
 <span class="math notranslate nohighlight">\(c=(1 - \frac{a_2}{2a_1})^{-1}\)</span>.</p>
 <dl class="field-list simple">
@@ -1302,7 +1301,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.beta_u">
-<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.beta_u" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">beta_u</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.beta_u"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.beta_u" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1324,7 +1323,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.eta_link">
-<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.eta_link" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">eta_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.eta_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.eta_link" title="Link to this definition"></a></dt>
 <dd><p>The nondimensional force as a function of stretch,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1346,7 +1345,7 @@ nondimensional force (optional).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ufjc.potential.PolynomialPotential.phi">
-<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.phi" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lambda_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#PolynomialPotential.phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.PolynomialPotential.phi" title="Link to this definition"></a></dt>
 <dd><p>The scaled nondimensional potential energy function,</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -1370,12 +1369,12 @@ nondimensional force (optional).</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="ufjc.potential.Potential">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#Potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.Potential" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ufjc/potential.html#Potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ufjc.potential.Potential" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to assign a potential to a given model through inheritance.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.Potential.potential">
-<span class="sig-name descname"><span class="pre">potential</span></span><a class="headerlink" href="#ufjc.potential.Potential.potential" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">potential</span></span><a class="headerlink" href="#ufjc.potential.Potential.potential" title="Link to this definition"></a></dt>
 <dd><p>The potential type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1386,7 +1385,7 @@ nondimensional force (optional).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ufjc.potential.Potential.pot">
-<span class="sig-name descname"><span class="pre">pot</span></span><a class="headerlink" href="#ufjc.potential.Potential.pot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">pot</span></span><a class="headerlink" href="#ufjc.potential.Potential.pot" title="Link to this definition"></a></dt>
 <dd><p>The potential model instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1399,6 +1398,7 @@ nondimensional force (optional).</p>
 
   <hr><p><strong>References</strong></p>
 <div class="docutils container" id="id6">
+<div role="list" class="citation-list">
 <div class="citation" id="id22" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
 <p>John Edward Jones. On the determination of molecular fields. II. From the equation of state of a gas. <em>Proceedings of the Royal Society of London. Series A, Containing Papers of a Mathematical and Physical Character</em>, 106(738):463–477, 1924. <a class="reference external" href="https://doi.org/10.1098/rspa.1924.0082">doi:10.1098/rspa.1924.0082</a>.</p>

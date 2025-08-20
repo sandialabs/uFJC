@@ -1,22 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.isometric &mdash; uFJC 1.3.6 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=70d8fd07"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -33,9 +35,6 @@
           <a href="../../index.html" class="icon icon-home">
             uFJC
           </a>
-              <div class="version">
-                1.3.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -113,15 +112,17 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Import internal modules</span>
-<span class="kn">from</span> <span class="nn">.monte_carlo</span> <span class="kn">import</span> <span class="n">MHMCMC</span>
-<span class="kn">from</span> <span class="nn">.isotensional</span> <span class="kn">import</span> <span class="n">uFJCIsotensional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.monte_carlo</span><span class="w"> </span><span class="kn">import</span> <span class="n">MHMCMC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.isotensional</span><span class="w"> </span><span class="kn">import</span> <span class="n">uFJCIsotensional</span>
 
 <span class="c1"># Import external modules</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">la</span>
 
 
-<div class="viewcode-block" id="uFJCIsometric"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric">[docs]</a><span class="k">class</span> <span class="nc">uFJCIsometric</span><span class="p">(</span><span class="n">uFJCIsotensional</span><span class="p">):</span>
+<div class="viewcode-block" id="uFJCIsometric">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">uFJCIsometric</span><span class="p">(</span><span class="n">uFJCIsotensional</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The uFJC single-chain model class for the isometric ensemble.</span>
 
 <span class="sd">    This class contains methods for computing single-chain quantities</span>
@@ -131,7 +132,7 @@
 <span class="sd">    ``BasicUtility`` class.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``uFJCIsometric`` class.</span>
 
 <span class="sd">        Initialize and inherit all attributes and methods</span>
@@ -140,7 +141,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">uFJCIsotensional</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="uFJCIsometric.eta_isometric"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric">[docs]</a>    <span class="k">def</span> <span class="nf">eta_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="uFJCIsometric.eta_isometric">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eta_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Main function for the isometric :math:`\eta(\gamma)`.</span>
 
 <span class="sd">        This is the main function utilized to compute the isometric</span>
@@ -183,7 +186,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">gamma</span></div>
 
-<div class="viewcode-block" id="uFJCIsometric.eta_isometric_legendre"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric_legendre">[docs]</a>    <span class="k">def</span> <span class="nf">eta_isometric_legendre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="uFJCIsometric.eta_isometric_legendre">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.eta_isometric_legendre">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eta_isometric_legendre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Legendre transformation method of approximating</span>
 <span class="sd">        the isometric :math:`\eta(\gamma)`.</span>
 
@@ -213,7 +219,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_isotensional</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="uFJCIsometric.gamma_isometric"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.gamma_isometric">[docs]</a>    <span class="k">def</span> <span class="nf">gamma_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="uFJCIsometric.gamma_isometric">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.gamma_isometric">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">gamma_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Main function for the isometric :math:`\gamma(\eta)`.</span>
 
 <span class="sd">        This function obtains the isometric nondimensional</span>
@@ -242,11 +251,14 @@
 <span class="sd">                True</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">def</span> <span class="nf">eta_fun</span><span class="p">(</span><span class="n">gamma</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">eta_fun</span><span class="p">(</span><span class="n">gamma</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta_isometric</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">eta</span><span class="p">,</span> <span class="n">eta_fun</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="uFJCIsometric.vartheta_isometric"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric">[docs]</a>    <span class="k">def</span> <span class="nf">vartheta_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="uFJCIsometric.vartheta_isometric">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vartheta_isometric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Main function for the isometric :math:`\vartheta(\gamma)`.</span>
 
 <span class="sd">        This is the main function utilized to compute the nondimensional</span>
@@ -289,7 +301,10 @@
         <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;legendre&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vartheta_isometric_legendre</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="uFJCIsometric.vartheta_isometric_legendre"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric_legendre">[docs]</a>    <span class="k">def</span> <span class="nf">vartheta_isometric_legendre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="uFJCIsometric.vartheta_isometric_legendre">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.vartheta_isometric_legendre">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vartheta_isometric_legendre</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Legendre transformation method of approximating</span>
 <span class="sd">        the isometric :math:`\vartheta(\gamma)`.</span>
 
@@ -365,7 +380,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">gamma</span></div>
 
-<div class="viewcode-block" id="uFJCIsometric.beta_U_config"><a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.beta_U_config">[docs]</a>    <span class="k">def</span> <span class="nf">beta_U_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+
+<div class="viewcode-block" id="uFJCIsometric.beta_U_config">
+<a class="viewcode-back" href="../../ufjc.isometric.html#ufjc.isometric.uFJCIsometric.beta_U_config">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">beta_U_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The nondimensional potential energy of a configuration.</span>
 
 <span class="sd">        This function provides the nondimensional potential energy</span>
@@ -393,7 +411,9 @@
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="p">)):</span>
             <span class="n">lambda_</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">config</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
             <span class="n">beta_U</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_u</span><span class="p">(</span><span class="n">lambda_</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">beta_U</span></div></div>
+        <span class="k">return</span> <span class="n">beta_U</span></div>
+</div>
+
 </pre></div>
 
            </div>

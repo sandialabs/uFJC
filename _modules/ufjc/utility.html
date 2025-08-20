@@ -1,22 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ufjc.utility &mdash; uFJC 1.3.6 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/plot_directive.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=70d8fd07"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -33,9 +35,6 @@
           <a href="../../index.html" class="icon icon-home">
             uFJC
           </a>
-              <div class="version">
-                1.3.6
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -122,12 +121,14 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Import external modules</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">root_scalar</span>
 
 
-<div class="viewcode-block" id="BasicUtility"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility">[docs]</a><span class="k">class</span> <span class="nc">BasicUtility</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicUtility">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BasicUtility</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The single-chain model basic utilities class.</span>
 
 <span class="sd">    This class contains</span>
@@ -143,7 +144,7 @@
 <span class="sd">            Helps avoid overflow in exponential functions.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ``BasicUtility`` class.</span>
 
 <span class="sd">        Inherits overflow-related parameters from ``sys.float_info``.</span>
@@ -152,7 +153,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">maximum_float</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">maximum_exponent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maximum_float</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BasicUtility.np_array"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.np_array">[docs]</a>    <span class="k">def</span> <span class="nf">np_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicUtility.np_array">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.np_array">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">np_array</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Function to return input as a numpy array.</span>
 
 <span class="sd">        This function essentially serves as a wrapper for ``numpy.array``</span>
@@ -185,7 +188,10 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BasicUtility.inv_fun_1D"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.inv_fun_1D">[docs]</a>    <span class="k">def</span> <span class="nf">inv_fun_1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BasicUtility.inv_fun_1D">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.inv_fun_1D">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inv_fun_1D</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Function to invert a mathematical function.</span>
 
 <span class="sd">        This function returns the argument x given a function f(x)</span>
@@ -218,7 +224,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
 
             <span class="c1"># Function whose root will be found</span>
-            <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
                 <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="n">power</span>
 
             <span class="c1"># First two guesses when root-finding</span>
@@ -238,7 +244,10 @@
         <span class="c1"># Return the roots</span>
         <span class="k">return</span> <span class="n">x</span></div>
 
-<div class="viewcode-block" id="BasicUtility.log_over_sinh"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.log_over_sinh">[docs]</a>    <span class="k">def</span> <span class="nf">log_over_sinh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BasicUtility.log_over_sinh">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.log_over_sinh">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">log_over_sinh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The natural logarithm of the argument over the hyperbolic sine.</span>
 
 <span class="sd">        This function avoids overflow when calculating the natural logarithm</span>
@@ -281,7 +290,10 @@
         <span class="c1"># Return the results</span>
         <span class="k">return</span> <span class="n">y</span></div>
 
-<div class="viewcode-block" id="BasicUtility.coth"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.coth">[docs]</a>    <span class="k">def</span> <span class="nf">coth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BasicUtility.coth">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.coth">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">coth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The hyperbolic cotangent function.</span>
 
 <span class="sd">        This function essentially serves as a wrapper for the algebraic inverse</span>
@@ -306,7 +318,10 @@
         <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">eta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BasicUtility.langevin"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.langevin">[docs]</a>    <span class="k">def</span> <span class="nf">langevin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BasicUtility.langevin">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.langevin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">langevin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Langevin function.</span>
 
 <span class="sd">        This function computes and returns the Langevin function</span>
@@ -335,7 +350,10 @@
         <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">eta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum_float</span><span class="p">,</span> <span class="n">eta</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">eta</span></div>
 
-<div class="viewcode-block" id="BasicUtility.inv_langevin"><a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.inv_langevin">[docs]</a>    <span class="k">def</span> <span class="nf">inv_langevin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+
+<div class="viewcode-block" id="BasicUtility.inv_langevin">
+<a class="viewcode-back" href="../../ufjc.utility.html#ufjc.utility.BasicUtility.inv_langevin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">inv_langevin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;The inverse Langevin function.</span>
 
 <span class="sd">        This function computes the inverse of the Langevin function</span>
@@ -360,7 +378,9 @@
 <span class="sd">                True</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_fun_1D</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">langevin</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>
