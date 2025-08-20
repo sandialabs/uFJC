@@ -2,10 +2,6 @@
 uFJC
 ####
 
-****************************************************************************************************************
-THIS PACKAGE IS DEPRECATED. PLEASE USE THE `POLYMERS MODELING LIBRARY <https://sandialabs.github.io/Polymers>`_.
-****************************************************************************************************************
-
 |build| |docs| |codecov| |coveralls| |codefactor| |pyversions| |pypi| |conda| |docker| |license| |zenodo|
 
 The Python package for the uFJC single-chain model.
